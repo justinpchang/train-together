@@ -1,0 +1,9 @@
+.feed {
+  margin: 20px;
+}
+
+.feed-card {
+  width: 50rem;
+  margin: auto;
+  margin-bottom: 10px;
+}

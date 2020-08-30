@@ -1,12 +1,14 @@
 import React from 'react';
 
 import {LogoutButton} from './auth';
+import Feed from './feed';
 
 const Home = () => {
   return (
     <div>
-      <p>At home page!</p>
       <LogoutButton />
+      <p>At home page!</p>
+      <Feed />
     </div>
   );
 };
