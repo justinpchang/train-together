@@ -2,21 +2,22 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "react-bootstrap";
 
-const LogoutButton = () => {
-  const { logout } = useAuth0();
+const RegisterButton = () => {
+  const { loginWithRedirect } = useAuth0();
   return (
     <Button
       onClick={() =>
-        logout({
-          returnTo: window.location.origin,
+        loginWithRedirect({
+          screen_hint: "signup",
         })
       }
-      variant="danger"
+      variant="primary"
       className="btn-margin"
     >
-      Log Out
+      Sign Up
     </Button>
   );
 };
 
-export default LogoutButton;
+export default RegisterButton;
+

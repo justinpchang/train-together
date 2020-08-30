@@ -1,9 +1,11 @@
-import Content from "./content";
-import Footer from "./footer";
-import Hero from "./hero";
-import Loading from "./loading";
-import NavBar from "./nav-bar";
-import Highlight from "./highlight";
-import PrivateRoute from "./private-route";
+import PrivateRoute from './PrivateRoute';
+import Loading from './Loading';
+import Main from './Main';
+import Profile from './Profile';
 
-export { Content, Footer, Hero, Loading, NavBar, Highlight, PrivateRoute };
+export {
+  PrivateRoute,
+  Loading,
+  Main,
+  Profile,
+};
