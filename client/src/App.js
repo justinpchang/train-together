@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { useAuth0 } from "@auth0/auth0-react";
 
 import { Main, Profile, PrivateRoute } from "./components";
 
