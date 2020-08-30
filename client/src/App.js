@@ -4,7 +4,8 @@ import { Container } from "react-bootstrap";
 
 import { Main, Profile, PrivateRoute } from "./components";
 
-import "./app.css";
+import "./style/profile.css";
+import './style/feed.css';
 
 const App = () => {
   return (
