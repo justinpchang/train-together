@@ -1,0 +1,19 @@
+{
+  "name": "backend-tt-dev",
+  "version": "1.0.0",
+  "description": "backend of tt dev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinpchang/train-together.git"
+  },
+  "author": "Varun Raj and Telvin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justinpchang/train-together/issues"
+  },
+  "homepage": "https://github.com/justinpchang/train-together#readme"
+}
