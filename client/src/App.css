@@ -1,35 +1,21 @@
-.next-steps .fa-link {
-  margin-right: 5px;
+.profile-picture {
+  width: 160px;
+  height: 160px;
+  border-radius: 80px;
+  margin-right: 60px;
 }
 
-/* Fix for use only flexbox in content area */
-.next-steps .row {
-  margin-bottom: 0;
+.profile-info {
+  margin-top: 30px;
+  font-weight: 'normal';
+  display: 'flex';
 }
 
-.next-steps .col-md-5 {
-  margin-bottom: 3rem;
+.profile-info p {
+  font-size: 18px;
+  padding-right: 10px;
 }
 
-@media (max-width: 768px) {
-  .next-steps .col-md-5 {
-    margin-bottom: 0;
-  }
-}
-
-.spinner {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: white;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.result-block-container .result-block {
-  opacity: 1;
+.profile-number {
+  font-weight: bold;
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 
-import RegisterButton from './RegisterButton';
-import LoginButton from './LoginButton';
+import {RegisterButton, LoginButton} from './auth';
 
 const Landing = () => {
   return (
