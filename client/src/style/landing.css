@@ -1,0 +1,49 @@
+.landing {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.landing-container {
+  height: 100%;
+  width: 100%;
+}
+
+.landing-text {
+  margin-top: 50px;
+  z-index: 0;
+}
+
+.hero-image-container {
+  position: absolute;
+  height: 120%;
+  left: -40%;
+  top: -20%;
+  width: 140%;
+  overflow: hidden;
+  z-index: -7;
+}
+
+.background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #F5D8DD;
+  z-index: -100;
+}
+
+.hero-image {
+  position: absolute;
+  z-index: -5;
+}
+
+.landing h1 {
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+  .hero-image {
+    display: none;
+  }
+}

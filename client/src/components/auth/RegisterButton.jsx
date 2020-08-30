@@ -12,9 +12,9 @@ const RegisterButton = () => {
         })
       }
       variant="primary"
-      className="btn-margin"
+      className="btn-margin auth-button register-button"
     >
-      Sign Up
+      JOIN NOW
     </Button>
   );
 };

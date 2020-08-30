@@ -8,7 +8,7 @@ const LoginButton = () => {
     <Button
       onClick={() => loginWithRedirect()}
       variant="primary"
-      className="btn-margin"
+      className="btn-margin auth-button login-button"
     >
       Log In
     </Button>

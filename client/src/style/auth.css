@@ -1,0 +1,20 @@
+.auth-button {
+  width: 360px;
+  height: 50px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  border: 0px;
+}
+
+.auth-button:hover {
+  background: white;
+  color: black;
+}
+
+.login-button {
+  background: black;
+}
+
+.register-button {
+  background: #D333A5;
+}
