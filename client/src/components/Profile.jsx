@@ -1,37 +1,14 @@
 import React from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
 import { Row } from 'react-bootstrap';
 
 import defaultProfilePicture from '../assets/default-profile-picture.png';
 
-const profileInfoStyle = {
-  display: 'flex',
-  //justifyContent: 'space-around',
-  margin: '18px 0px',
-  boxSizing: 'none',
-}
-
-const profileTextStyle = {
-  marginTop: '40px',
-}
-
-const profileStatsStyle = {
-  display: 'flex',
-}
-
-const profileStatStyle = {
-  marginRight: '10px',
-}
-
 const Profile = () => {
-  const { user } = useAuth0();
-  const { name, picture, email } = user;
-
   return (
     <div>
       <Row>
         <div className='col-md-3'>
-          <img className='profile-picture' src={defaultProfilePicture} />
+          <img className='profile-picture' src={defaultProfilePicture} alt='profile' />
         </div>
         <div className='profile-info col-md-9'>
           <Row>
