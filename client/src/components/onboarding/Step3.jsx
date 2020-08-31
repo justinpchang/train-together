@@ -9,15 +9,7 @@ class Step3 extends React.Component {
 
     return (
       <div>
-        <h5>Goals</h5>
-        <input
-          size="lg"
-          type="text"
-          name="goals"
-          placeholder="get huge"
-          value={this.props.goals}
-          onChange={this.props.handleChange}
-        />
+        <h5>Here are some people you might like to follow!</h5>
       </div>
     );
   }

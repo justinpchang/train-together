@@ -8,7 +8,7 @@ class Onboarding extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStep: 2,
+      currentStep: 1,
       name: '',
       gender: '',
       age: '',
@@ -69,7 +69,13 @@ class Onboarding extends React.Component {
     let currentStep = this.state.currentStep;
     if (currentStep > 2) {
       return (
-        <button type='submit'>FINISH</button>
+        <button
+          className='btn btn-primary float-right'
+          style={{background: '#D333A5'}}
+          type='submit'
+          onClick={this.handleSubmit}>
+          Finish
+        </button>
       );
     }
     return null;
@@ -88,7 +94,8 @@ class Onboarding extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    alert(this.state);
+    alert(JSON.stringify(this.state));
+    this.props.onSubmit();
   }
 
   render() {

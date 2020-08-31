@@ -23,8 +23,6 @@ class Step2 extends React.Component {
     // Update state array
     let removeIndex = this.state.interests.indexOf(event.target.name);
     if (removeIndex > -1) {
-      console.log('unhighlighting');
-      event.target.className = '.no-highlight'
       this.setState({
         interests: this.state.interests.filter((interest) => {
           return interest !== event.target.name;
@@ -33,8 +31,6 @@ class Step2 extends React.Component {
         this.props.getInterests(this.state.interests);
       })
     } else {
-      console.log('highlighting');
-      event.target.className = '.highlight';
       this.setState({
         interests: [...this.state.interests, event.target.name],
       }, () => {

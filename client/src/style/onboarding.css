@@ -39,7 +39,7 @@
 .interest {
   margin: auto;
   height: 150px;
-  margin-bottom: 7px;
+  margin-bottom: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,6 +48,8 @@
 .interest > img {
   position: absolute;
   filter: brightness(70%);
+  height: 100%;
+  width: 100%;
 }
 
 .interest > p {
@@ -56,12 +58,4 @@
   z-index: 10;
   color: white;
   font-weight: bold;
-}
-
-.highlight {
-  border: solid 2px #EC3A4B; 
-  display: none;
-}
-.no-highlight {
-  border: solid 2px transparent; 
 }
