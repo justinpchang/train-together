@@ -9,6 +9,7 @@ import "./style/feed.css";
 import "./style/landing.css";
 import "./style/auth.css";
 import "./style/onboarding.css";
+import "./style/home.css";
 
 const App = () => {
   return (

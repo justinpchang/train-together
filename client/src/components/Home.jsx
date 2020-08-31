@@ -1,12 +1,11 @@
 import React from 'react';
 
-import {LogoutButton} from './auth';
 import Feed from './feed';
 
 const Home = () => {
   return (
     <div>
-      <LogoutButton />
+      <div class='navbar'></div>
       <p>At home page!</p>
       <Feed />
     </div>
