@@ -12,7 +12,7 @@ import { createLogger } from '../../utils/logger';
 
 import { UserAccess } from '../datalayer/UserdDBAcceess';
 
-import { UserItem } from '../../models/UserItem';
+// import { UserItem } from '../../models/UserItem';
 
 const logger = createLogger('TestUserDB');
 
@@ -21,18 +21,21 @@ export const handler: APIGatewayProxyHandler = async (
 ): Promise<APIGatewayProxyResult> => {
   const userItem: UserItem = JSON.parse(event.body);
 
-  logger.info(`create request for ${JSON.stringify(userItem)} received!!`);
+  logger.info(`create request for ${JSON.stringify(event.body)} received!!`);
 
   //   const token: string = event.headers.Authorization.split(' ')[1];
 
-  const createItemResponse = await new UserAccess().createUser(userItem);
+  const ItemResponse = await new UserAccess().createUser(userItem);
+
+  // const userItem = JSON.parse(event.body);
+  // const ItemResponse = await new UserAccess().deleteUser(userItem.userId);
 
   return {
-    statusCode: createItemResponse.status,
+    statusCode: ItemResponse.status,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': true,
     },
-    body: createItemResponse.results,
+    body: ItemResponse.results,
   };
 };

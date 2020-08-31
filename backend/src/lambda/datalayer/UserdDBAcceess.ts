@@ -35,7 +35,7 @@ export class UserAccess {
       })
       .catch((err) => {
         logger.error(
-          `Failed to create todo!! Check with DynamoDB connection. \n ${err}`
+          `Failed to create user!! Check with DynamoDB connection. \n ${err}`
         );
         resp = {
           status: 500,
@@ -58,7 +58,7 @@ export class UserAccess {
         .delete({
           TableName: this.userTable,
           Key: {
-            todoId: userId,
+            userId: userId,
           },
         })
         .promise()

@@ -1,5 +1,5 @@
 service:
-  name: train-together-app
+  name: zoomfit-app
 
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
@@ -10,7 +10,7 @@ custom:
     api:
       info:
         version: v1.0.0
-        title: TRAIN TOGETHER API
+        title: zoomfit API
         description: Serverless application for train-together
   webpack:
     webpackConfig: ./webpack.config.js
@@ -47,7 +47,7 @@ functions:
     events:
       - http:
           method: post
-          path: tt/v1/user/
+          path: zoomfit/v1/user/
           cors: true
           documentation:
             summary: Test User dynamoDB
@@ -80,13 +80,9 @@ resources:
         AttributeDefinitions:
           - AttributeName: userId
             AttributeType: S
-          - AttributeName: createdAt
-            AttributeType: S
         KeySchema:
           - AttributeName: userId
             KeyType: HASH
-          - AttributeName: createdAt
-            KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
         # StreamSpecification:
         #   StreamViewType: NEW_IMAGE
