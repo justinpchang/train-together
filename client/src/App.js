@@ -12,6 +12,7 @@ import "./style/onboarding.css";
 import "./style/home.css";
 import './style/user.css';
 import './style/class.css';
+import "./style/navbar.css";
 
 const App = () => {
   return (
