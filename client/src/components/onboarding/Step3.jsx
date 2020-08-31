@@ -16,14 +16,14 @@ const dummyData = [
       following: "25",
       followers: "38",
       workouts: "50",
-      profile_pic: "train-together/client/src/assets/interests/boxing.png"
+      profile_pic: yoga
   },
   {
     name: "John Doe",
     following: "80",
     followers: "20",
     workouts: "0",
-    profile_pic: "train-together/client/src/assets/interests/core.png"
+    profile_pic: core
 }
 
 ]
@@ -33,33 +33,32 @@ class Step3 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      interests: []
+      instructors: []
     }
   }
-
   onClick = (event) => {
     console.log(event.target.className)
     // Update state array
-    let removeIndex = this.state.interests.indexOf(event.target.name);
+    let removeIndex = this.state.instructors.indexOf(event.target.name);
     if (removeIndex > -1) {
       this.setState({
-        interests: this.state.interests.filter((interest) => {
-          return interest !== event.target.name;
+        instructors: this.state.instructors.filter((instructors) => {
+          return instructors !== event.target.name;
         })
       }, () => {
-        this.props.getInterests(this.state.interests);
+        this.props.getInstructors(this.state.instructors);
       })
     } else {
       this.setState({
-        interests: [...this.state.interests, event.target.name],
+        instructors: [...this.state.instructors, event.target.name],
       }, () => {
-        this.props.getInterests(this.state.interests);
+        this.props.getInstructors(this.state.instructors);
       })
     }
   }
-
-  isHighlighted = (interest) => {
-    if (this.state.interests.includes(interest)) {
+  
+  isHighlighted = (instructors) => {
+    if (this.state.instructors.includes(instructors)) {
       return {
         border: 'solid 5px #D333A5',
         borderRadius: '10px',
@@ -70,21 +69,18 @@ class Step3 extends React.Component {
       borderRadius: '10px',
     };
   }
-
+  
   render() {
     if (this.props.currentStep !== 3) {
       return null;
     }
-
+    
+    console.log(this.props)
     const usersProfiles = dummyData.map((user) => {
       return (
         <Row>
-          <div className='interest col-md-6'>
-            <img src={yoga} name='yoga' onClick={this.onClick} style={this.isHighlighted('yoga')} />
-            <p>{user.name}</p>
-          </div>
-          <div className='interest col-md-6'>
-            <img src={weight} name='weight' onClick={this.onClick} style={this.isHighlighted('weight')} />
+          <div key="user" className='instructor col-md-12'>
+            <img src={user.profile_pic} name={user.name} onClick={this.onClick} style={this.isHighlighted(user.name)} />
             <p>{user.name}</p>
           </div>
         </Row>

@@ -59,3 +59,29 @@
   color: white;
   font-weight: bold;
 }
+
+
+
+.instructor {
+  margin: auto;
+  height: 100px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.instructor > img {
+  position: absolute;
+  filter: brightness(70%);
+  height: 100%;
+  width: 100%;
+}
+
+.instructor > p {
+  position: absolute;
+  flex: 0 0 120px;
+  z-index: 10;
+  color: white;
+  font-weight: bold;
+}
