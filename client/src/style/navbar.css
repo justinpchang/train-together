@@ -1,0 +1,23 @@
+.navbar-nav {
+    margin-top: 10px;
+    background-color: #f8f9fa;
+}
+.navbar-collapse {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: flex-start; */
+    /* align-items: flex-start; */
+    /* flex-wrap: wrap; */
+    /* height: 70px; */
+}
+#basic-navbar-nav {
+    
+}
+
+@media (max-width: 767px){
+    .navbar-nav:last-child {
+        background-color: #f8f9fa;
+        box-shadow: none;
+        padding-top: 0;
+    }
+}
