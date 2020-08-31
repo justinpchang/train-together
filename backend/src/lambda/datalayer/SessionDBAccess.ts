@@ -47,7 +47,7 @@ export class SessionAccess {
 
   async deleteSession(sessionId: string): Promise<DataLayerResponse> {
     var resp;
-    if (await this.userItemExists(sessionId)) {
+    if (await this.sessionItemExists(sessionId)) {
       logger.error('userId Not Found');
       resp = {
         status: 404,
@@ -84,7 +84,7 @@ export class SessionAccess {
 
   async getSession(sessionId: string): Promise<DataLayerResponse> {
     var resp;
-    if (await this.userItemExists(sessionId)) {
+    if (await this.sessionItemExists(sessionId)) {
       logger.error('userId Not Found');
       resp = {
         status: 404,
@@ -112,7 +112,7 @@ export class SessionAccess {
     updatedSession: SessionUpdateItem
   ): Promise<DataLayerResponse> {
     var resp;
-    if (await this.userItemExists(sessionId)) {
+    if (await this.sessionItemExists(sessionId)) {
       logger.error('userId Not Present');
       resp = {
         status: 404,
@@ -127,14 +127,14 @@ export class SessionAccess {
             userId: sessionId,
           },
           UpdateExpression:
-            'set #session_title = :t, userId = :uid, eventDate = :ed, link = :l, description = :des, tags = :t',
+            'set #session_title = :t, userId = :uid, eventDate = :ed, link = :l, description = :des, tags = :tag',
           ExpressionAttributeValues: {
             ':t': updatedSession.title,
             ':uid': updatedSession.userId,
             ':ed': updatedSession.eventDate,
             ':des': updatedSession.description,
             ':l': updatedSession.link,
-            ':t': updatedSession.tags,
+            ':tag': updatedSession.tags,
           },
           ExpressionAttributeNames: {
             '#session_title': 'title',
@@ -208,12 +208,12 @@ export class SessionAccess {
     return resp as DataLayerResponse;
   }
 
-  async userItemExists(sessionId: string) {
+  async sessionItemExists(sessionId: string) {
     const result = await this.docClient
       .get({
         TableName: this.sessionTable,
         Key: {
-          userId: sessionId,
+          sessionId: sessionId,
         },
       })
       .promise();
