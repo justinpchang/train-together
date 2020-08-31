@@ -59,3 +59,58 @@
   color: white;
   font-weight: bold;
 }
+@media (min-width: 785px) and (max-width: 950px) {
+  .onboarding > Form {
+    width: 35%;
+    margin: auto;
+    position: relative;
+    top: 10%;
+  }
+  Form > div > .row {
+    flex-wrap: nowrap;
+  }
+}
+@media (min-width: 740px) and (max-width: 784px) {
+  .onboarding > Form {
+    width: 40%;
+    margin: auto;
+    position: relative;
+    top: 10%;
+  }
+  Form > div > .row {
+    flex-wrap: nowrap;
+  }
+}
+@media (min-width: 600px) and (max-width: 740px) {
+  .onboarding > Form {
+    width: 45%;
+    margin: auto;
+    position: relative;
+    top: 10%;
+  }
+  Form > div > .row {
+    flex-wrap: nowrap;
+  }
+}
+@media (min-width: 500px) and (max-width: 599px) {
+  .onboarding > Form {
+    width: 50%;
+    margin: auto;
+    position: relative;
+    top: 10%;
+  }
+  Form > div > .row {
+    flex-wrap: nowrap;
+  }
+}
+@media (max-width: 499px) {
+  .onboarding > Form {
+    width: 65%;
+    margin: auto;
+    position: relative;
+    top: 10%;
+  }
+  Form > div > .row {
+    flex-wrap: nowrap;
+  }
+}
