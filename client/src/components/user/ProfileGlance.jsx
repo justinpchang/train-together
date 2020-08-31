@@ -1,22 +1,37 @@
 import React from 'react';
+import { Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
+import defaultProfilePicture from '../../assets/default-profile-picture.png';
 import UserStats from './UserStats';
 
 const ProfileGlance = (props) => {
   return (
     <React.Fragment>
-      <h3>{props.name}</h3>
-      <UserStats
-        followers={props.followers}
-        following={props.following}
-        workouts={props.workouts}
-      />
-      <br />
-      <div className='last-workout-info'>
-        <p>Last Workout</p>
+      <div className='profile-glance'>
+        <div className='profile-glance-background'></div>
+        <div className='profile-glance-picture'>
+          <img className='profile-picture' src={defaultProfilePicture} alt='profile' />
+        </div>
+        <h3 className='profile-glance-name'>{props.name}</h3>
+        <UserStats
+          followers={props.followers}
+          following={props.following}
+          workouts={props.workouts}
+        />
         <br />
-        <br />
-        <p>View Workout Log</p>
+        <div className='last-workout-info border-bottom'>
+          <span>Last Workout</span>
+          <br />
+          <span className='bold'>Cardio for beginniners</span>
+          <br />
+          <span>Aug 29, 2020</span>
+        </div>
+        <Row className='workout-log'>
+          <Link to='/profile'>
+            <p>View Workout Log</p>
+          </Link>
+        </Row>
       </div>
     </React.Fragment>
   );
