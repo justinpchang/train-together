@@ -1,0 +1,17 @@
+.user-stats {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.user-stats div {
+  margin: 0 auto;
+}
+
+.user-stats p {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+.user-stats span {
+  font-size: 20px;
+}

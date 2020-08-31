@@ -10,6 +10,7 @@ import "./style/landing.css";
 import "./style/auth.css";
 import "./style/onboarding.css";
 import "./style/home.css";
+import './style/user.css';
 
 const App = () => {
   return (
