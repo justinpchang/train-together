@@ -4,6 +4,8 @@ service:
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
+package:
+  individually: true
 
 custom:
   documentation:
@@ -55,7 +57,7 @@ functions:
     iamRoleStatements:
       - Effect: Allow
         Action:
-          - dynamodb:putItem
+          - dynamodb:PutItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
 
   AddUserFollowing:
@@ -63,7 +65,7 @@ functions:
     events:
       - http:
           method: post
-          path: zoomfit/v1/user/
+          path: zoomfit/v1/user/addFollowing
           cors: true
           documentation:
             summary: Add User dynamoDB
@@ -71,24 +73,25 @@ functions:
     iamRoleStatements:
       - Effect: Allow
         Action:
+          - dynamodb:GetItem
           - dynamodb:UpdateItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
 
   TestUserDB:
-    handler: src/lambda/http/TestuserDB.handler
+    handler: src/lambda/http/TestUserdDB.handler
     events:
       - http:
           method: post
-          path: zoomfit/v1/user/
+          path: zoomfit/v1/user/test
           cors: true
           documentation:
-            summary: Create User dynamoDB
-            description: Create User dynamoDB
+            summary: Test User dynamoDB
+            description: Test User dynamoDB
     iamRoleStatements:
       - Effect: Allow
         Action:
-          - dynamodb:putItem
-          - dynamodb:getItem
+          - dynamodb:PutItem
+          - dynamodb:GetItem
           - dynamodb:UpdateItem
           - dynamodb:DeleteItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
@@ -107,7 +110,7 @@ resources:
           Ref: ApiGatewayRestApi
 
     UserDynamoDBTable:
-      Type: "AWS::DynamoDB::Table"
+      Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
           - AttributeName: userId

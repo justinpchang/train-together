@@ -25,10 +25,7 @@ export const handler: APIGatewayProxyHandler = async (
 
   const parsed = JSON.parse(event.body);
 
-  const ItemResponse = await new UserAccess().addUserFollowing(
-    parsed.userId,
-    parsed.trainerId
-  );
+  const ItemResponse = await new UserAccess().addUserFollowing(parsed.userId);
 
   return {
     statusCode: ItemResponse.status,

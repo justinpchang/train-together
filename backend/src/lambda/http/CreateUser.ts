@@ -34,13 +34,9 @@ export const handler: APIGatewayProxyHandler = async (
     createdAt: new Date().toISOString(),
     ...userdetails,
     followed: 0,
-    followedList: [],
     following: 0,
-    followingList: [],
     sessionAttended: 0,
-    sessionAttendedList: [],
     sessionCreated: 0,
-    sessionCreatedList: [],
   });
 
   return {

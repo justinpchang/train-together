@@ -6,6 +6,5 @@ export interface SessionItem {
   eventDate: Date;
   description: string;
   link: string;
-  attendees: Array<string>;
-  tags: Array<string>;
+  attendees: number;
 }
