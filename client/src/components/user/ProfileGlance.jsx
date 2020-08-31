@@ -2,7 +2,7 @@ import React from 'react';
 import { Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import defaultProfilePicture from '../../assets/default-profile-picture.png';
+import defaultProfilePicture from '../../assets/user-profile.png';
 import UserStats from './UserStats';
 
 const ProfileGlance = (props) => {
