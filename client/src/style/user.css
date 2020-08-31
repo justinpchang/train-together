@@ -1,0 +1,88 @@
+.profile-glance {
+  width: 90%;
+  column-count: 1;
+  text-align: center;
+  box-shadow: 0px 24px 32px rgba(50, 50, 71, 0.08), 0px 16px 16px rgba(50, 50, 71, 0.08);
+  border-radius: 10px;
+  background: linear-gradient(to bottom, transparent 25%, white 0%),
+  linear-gradient(90.41deg, rgba(244, 215, 221, 0.3) 0.31%, rgba(236, 113, 200, 0.3) 58.24%, rgba(112, 72, 232, 0.3) 99.61%);
+}
+
+.profile-glance-user-stats {
+  width: 100%;
+}
+
+.profile-glance-name {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 24px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.user-stats {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.user-stats div {
+  margin: 0 auto;
+}
+
+.user-stats p {
+  color: grey;
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+.user-stats span {
+  font-size: 20px;
+}
+
+.profile-glance-picture {
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.profile-glance-picture > img {
+  display: block;
+  margin: 0 auto;
+  width: 90px;
+  height: 90px;
+}
+
+.profile-glance-background {
+  position: absolute;
+  width: 300px;
+  height: 10%;
+  z-index: -10;
+}
+
+.last-workout-info, .workout-log {
+  text-align: left;
+  font-size: 13px;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.last-workout-info {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.last-workout-info > span {
+  margin-bottom: 15px;
+}
+
+.workout-log {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.workout-log p {
+  color: black;
+}
+
+.bold {
+  font-weight: bold;
+}

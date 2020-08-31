@@ -1,33 +1,4 @@
 import React from "react";
-import { Form, Card, Button, Row } from "react-bootstrap";
-
-import {
-  yoga,
-  weight,
-  core,
-  boxing,
-  dance,
-  other
-} from '../../assets/interests';
-
-const dummyData = [
-    {
-      name: "Jon Yates",
-      following: "25",
-      followers: "38",
-      workouts: "50",
-      profile_pic: yoga
-  },
-  {
-    name: "John Doe",
-    following: "80",
-    followers: "20",
-    workouts: "0",
-    profile_pic: core
-}
-
-]
-
 
 class Step3 extends React.Component {
   constructor(props) {
