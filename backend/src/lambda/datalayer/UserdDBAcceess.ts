@@ -10,14 +10,13 @@ import { UserUpdateItem } from '../../models/UserUpdate';
 // import { UserUpdate } from '../models/UserUpdate';
 // import { getGetSignedUrl } from '../datalayer/S3Access';
 
-const logger = createLogger('TodoAccess');
+const logger = createLogger('UserdDBAccess');
 
 export class UserAccess {
   constructor(
     private readonly docClient: DocumentClient = createDynamoDBClient(),
-    private readonly userTable = process.env.USER_TABLE
-  ) // private readonly sessionTable = process.env.SESSION_TABLE
-  {}
+    private readonly userTable = process.env.USER_TABLE // private readonly sessionTable = process.env.SESSION_TABLE
+  ) {}
 
   async createUser(userItem: UserItem): Promise<DataLayerResponse> {
     var resp;
