@@ -71,6 +71,43 @@ export class UserAccess {
         })
         .catch((err) => {
           logger.error(
+            `Failed to delete user!! Check with DynamoDB connection. \n ${err}`
+          );
+          resp = {
+            status: 500,
+            results: `Failed to delete user!! Check with DynamoDB connection. \n ${err}`,
+          };
+        });
+    }
+    return resp as DataLayerResponse;
+  }
+
+  async getUser(userId: string): Promise<DataLayerResponse> {
+    var resp;
+    if (await this.userItemExists(userId)) {
+      logger.error('userId Not Found');
+      resp = {
+        status: 404,
+        results: 'userId Not Found',
+      };
+    } else {
+      await this.docClient
+        .delete({
+          TableName: this.userTable,
+          Key: {
+            userId: userId,
+          },
+        })
+        .promise()
+        .then(() => {
+          logger.info('Successfully Deleted!');
+          resp = {
+            status: 200,
+            results: `Successfully deleted ${userId}`,
+          };
+        })
+        .catch((err) => {
+          logger.error(
             `Failed to delete todo!! Check with DynamoDB connection. \n ${err}`
           );
           resp = {
@@ -88,10 +125,10 @@ export class UserAccess {
   ): Promise<DataLayerResponse> {
     var resp;
     if (await this.userItemExists(userId)) {
-      logger.error('todoId Not Present');
+      logger.error('userId Not Present');
       resp = {
         status: 404,
-        results: `todoId Not Present`,
+        results: `userId Not Present`,
       };
     } else {
       logger.info(`${JSON.stringify(updatedUser.name)}`);
@@ -124,11 +161,11 @@ export class UserAccess {
         })
         .catch((err) => {
           logger.error(
-            `Failed to update todo!! Check with DynamoDB connection. \n ${err}`
+            `Failed to update user!! Check with DynamoDB connection. \n ${err}`
           );
           resp = {
             status: 500,
-            results: `Failed to update todo!! Check with DynamoDB connection. \n ${err}`,
+            results: `Failed to update user!! Check with DynamoDB connection. \n ${err}`,
           };
         });
     }
@@ -141,10 +178,10 @@ export class UserAccess {
   ): Promise<DataLayerResponse> {
     var resp;
     if (await this.userItemExists(userId)) {
-      logger.error('todoId Not Present');
+      logger.error('userId Not Present');
       resp = {
         status: 404,
-        results: `todoId Not Present`,
+        results: `userId Not Present`,
       };
     } else {
       logger.info(`${JSON.stringify({ user: userId, trainer: trainerId })}`);
@@ -155,11 +192,12 @@ export class UserAccess {
             userId: userId,
           },
           UpdateExpression:
-            'set followingList = list_append(followingList, :fuId)',
+            'set followingList = list_append(followingList, :fuId), following = following + :num',
           ExpressionAttributeValues: {
             ':fuId': trainerId,
+            ':num': { N: '1' },
           },
-          ReturnValues: 'UPDATED_NEW',
+          ReturnValues: 'NONE',
         })
         .promise()
         .then((data) => {
@@ -171,11 +209,11 @@ export class UserAccess {
         })
         .catch((err) => {
           logger.error(
-            `Failed to update todo!! Check with DynamoDB connection. \n ${err}`
+            `Failed to update user!! Check with DynamoDB connection. \n ${err}`
           );
           resp = {
             status: 500,
-            results: `Failed to update todo!! Check with DynamoDB connection. \n ${err}`,
+            results: `Failed to update user!! Check with DynamoDB connection. \n ${err}`,
           };
         });
     }

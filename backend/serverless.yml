@@ -33,8 +33,8 @@ provider:
   region: ${opt:region, 'us-east-2'}
 
   environment:
-    USER_TABLE: tt-user-dev-${self:provider.stage}
-    SESSION_TABLE: tt-session-dev-${self:provider.stage}
+    USER_TABLE: zoomfit-user-${self:provider.stage}
+    SESSION_TABLE: zoomfit-session-${self:provider.stage}
     # FILES_S3_BUCKET: tt-dev-${self:provider.stage}
 
 ## Functions goes here
@@ -43,15 +43,31 @@ functions:
   # handler: src/lambda/auth/auth0Authorizer.handler
 
   CreateUser:
-    handler: src/lambda/http/TestUserdDB.handler
+    handler: src/lambda/http/CreateUser.handler
     events:
       - http:
           method: post
           path: zoomfit/v1/user/
           cors: true
           documentation:
-            summary: Test User dynamoDB
-            description: Test User dynamoDB
+            summary: Create User dynamoDB
+            description: Create User dynamoDB
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:putItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
+
+  TestUserDB:
+    handler: src/lambda/http/TestuserDB.handler
+    events:
+      - http:
+          method: post
+          path: zoomfit/v1/user/
+          cors: true
+          documentation:
+            summary: Create User dynamoDB
+            description: Create User dynamoDB
     iamRoleStatements:
       - Effect: Allow
         Action:
@@ -75,7 +91,7 @@ resources:
           Ref: ApiGatewayRestApi
 
     UserDynamoDBTable:
-      Type: 'AWS::DynamoDB::Table'
+      Type: "AWS::DynamoDB::Table"
       Properties:
         AttributeDefinitions:
           - AttributeName: userId
@@ -87,7 +103,6 @@ resources:
         # StreamSpecification:
         #   StreamViewType: NEW_IMAGE
         TableName: ${self:provider.environment.USER_TABLE}
-
     # SessionDynamoDBTable:
     #   Type: 'AWS::DynamoDB::Table'
     #   Properties:
