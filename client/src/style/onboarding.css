@@ -61,55 +61,11 @@
 }
 
 
-/* need to take css from other branch to make sure its working correctly */
-@media (max-width: 414px) {
-  .onboarding > Form{
-    width: 60%;
-@media (min-width: 785px) and (max-width: 950px) {
-  .onboarding > Form {
-    width: 35%;
-    margin: auto;
-    position: relative;
-    top: 10%;
-  }
-  .instructor {
-    /* border: 1px solid transparent */
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 5px;
-  }
-  
-  Form > div > .row {
-    width: auto;
-    flex-wrap: nowrap;
-  }
-  .instructor-card-poster-picture-container {
-    padding-right: 0px;
-    margin: 10px 10px;
-  }
-  
-  .instructor-card-poster-picture {
-    width: 50px;
-    height: 50px;
-    margin-right: 0px;
-  }
-  .instructor-card-poster-info {
-    padding-top: 13px;
-    padding-left: 0px;
-    margin-left: inherit;
-  }
-  
-  .instructor-card-poster-name {
-    margin-bottom: 0px;
-    padding: 0;
-  }
-  
-  .instructor-card-post-time {
-    color: charcoal;
-    font-size: 12px;
-    margin-top: 0px;
-  }
-}
+
+
+
+/* Step2 */
+@media (max-width: 950px) {
   Form > div > .row {
     flex-wrap: nowrap;
   }
@@ -121,9 +77,6 @@
     position: relative;
     top: 10%;
   }
-  Form > div > .row {
-    flex-wrap: nowrap;
-  }
 }
 @media (min-width: 600px) and (max-width: 740px) {
   .onboarding > Form {
@@ -131,9 +84,6 @@
     margin: auto;
     position: relative;
     top: 10%;
-  }
-  Form > div > .row {
-    flex-wrap: nowrap;
   }
 }
 @media (min-width: 500px) and (max-width: 599px) {
@@ -143,9 +93,6 @@
     position: relative;
     top: 10%;
   }
-  Form > div > .row {
-    flex-wrap: nowrap;
-  }
 }
 @media (max-width: 499px) {
   .onboarding > Form {
@@ -154,7 +101,36 @@
     position: relative;
     top: 10%;
   }
-  Form > div > .row {
-    flex-wrap: nowrap;
-  }
+}
+
+
+/* Step3 */
+.instructor-card-post-time {
+  color: charcoal;
+  font-size: 12px;
+  margin-top: 0px;
+}
+.instructor {
+  /* border: 1px solid transparent */
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.instructor-card-poster-picture-container {
+  padding-right: 0px;
+  margin: 10px 10px;
+}
+
+.instructor-card-poster-picture {
+  width: 50px;
+  height: 50px;
+  margin-right: 0px;
+}
+.instructor-card-poster-info {
+  padding-top: 13px;
+  padding-left: 0px;
+  margin-left: inherit;
+}
+Form > div > .instructor {
+  flex-wrap: nowrap;
 }
