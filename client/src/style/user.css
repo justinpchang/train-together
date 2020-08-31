@@ -8,6 +8,10 @@
   linear-gradient(90.41deg, rgba(244, 215, 221, 0.3) 0.31%, rgba(236, 113, 200, 0.3) 58.24%, rgba(112, 72, 232, 0.3) 99.61%);
 }
 
+.profile-glance-user-stats {
+  width: 100%;
+}
+
 .profile-glance-name {
   text-align: center;
   margin: 0 auto;
@@ -62,15 +66,17 @@
 }
 
 .last-workout-info {
-  padding-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 
 .last-workout-info > span {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .workout-log {
-  padding-top: 15px;
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
 
 .workout-log p {

@@ -14,11 +14,13 @@ const ProfileGlance = (props) => {
           <img className='profile-picture' src={defaultProfilePicture} alt='profile' />
         </div>
         <h3 className='profile-glance-name'>{props.name}</h3>
-        <UserStats
-          followers={props.followers}
-          following={props.following}
-          workouts={props.workouts}
-        />
+        <div className='profile-glance-user-stats'>
+          <UserStats
+            followers={props.followers}
+            following={props.following}
+            workouts={props.workouts}
+          />
+        </div>
         <br />
         <div className='last-workout-info border-bottom'>
           <span>Last Workout</span>
