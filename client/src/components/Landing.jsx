@@ -9,7 +9,7 @@ const Landing = () => {
     <div className='landing-container'>
       <div className='background'></div>
       <div className='hero-image-container'>
-        <img className='hero-image' src={HeroImage} alt='hero-image' />
+        <img className='hero-image' src={HeroImage} alt='hero' />
       </div>
       <div className='landing'>
         <Row>
