@@ -9,8 +9,6 @@ import {
 import { Row, Button } from 'react-bootstrap';
 import Collapsible from 'react-collapsible';
 
-import Trigger from './NewClassFormTrigger';
-
 /*
  * TODO: add preview form -> expanding
  */
