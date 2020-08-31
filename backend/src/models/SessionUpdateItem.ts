@@ -1,11 +1,8 @@
-export interface SessionItem {
-  sessionId: string;
+export interface SessionUpdateItem {
   title: string;
   userId: string;
-  createdAt: string;
   eventDate: String;
   description: string;
   link: string;
-  attendees: number;
   tags: Array<string>;
 }

@@ -1,36 +1,36 @@
 import * as AWS from 'aws-sdk';
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';
 
-import { UserItem } from '../../models/UserItem';
+import { SessionItem } from '../../models/SessionItem';
 // import { SessionItem } from '../../models/SessionItem';
 import { createLogger } from '../../utils/logger';
 import { DataLayerResponse } from '../../models/DataLayerResponse';
-import { UserUpdateItem } from '../../models/UserUpdate';
+import { SessionUpdateItem } from '../../models/SessionUpdateItem';
 
 // import { UserUpdate } from '../models/UserUpdate';
 // import { getGetSignedUrl } from '../datalayer/S3Access';
 
 const logger = createLogger('UserdDBAccess');
 
-export class UserAccess {
+export class SessionAccess {
   constructor(
     private readonly docClient: DocumentClient = createDynamoDBClient(),
-    private readonly userTable = process.env.USER_TABLE
+    private readonly sessionTable = process.env.SESSION_TABLE
   ) {}
 
-  async createUser(userItem: UserItem): Promise<DataLayerResponse> {
+  async createSession(sessionItem: SessionItem): Promise<DataLayerResponse> {
     var resp;
     await this.docClient
       .put({
-        TableName: this.userTable,
-        Item: userItem,
+        TableName: this.sessionTable,
+        Item: sessionItem,
       })
       .promise()
       .then(() => {
         logger.info('Successfully Created!');
         resp = {
           status: 201,
-          results: JSON.stringify(userItem),
+          results: JSON.stringify(sessionItem),
         };
       })
       .catch((err) => {
@@ -45,9 +45,9 @@ export class UserAccess {
     return resp as DataLayerResponse;
   }
 
-  async deleteUser(userId: string): Promise<DataLayerResponse> {
+  async deleteSession(sessionId: string): Promise<DataLayerResponse> {
     var resp;
-    if (await this.userItemExists(userId)) {
+    if (await this.userItemExists(sessionId)) {
       logger.error('userId Not Found');
       resp = {
         status: 404,
@@ -56,9 +56,9 @@ export class UserAccess {
     } else {
       await this.docClient
         .delete({
-          TableName: this.userTable,
+          TableName: this.sessionTable,
           Key: {
-            userId: userId,
+            sessionId: sessionId,
           },
         })
         .promise()
@@ -66,7 +66,7 @@ export class UserAccess {
           logger.info('Successfully Deleted!');
           resp = {
             status: 200,
-            results: `Successfully deleted ${userId}`,
+            results: `Successfully deleted ${sessionId}`,
           };
         })
         .catch((err) => {
@@ -82,9 +82,9 @@ export class UserAccess {
     return resp as DataLayerResponse;
   }
 
-  async getUser(userId: string): Promise<DataLayerResponse> {
+  async getSession(sessionId: string): Promise<DataLayerResponse> {
     var resp;
-    if (await this.userItemExists(userId)) {
+    if (await this.userItemExists(sessionId)) {
       logger.error('userId Not Found');
       resp = {
         status: 404,
@@ -93,9 +93,9 @@ export class UserAccess {
     } else {
       const result = await this.docClient
         .get({
-          TableName: this.userTable,
+          TableName: this.sessionTable,
           Key: {
-            userId: userId,
+            userId: sessionId,
           },
         })
         .promise();
@@ -107,35 +107,37 @@ export class UserAccess {
     return resp as DataLayerResponse;
   }
 
-  async updateUser(
-    userId: string,
-    updatedUser: UserUpdateItem
+  async updateSession(
+    sessionId: string,
+    updatedSession: SessionUpdateItem
   ): Promise<DataLayerResponse> {
     var resp;
-    if (await this.userItemExists(userId)) {
+    if (await this.userItemExists(sessionId)) {
       logger.error('userId Not Present');
       resp = {
         status: 404,
         results: `userId Not Present`,
       };
     } else {
-      logger.info(`${JSON.stringify(updatedUser.name)}`);
+      logger.info(`${JSON.stringify(updatedSession.title)}`);
       await this.docClient
         .update({
-          TableName: this.userTable,
+          TableName: this.sessionTable,
           Key: {
-            userId: userId,
+            userId: sessionId,
           },
           UpdateExpression:
-            'set #user_name = :n, email = :em, dob = :dob, interests = :i',
+            'set #session_title = :t, userId = :uid, eventDate = :ed, link = :l, description = :des, tags = :t',
           ExpressionAttributeValues: {
-            ':n': updatedUser.name,
-            ':em': updatedUser.email,
-            ':a': updatedUser.dob,
-            ':i': updatedUser.interests,
+            ':t': updatedSession.title,
+            ':uid': updatedSession.userId,
+            ':ed': updatedSession.eventDate,
+            ':des': updatedSession.description,
+            ':l': updatedSession.link,
+            ':t': updatedSession.tags,
           },
           ExpressionAttributeNames: {
-            '#user_name': 'name',
+            '#session_title': 'title',
           },
           ReturnValues: 'UPDATED_NEW',
         })
@@ -149,37 +151,37 @@ export class UserAccess {
         })
         .catch((err) => {
           logger.error(
-            `Failed to update user!! Check with DynamoDB connection. \n ${err}`
+            `Failed to update session!! Check with DynamoDB connection. \n ${err}`
           );
           resp = {
             status: 500,
-            results: `Failed to update user!! Check with DynamoDB connection. \n ${err}`,
+            results: `Failed to update session!! Check with DynamoDB connection. \n ${err}`,
           };
         });
     }
     return resp as DataLayerResponse;
   }
 
-  async addUserFollowing(userId: string): Promise<DataLayerResponse> {
+  async addUserAttendee(sessionId: string): Promise<DataLayerResponse> {
     var resp;
-    if (await this.userItemExists(userId)) {
+    if (await this.sessionItemExists(sessionId)) {
       logger.error('userId Not Present');
       resp = {
         status: 404,
         results: `userId Not Present`,
       };
     } else {
-      logger.info(`${JSON.stringify({ user: userId })}`);
+      logger.info(`${JSON.stringify({ sessionId: sessionId })}`);
       await this.docClient
         .update({
-          TableName: this.userTable,
+          TableName: this.sessionTable,
           Key: {
-            userId: userId,
+            sessionId: sessionId,
           },
           ExpressionAttributeNames: {
-            '#following': 'following',
+            '#attendee': 'attendee',
           },
-          UpdateExpression: 'add #following :num',
+          UpdateExpression: 'add #attendee :num',
           ExpressionAttributeValues: {
             ':num': 1,
           },
@@ -206,156 +208,18 @@ export class UserAccess {
     return resp as DataLayerResponse;
   }
 
-  async addUserFollowed(userId: string): Promise<DataLayerResponse> {
-    var resp;
-    if (await this.userItemExists(userId)) {
-      logger.error('userId Not Present');
-      resp = {
-        status: 404,
-        results: `userId Not Present`,
-      };
-    } else {
-      logger.info(`${JSON.stringify({ user: userId })}`);
-      await this.docClient
-        .update({
-          TableName: this.userTable,
-          Key: {
-            userId: userId,
-          },
-          ExpressionAttributeNames: {
-            '#followed': 'followed',
-          },
-          UpdateExpression: 'add #followed :num',
-          ExpressionAttributeValues: {
-            ':num': 1,
-          },
-          ReturnValues: 'NONE',
-        })
-        .promise()
-        .then((data) => {
-          logger.info(`Successfully updated to ${JSON.stringify(data)}`);
-          resp = {
-            status: 200,
-            results: JSON.stringify(data),
-          };
-        })
-        .catch((err) => {
-          logger.error(
-            `Failed to update user!! Check with DynamoDB connection. \n ${err}`
-          );
-          resp = {
-            status: 500,
-            results: `Failed to update user!! Check with DynamoDB connection. \n ${err}`,
-          };
-        });
-    }
-    return resp as DataLayerResponse;
-  }
-
-  async userItemExists(userId: string) {
+  async userItemExists(sessionId: string) {
     const result = await this.docClient
       .get({
-        TableName: this.userTable,
+        TableName: this.sessionTable,
         Key: {
-          userId: userId,
+          userId: sessionId,
         },
       })
       .promise();
 
     logger.info(`${JSON.stringify(result)}`);
     return JSON.stringify(result) === '{}';
-  }
-
-  async addUserSessionCreated(userId: string): Promise<DataLayerResponse> {
-    var resp;
-    if (await this.userItemExists(userId)) {
-      logger.error('userId Not Present');
-      resp = {
-        status: 404,
-        results: `userId Not Present`,
-      };
-    } else {
-      logger.info(`${JSON.stringify({ user: userId })}`);
-      await this.docClient
-        .update({
-          TableName: this.userTable,
-          Key: {
-            userId: userId,
-          },
-          ExpressionAttributeNames: {
-            '#sc': 'sessionCreated',
-          },
-          UpdateExpression: 'add #sc :num',
-          ExpressionAttributeValues: {
-            ':num': 1,
-          },
-          ReturnValues: 'NONE',
-        })
-        .promise()
-        .then((data) => {
-          logger.info(`Successfully updated to ${JSON.stringify(data)}`);
-          resp = {
-            status: 200,
-            results: JSON.stringify(data),
-          };
-        })
-        .catch((err) => {
-          logger.error(
-            `Failed to update user!! Check with DynamoDB connection. \n ${err}`
-          );
-          resp = {
-            status: 500,
-            results: `Failed to update user!! Check with DynamoDB connection. \n ${err}`,
-          };
-        });
-    }
-    return resp as DataLayerResponse;
-  }
-
-  async addUserSessionAttended(userId: string): Promise<DataLayerResponse> {
-    var resp;
-    if (await this.userItemExists(userId)) {
-      logger.error('userId Not Present');
-      resp = {
-        status: 404,
-        results: `userId Not Present`,
-      };
-    } else {
-      logger.info(`${JSON.stringify({ user: userId })}`);
-      await this.docClient
-        .update({
-          TableName: this.userTable,
-          Key: {
-            userId: userId,
-          },
-          ExpressionAttributeNames: {
-            '#sa': 'sessionAttended',
-          },
-          UpdateExpression: 'add #sa :num',
-          ExpressionAttributeValues: {
-            ':num': 1,
-          },
-          ReturnValues: 'NONE',
-        })
-        .promise()
-        .then((data) => {
-          logger.info(`Successfully updated to ${JSON.stringify(data)}`);
-          resp = {
-            status: 200,
-            results: JSON.stringify(data),
-          };
-        })
-        .catch((err) => {
-          logger.error(
-            `Failed to update user!! Check with DynamoDB connection. \n ${err}`
-          );
-          resp = {
-            status: 500,
-            results: `Failed to update user!! Check with DynamoDB connection. \n ${err}`,
-          };
-        });
-    }
-    return resp as DataLayerResponse;
   }
 
   /* Attaching user picture
