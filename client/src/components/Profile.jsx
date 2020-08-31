@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
 
-import defaultProfilePicture from '../assets/default-profile-picture.png';
+import defaultProfilePicture from '../assets/user-profile.png';
 import Feed from './feed';
 import Navigation from './Navigation';
 
@@ -15,12 +15,12 @@ const Profile = () => {
         </div>
         <div className='profile-info col-md-9'>
           <Row>
-            <h2>Adam Smith</h2>
+            <h2>Jessie J.</h2>
           </Row>
           <Row>
-            <p><span className='profile-number'>40</span> workouts</p>
-            <p><span className='profile-number'>100</span> following</p>
-            <p><span className='profile-number'>80</span> followers</p>
+            <p><span className='profile-number'>38</span> workouts</p>
+            <p><span className='profile-number'>38</span> following</p>
+            <p><span className='profile-number'>17</span> followers</p>
           </Row>
         </div>
       </Row>
