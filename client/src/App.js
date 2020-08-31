@@ -8,6 +8,7 @@ import "./style/profile.css";
 import "./style/feed.css";
 import "./style/landing.css";
 import "./style/auth.css";
+import "./style/onboarding.css";
 
 const App = () => {
   return (

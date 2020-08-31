@@ -1,0 +1,61 @@
+.onboarding {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #F5D8DD;
+}
+
+.onboarding > Form {
+  width: 25%;
+  margin: auto;
+  position: relative;
+  top: 10%;
+}
+
+.onboarding label {
+  color: grey;
+  font-size: 14px;
+}
+
+.onboarding input {
+  width: 100%;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.age-select {
+  height: 40px;
+  width: 50%;
+}
+
+.age-select > MenuItem {
+  margin-left: 10px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.interest {
+  margin: auto;
+  height: 150px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.interest > img {
+  position: absolute;
+  filter: brightness(70%);
+  height: 100%;
+  width: 100%;
+}
+
+.interest > p {
+  position: absolute;
+  flex: 0 0 120px;
+  z-index: 10;
+  color: white;
+  font-weight: bold;
+}
