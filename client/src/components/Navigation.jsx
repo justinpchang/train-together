@@ -17,7 +17,7 @@ const Navigation = () => {
     
     return (
       <Navbar className='nav-bar' bg="light" expand="md" style={{position: 'fixed', width: '100%', zIndex: '10'}}>
-          <Navbar.Brand href="/">ZOOMFIT <FontAwesomeIcon icon={faDumbbell} /></Navbar.Brand>
+          <Link to="/" className='navbar-brand'>ZOOMFIT <FontAwesomeIcon icon={faDumbbell} /></Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Form inline>
@@ -25,9 +25,9 @@ const Navigation = () => {
               <Button variant="outline-dark"><FontAwesomeIcon icon={faSearch} /></Button>
             </Form>
             <Nav className="transparent-background ml-auto">
-              <Link className='navbar-link' href='/'><FontAwesomeIcon icon={faHome} /><br />Home</Link>
-              <Link className='navbar-link' href='/'><FontAwesomeIcon icon={faComments} /><br />Messaging</Link>
-              <Link className="navbar-link" href="/profile"><FontAwesomeIcon icon={faUser} /><br />Profile</Link>
+              <Link className='navbar-link' to='/'><FontAwesomeIcon icon={faHome} /><br />Home</Link>
+              <Link className='navbar-link' to='/'><FontAwesomeIcon icon={faComments} /><br />Messaging</Link>
+              <Link className="navbar-link" to="/profile"><FontAwesomeIcon icon={faUser} /><br />Profile</Link>
               <Link className="navbar-logout navbar-link" 
                 onClick={() => logout({returnTo: window.location.origin})}
               ><FontAwesomeIcon icon={faSignOutAlt} /><br />Log Out</Link>
