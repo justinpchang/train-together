@@ -2,6 +2,7 @@ import React from 'react';
 import { Row } from 'react-bootstrap';
 
 import Feed from './feed';
+import Navigation from './Navigation';
 import { NewClassForm } from './class';
 import { ProfileGlance } from './user';
 import { Select, MenuItem } from '@material-ui/core';
@@ -14,7 +15,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className='navbar'></div>
+      <Navigation />
       <Row>
         <div className='sidebar-container col-md-4'>
           <Row className='sidebar'>
