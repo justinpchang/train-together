@@ -12,7 +12,7 @@ const LogoutButton = () => {
         })
       }
       variant="danger"
-      className="btn-margin"
+      className="btn-margin auth-button"
     >
       Log Out
     </Button>
@@ -20,3 +20,4 @@ const LogoutButton = () => {
 };
 
 export default LogoutButton;
+
