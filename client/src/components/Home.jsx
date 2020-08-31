@@ -4,8 +4,14 @@ import { Row } from 'react-bootstrap';
 import Feed from './feed';
 import { NewClassForm } from './class';
 import { ProfileGlance } from './user';
+import { Select, MenuItem } from '@material-ui/core';
 
 const Home = () => {
+  const [scope, setScope] = React.useState('Following');
+  const handleChange = (event) => {
+    setScope(event.target.value);
+  };
+
   return (
     <div>
       <div className='navbar'></div>
@@ -23,6 +29,16 @@ const Home = () => {
         <div className='center-container col-md-7'>
           <Row className='center'>
             <NewClassForm />
+            <Select
+              className='scope-selector'
+              value={scope}
+              onChange={handleChange}
+              autoWidth
+            >
+              <MenuItem value={'Following'}>Following</MenuItem>
+              <MenuItem value={'My Posts'}>My Posts</MenuItem>
+              <MenuItem value={'Global'}>Global</MenuItem>
+            </Select>
             <Feed />
           </Row>
         </div>
