@@ -12,7 +12,7 @@ import { createLogger } from '../../utils/logger';
 
 import { UserAccess } from '../datalayer/UserdDBAcceess';
 
-// import { UserItem } from '../../models/UserItem';
+import { UserItem } from '../../models/UserItem';
 
 const logger = createLogger('TestUserDB');
 
