@@ -104,6 +104,7 @@
 
 .feed-card-mini-attendees {
   margin-right: 0px;
+  text-align: right;
   display: block;
   float: right;
 }

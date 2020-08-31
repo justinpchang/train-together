@@ -1,5 +1,11 @@
 import React from 'react';
 import { Button, Row } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faClock,
+  faHeart,
+  faComment,
+} from '@fortawesome/free-solid-svg-icons';
 
 import defaultProfilePicture from '../../assets/default-profile-picture.png';
 import classModalThumbnail from '../../assets/class-modal-thumbnail.png';
@@ -35,10 +41,10 @@ const FeedCard = () => {
                   <span className='feed-card-mini-tag'>Intermediate</span>
                 </Row>
                 <Row className='feed-card-mini-info'>
-                  <span className='feed-card-mini-date'>7 Sep 2020</span>
-                  <span className='feed-card-mini-date'>180 likes</span>
-                  <span className='feed-card-mini-date'>278 comments</span>
-                  <span className='feed-card-mini-attendees'>143 attending</span>
+                  <span className='feed-card-mini-date'><FontAwesomeIcon icon={faClock} /> 7 Sep 2020</span>
+                  <span className='feed-card-mini-date'><FontAwesomeIcon icon={faHeart} /> 180</span>
+                  <span className='feed-card-mini-date'><FontAwesomeIcon icon={faComment} /> 278</span>
+                  <div className='feed-card-mini-attendees'>143 attending</div>
                 </Row>
                 <Row className='feed-card-mini-buttons'>
                   <Button
