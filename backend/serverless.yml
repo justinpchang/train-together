@@ -58,6 +58,22 @@ functions:
           - dynamodb:putItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
 
+  AddUserFollowing:
+    handler: src/lambda/http/AddUserFollowing.handler
+    events:
+      - http:
+          method: post
+          path: zoomfit/v1/user/
+          cors: true
+          documentation:
+            summary: Add User dynamoDB
+            description: Add User dynamoDB
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
+
   TestUserDB:
     handler: src/lambda/http/TestuserDB.handler
     events:
