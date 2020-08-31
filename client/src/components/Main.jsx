@@ -7,10 +7,10 @@ import Onboarding from './onboarding';
 
 const Main = () => {
   const { isAuthenticated } = useAuth0();
-  const [isNew, setIsNew] = React.useState(false);
+  const [isNew, setIsNew] = React.useState(true);
 
   const onSubmit = React.useCallback(() => {
-    setIsNew(false);
+    setIsNew(true);
   }, []);
 
   if (isAuthenticated) {

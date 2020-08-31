@@ -1,5 +1,33 @@
 import React from "react";
+import { Row } from "react-bootstrap";
 
+import {
+  yoga,
+  weight,
+  core,
+  boxing,
+  dance,
+  other
+} from '../../assets/interests';
+
+const dummyData = [
+  {
+    name: "Jon Yates",
+    profile_pic: yoga,
+    followers: "80"
+  },
+  {
+    name: "Jane Doe",
+    profile_pic: weight,
+    followers: "20"
+  },
+  {
+    name: "Matthew Miller",
+    profile_pic: dance,
+    followers: "180"
+  }
+
+]
 class Step3 extends React.Component {
   constructor(props) {
     super(props);
@@ -49,11 +77,14 @@ class Step3 extends React.Component {
     console.log(this.props)
     const usersProfiles = dummyData.map((user) => {
       return (
-        <Row>
-          <div key="user" className='instructor col-md-12'>
-            <img src={user.profile_pic} name={user.name} onClick={this.onClick} style={this.isHighlighted(user.name)} />
-            <p>{user.name}</p>
-          </div>
+        <Row className="instructor">
+            <div key={user.id} className='instructor-card-poster-picture-container col-md-2'>
+              <img className='profile-picture instructor-card-poster-picture' src={user.profile_pic} alt='profile' />
+            </div>
+            <div className='instructor-card-poster-info col-md-10'>
+              <p className='instructor-card-poster-name'>{user.name}</p>
+              <p className='instructor-card-post-followers'>{user.followers} followers</p>
+            </div>
         </Row>
       )
     })
