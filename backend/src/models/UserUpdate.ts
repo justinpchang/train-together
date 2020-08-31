@@ -1,4 +1,4 @@
-export interface UserItem {
+export interface UserUpdateItem {
   name: string;
   email: string;
   dob: Date;
