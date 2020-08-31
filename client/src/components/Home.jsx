@@ -20,13 +20,13 @@ const Home = () => {
             />
           </Row>
         </div>
-        <div className='col-md-6'>
-          <NewClassForm />
-          <hr />
-          feed
-          <Feed />
+        <div className='center-container col-md-7'>
+          <Row className='center'>
+            <NewClassForm />
+            <Feed />
+          </Row>
         </div>
-        <div className='col-md-2'>
+        <div className='col-md-1'>
         </div>
       </Row>
     </div>

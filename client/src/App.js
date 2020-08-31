@@ -11,6 +11,7 @@ import "./style/auth.css";
 import "./style/onboarding.css";
 import "./style/home.css";
 import './style/user.css';
+import './style/class.css';
 
 const App = () => {
   return (

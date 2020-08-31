@@ -1,4 +1,4 @@
-.sidebar-container {
+.sidebar-container, .center-container {
   padding: 50px;
 }
 
@@ -6,4 +6,12 @@
   margin: 0 auto;
   padding: 10px;
   width: 300px;
+}
+
+.center {
+  border: 1px solid black;
+  margin: 0 auto;
+  padding: 10px;
+  width: 100%;
+  column-count: 1;
 }
