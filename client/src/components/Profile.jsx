@@ -2,11 +2,14 @@ import React from 'react';
 import { Row } from 'react-bootstrap';
 
 import defaultProfilePicture from '../assets/default-profile-picture.png';
+import Feed from './feed';
+import Navigation from './Navigation';
 
 const Profile = () => {
   return (
     <div>
-      <Row>
+      <Navigation />
+      <Row className='profile-row'>
         <div className='col-md-3'>
           <img className='profile-picture' src={defaultProfilePicture} alt='profile' />
         </div>
@@ -22,8 +25,8 @@ const Profile = () => {
         </div>
       </Row>
       <hr />
-      <Row>
-        Feed goes here!
+      <Row className='profile-feed-container'>
+        <Feed />
       </Row>
     </div>
   );

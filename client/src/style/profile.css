@@ -1,3 +1,8 @@
+.profile-row {
+  margin-top: 100px;
+  padding-left: 100px;
+}
+
 .profile-picture {
   width: 160px;
   height: 160px;
@@ -18,4 +23,9 @@
 
 .profile-number {
   font-weight: bold;
+}
+
+.profile-feed-container {
+  width: 50%;
+  margin: 0 auto;
 }
