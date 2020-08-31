@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <div>
       <Navigation />
-      <Row>
+      <Row style={{marginTop: '50px'}}>
         <div className='sidebar-container col-md-4'>
           <Row className='sidebar'>
             <ProfileGlance

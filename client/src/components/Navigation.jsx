@@ -6,7 +6,7 @@ const Navigation = () => {
     const { logout } = useAuth0();
     
     return (
-      <Navbar bg="light" expand="md">
+      <Navbar bg="light" expand="md" style={{position: 'fixed', width: '100%', zIndex: '10'}}>
           <Navbar.Brand href="/">Logo</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

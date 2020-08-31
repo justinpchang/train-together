@@ -4,6 +4,69 @@
 
 .feed-card {
   width: 50rem;
-  margin: auto;
+  margin: 0 auto;
+  margin-left: -10px;
   margin-bottom: 10px;
+  box-shadow: 0px 24px 32px rgba(50, 50, 71, 0.08), 0px 16px 16px rgba(50, 50, 71, 0.08);
+  border-radius: 10px;
+  min-height: 200px;
+  max-width: 560px;
+  padding: 40px;
+}
+
+.feed-card-poster-picture-container {
+  padding-right: 0px;
+  margin: 0px 0px;
+}
+
+.feed-card-poster-picture {
+  width: 50px;
+  height: 50px;
+  margin-right: 0px;
+}
+
+.feed-card-poster-info {
+  padding-top: 5px;
+  padding-left: 0px;
+}
+
+.feed-card-poster-name {
+  margin-bottom: 0px;
+  padding: 0;
+}
+
+.feed-card-post-time {
+  color: lightgrey;
+  font-size: 12px;
+  margin-top: 0px;
+}
+
+.feed-card-post-text {
+  padding: 15px;
+}
+
+.feed-card-mini-container {
+  padding: 15px;
+}
+
+.feed-card-mini {
+  min-height: 400px;
+  width: 100%;
+  border: 1px solid rgba(153, 153, 153, 0.6);
+  box-sizing: border-box;
+  border-radius: 10px 10px 0px 0px;
+  background-size: cover;
+}
+
+.feed-card-mini-text {
+  padding-top: 10%;
+  padding-left: 15px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.feed-card-mini-trainer {
+  font-size: 14px;
+  color: #D333A5;
 }
