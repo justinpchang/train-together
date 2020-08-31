@@ -6,7 +6,7 @@
   width: 50rem;
   margin: 0 auto;
   margin-left: -10px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   box-shadow: 0px 24px 32px rgba(50, 50, 71, 0.08), 0px 16px 16px rgba(50, 50, 71, 0.08);
   border-radius: 10px;
   min-height: 200px;
@@ -50,12 +50,13 @@
 }
 
 .feed-card-mini {
-  min-height: 400px;
+  min-height: 350px;
   width: 100%;
   border: 1px solid rgba(153, 153, 153, 0.6);
   box-sizing: border-box;
   border-radius: 10px 10px 0px 0px;
-  background-size: cover;
+  background-size: 120%;
+  background-repeat: no-repeat;
 }
 
 .feed-card-mini-text {
@@ -69,4 +70,63 @@
 .feed-card-mini-trainer {
   font-size: 14px;
   color: #D333A5;
+  font-weight: normal;
+}
+
+.feed-card-mini-tags {
+  padding-left: 15px;
+  color: white;
+}
+
+.feed-card-mini-tag {
+  font-size: 12px;
+  font-weight: normal;
+  display: flex;
+  flex-direction: row;
+  padding: 4px 19px;
+  background: #7048E8;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.feed-card-mini-info {
+  margin-left: 15px;
+  margin-top: 40px;
+  color: black;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 16px;
+}
+
+.feed-card-mini-info > span {
+  margin-right: 16px;
+}
+
+.feed-card-mini-attendees {
+  margin-right: 0px;
+  display: block;
+  float: right;
+}
+
+.feed-card-mini-buttons {
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.feed-card-mini-buttons > Button {
+  margin-right: 20px;
+  width: 120px;
+  border-radius: 4px;
+}
+
+.feed-card-mini-register {
+  background: black;
+  color: white;
+  border: 1px transparent;
+}
+
+.feed-card-mini-details {
+  background: white;
+  color: black;
+  border: 1px black solid;
 }

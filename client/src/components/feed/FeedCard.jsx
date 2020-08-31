@@ -1,8 +1,8 @@
 import React from 'react';
-import { Row } from 'react-bootstrap';
+import { Button, Row } from 'react-bootstrap';
 
 import defaultProfilePicture from '../../assets/default-profile-picture.png';
-import heroImage from '../../assets/hero-image-01.png';
+import classModalThumbnail from '../../assets/class-modal-thumbnail.png';
 
 const FeedCard = () => {
   return (
@@ -24,11 +24,30 @@ const FeedCard = () => {
             </p>
           </Row>
           <Row className='feed-card-mini-container'>
-            <div className='feed-card-mini' style={{backgroundImage: `linear-gradient(to bottom, transparent 50%, white 0%), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(106, 33, 207, 0.23) 20%), url(${heroImage})`}}>
+            <div className='feed-card-mini' style={{backgroundImage: `linear-gradient(to bottom, transparent 220px, white 0%), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(106, 33, 207, 0.23) 20%), url(${classModalThumbnail})`}}>
               <div className='feed-card-mini-text'>
                 <p>Get Abs in 2 WEEKS</p>
                 <p>: Abs Workout Challenge</p>
                 <p className='feed-card-mini-trainer'>CHLOE TING</p>
+                <Row className='feed-card-mini-tags'>
+                  <span className='feed-card-mini-tag'>Abs</span>
+                  <span className='feed-card-mini-tag'>Core</span>
+                  <span className='feed-card-mini-tag'>Intermediate</span>
+                </Row>
+                <Row className='feed-card-mini-info'>
+                  <span className='feed-card-mini-date'>7 Sep 2020</span>
+                  <span className='feed-card-mini-date'>180 likes</span>
+                  <span className='feed-card-mini-date'>278 comments</span>
+                  <span className='feed-card-mini-attendees'>143 attending</span>
+                </Row>
+                <Row className='feed-card-mini-buttons'>
+                  <Button
+                    className='feed-card-mini-register'
+                  >Register</Button>
+                  <Button
+                    className='feed-card-mini-details'
+                  >Details</Button>
+                </Row>
               </div>
             </div>
           </Row>
