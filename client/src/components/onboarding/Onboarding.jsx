@@ -8,10 +8,12 @@ class Onboarding extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStep: 1,
+      currentStep: 2,
       name: '',
+      gender: '',
       age: '',
       goals: '',
+      interests: [],
     };
   }
 
@@ -37,6 +39,7 @@ class Onboarding extends React.Component {
       return (
         <button
           className='btn btn-secondary'
+          style={{background: 'black'}}
           type='button'
           onClick={this._prev}>
           Previous
@@ -52,6 +55,7 @@ class Onboarding extends React.Component {
       return (
         <button
           className='btn btn-primary float-right'
+          style={{background: '#D333A5'}}
           type='button'
           onClick={this._next}>
           Next
@@ -78,36 +82,44 @@ class Onboarding extends React.Component {
     })
   }
 
+  getInterests = (interests) => {
+    this.setState({interests: interests});
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
-    const { name, age, goals } = this.state;
-    alert(name + age + goals);
+    alert(this.state);
   }
 
   render() {
     return (
-      <React.Fragment>
+      <div class='onboarding'>
         <form onSubmit={this.handleSubmit}>
+          <h1>Welcome!</h1>
+          <p>Just a few more steps...</p>
+          <br />
           <Step1
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             name={this.state.name}
+            gender={this.state.gender}
+            age={this.state.age}
           />
           <Step2
             currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            age={this.state.age}
+            getInterests={this.getInterests}
           />
           <Step3
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             goals={this.state.goals}
           />
+          <br />
           {this.previousButton}
           {this.nextButton}
           {this.submitButton}
         </form>
-      </React.Fragment>
+      </div>
     )
   }
 };
