@@ -112,5 +112,6 @@
   }
   Form > div > .row {
     flex-wrap: nowrap;
+    
   }
 }
