@@ -57,7 +57,7 @@ const Home = () => {
   }
 
   /*
-    Call API for profile info
+    Call API for profile info, cards
     Use setProfile()
   */
 
