@@ -179,7 +179,7 @@ export class UserAccess {
           // 'ADD #history :val',
           ExpressionAttributeValues: {
             ':val': [sessionId],
-            // ':empty_list': [],
+            ':empty_list': [],
           },
           ReturnValues: 'NONE',
         })
