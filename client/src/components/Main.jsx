@@ -8,11 +8,9 @@ import { apiGET } from '../utils';
 
 const Main = () => {
   if (localStorage.getItem('email') !== null) {
-    /*
     if (isNew) {
       return <Onboarding onSubmit={onSubmit} token={token} />;
     }
-    */
     return <Home />;
   }
   return <Landing />;
