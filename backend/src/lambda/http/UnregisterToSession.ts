@@ -67,7 +67,7 @@ export const handler: APIGatewayProxyHandler = async (
   var resp;
 
   if (resp1.status === 200) {
-    resp = await userAccess.unregisterToSession(userId, sessionId);
+    resp = await userAccess.unregisterToSession(userId, pos);
   } else {
     resp = resp1;
   }
