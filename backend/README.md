@@ -4,15 +4,27 @@ The backend consists of following files and folders:
 
 backend
 
-|-------src/
-
-|-------src/lambda/
-
-|-------src/lambda/auth/ => Folder that handles authorization
-
-|-------src/lambda/auth/auth0Authorizer.ts => Handles the authorization like verifying the token
-
-|-------src/lambda/http/ => Folder that has functions to handle
+.
++-- src/
+| +-- lambda/
+| | +-- auth/ => Folder that handles authorization
+| | | +-- auth.ts => Handles the authorization with Auth0 to verifying the token
+| | | +-- authUid.ts => Handles the authorization by email
+| | +-- datalayer/
+| | | +-- SessionDBAccess.ts => AWS Dynamodb database interface layer for Session table
+| | | +-- UserdDBAccess.ts => AWS Dynamodb database interface layer for User table
+| | +-- http/ => Folder that has AWS Lambda functions
+| | | +-- CreateSession.ts =>
+| | | +-- CreateSession.ts =>
+| | | +-- CreateSession.ts =>
+| | | +-- CreateSession.ts =>
+| | | +-- CreateSession.ts =>
+| | | +-- CreateSession.ts =>
+| | | +-- CreateSession.ts =>
+| | | +-- CreateSession.ts =>
+| | | +-- CreateSession.ts =>
+| | | +-- CreateSession.ts =>
+| | | +-- CreateSession.ts =>
 
 |-------src/lambda/http/Createuser.ts => Function to create user and store it in the databases
 
