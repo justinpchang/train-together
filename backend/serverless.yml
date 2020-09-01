@@ -43,7 +43,7 @@ provider:
 ## Functions goes here
 functions:
   Auth:
-  handler: src/lambda/auth/auth.handler
+    handler: src/lambda/auth/authUId.handler
 
   CreateUser:
     handler: src/lambda/http/CreateUser.handler
@@ -52,7 +52,7 @@ functions:
           method: post
           path: zoomfit/v1/user/
           cors: true
-          authorizer: Auth
+          # authorizer: Auth
           documentation:
             summary: Create User dynamoDB
             description: Create User dynamoDB
@@ -209,7 +209,7 @@ functions:
     events:
       - http:
           method: get
-          path: zoomfit/v1/session/all
+          path: zoomfit/v1/session/all/
           cors: true
           authorizer: Auth
           documentation:
@@ -268,71 +268,68 @@ resources:
                 KeyType: RANGE
             Projection:
               ProjectionType: ALL
-
-  #### Unused Code
-  # AddUserFollowing:
-  #   handler: src/lambda/http/AddUserFollowing.handler
-  #   events:
-  #     - http:
-  #         method: post
-  #         path: zoomfit/v1/user/addFollowing
-  #         cors: true
-  #         documentation:
-  #           summary: Add User dynamoDB
-  #           description: Add User dynamoDB
-  #   iamRoleStatements:
-  #     - Effect: Allow
-  #       Action:
-  #         - dynamodb:GetItem
-  #         - dynamodb:UpdateItem
-  #       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
-
-  # TestUserDB:
-  #   handler: src/lambda/http/TestUserdDB.handler
-  #   events:
-  #     - http:
-  #         method: post
-  #         path: zoomfit/v1/user/test
-  #         cors: true
-  #         documentation:
-  #           summary: Test User dynamoDB
-  #           description: Test User dynamoDB
-  #   iamRoleStatements:
-  #     - Effect: Allow
-  #       Action:
-  #         - dynamodb:PutItem
-  #         - dynamodb:GetItem
-  #         - dynamodb:UpdateItem
-  #         - dynamodb:DeleteItem
-  #       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
-
-  # AttachmentsBucket:
-  #   Type: AWS::S3::Bucket
-  #   Properties:
-  #     BucketName: ${self:provider.environment.FILES_S3_BUCKET}
-  #     CorsConfiguration:
-  #       CorsRules:
-  #         - AllowedOrigins:
-  #             - "*"
-  #           AllowedHeaders:
-  #             - "*"
-  #           AllowedMethods:
-  #             - GET
-  #             - PUT
-  #             - POST
-  #             - DELETE
-  #             - HEAD
-  #           MaxAge: 3000
-  # BucketPolicy:
-  #   Type: AWS::S3::BucketPolicy
-  #   Properties:
-  #     PolicyDocument:
-  #       Id: MyPolicy
-  #       Version: "2012-10-17"
-  #       Statement:
-  #         - Sid: PublicReadForGetBucketObjects
-  #           Effect: Allow
-  #           Principal: "*"
-  #           Action: "s3:GetObject"
-  #           Resource: "arn:aws:s3:::${self:provider.environment.FILES_S3_BUCKET}/*"
-  #     Bucket: !Ref AttachmentsBucket
+#### Unused Code
+# AddUserFollowing:
+#   handler: src/lambda/http/AddUserFollowing.handler
+#   events:
+#     - http:
+#         method: post
+#         path: zoomfit/v1/user/addFollowing
+#         cors: true
+#         documentation:
+#           summary: Add User dynamoDB
+#           description: Add User dynamoDB
+#   iamRoleStatements:
+#     - Effect: Allow
+#       Action:
+#         - dynamodb:GetItem
+#         - dynamodb:UpdateItem
+#       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
+# TestUserDB:
+#   handler: src/lambda/http/TestUserdDB.handler
+#   events:
+#     - http:
+#         method: post
+#         path: zoomfit/v1/user/test
+#         cors: true
+#         documentation:
+#           summary: Test User dynamoDB
+#           description: Test User dynamoDB
+#   iamRoleStatements:
+#     - Effect: Allow
+#       Action:
+#         - dynamodb:PutItem
+#         - dynamodb:GetItem
+#         - dynamodb:UpdateItem
+#         - dynamodb:DeleteItem
+#       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
+# AttachmentsBucket:
+#   Type: AWS::S3::Bucket
+#   Properties:
+#     BucketName: ${self:provider.environment.FILES_S3_BUCKET}
+#     CorsConfiguration:
+#       CorsRules:
+#         - AllowedOrigins:
+#             - "*"
+#           AllowedHeaders:
+#             - "*"
+#           AllowedMethods:
+#             - GET
+#             - PUT
+#             - POST
+#             - DELETE
+#             - HEAD
+#           MaxAge: 3000
+# BucketPolicy:
+#   Type: AWS::S3::BucketPolicy
+#   Properties:
+#     PolicyDocument:
+#       Id: MyPolicy
+#       Version: "2012-10-17"
+#       Statement:
+#         - Sid: PublicReadForGetBucketObjects
+#           Effect: Allow
+#           Principal: "*"
+#           Action: "s3:GetObject"
+#           Resource: "arn:aws:s3:::${self:provider.environment.FILES_S3_BUCKET}/*"
+#     Bucket: !Ref AttachmentsBucket
