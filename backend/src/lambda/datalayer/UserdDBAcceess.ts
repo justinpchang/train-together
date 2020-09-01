@@ -175,9 +175,10 @@ export class UserAccess {
             '#history': 'history',
           },
           UpdateExpression:
-            'set #history = list_append(if_not_exists (#history, :empty_list), :val)',
+            'set #history = list_append(:val,if_not_exists (#history, :empty_list))',
           // 'ADD #history :val',
           ExpressionAttributeValues: {
+            // ':val': this.docClient.createSet([sessionId]),
             ':val': [sessionId],
             ':empty_list': [],
           },
@@ -223,16 +224,17 @@ export class UserAccess {
           Key: {
             userId: userId,
           },
-          ExpressionAttributeNames: {
-            '#history': 'history',
-          },
+          // ExpressionAttributeNames: {
+          //   '#history': 'history',
+          // },
           UpdateExpression:
             // 'set #history = list_append(if_not_exists (#history, :empty_list), :val)',
-            'REMOVE #history[:pos]',
-          ExpressionAttributeValues: {
-            ':pos': pos,
-            // ':empty_list': [],
-          },
+            `REMOVE history[${pos}]`,
+          // ExpressionAttributeValues: {
+          // ':pos': pos,
+          // ':sid': sessionId,
+          // ':empty_list': [],
+          // },
           ReturnValues: 'NONE',
         })
         .promise()

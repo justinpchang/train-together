@@ -45,8 +45,9 @@ export const handler: APIGatewayProxyHandler = async (
   for (let userSessionId of temp.Item.history) {
     if (userSessionId === sessionId) {
       flag = false;
-      pos = pos + 1;
+      break;
     }
+    pos = pos + 1;
   }
 
   if (flag) {

@@ -178,7 +178,7 @@ export class SessionAccess {
           ExpressionAttributeValues: {
             ':num': 1,
           },
-          ReturnValues: 'NONE',
+          ReturnValues: 'UPDATED_NEW',
         })
         .promise()
         .then((data) => {
@@ -224,7 +224,7 @@ export class SessionAccess {
           ExpressionAttributeValues: {
             ':num': -1,
           },
-          ReturnValues: 'NONE',
+          ReturnValues: 'UPDATED_NEW',
         })
         .promise()
         .then((data) => {
