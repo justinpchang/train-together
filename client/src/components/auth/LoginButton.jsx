@@ -1,16 +1,20 @@
 import React from 'react';
-import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "react-bootstrap";
-
+import { useHistory } from 'react-router-dom';
+ 
 const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
+  const history = useHistory();
+  const goToLogin = (event) => {
+    history.push('/login');
+  }
+
   return (
     <Button
-      onClick={() => loginWithRedirect()}
-      variant="primary"
-      className="btn-margin auth-button login-button"
+    variant="primary"
+    className="btn-margin auth-button login-button"
+    onClick={goToLogin}
     >
-      Log In
+        LOG IN
     </Button>
   );
 };

@@ -1,0 +1,19 @@
+.login-register-input-containers {
+    margin-bottom: 10px;
+}
+/* .login-register-inputs {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 5px;
+} */
+.onboarding > .login-register-labels {
+    font-size: 16px;
+    line-height: 19px;
+    color: #4A5568;
+}
+.login-p {
+    font-size: 16px;
+    line-height: 19px;
+    color: #2D3748;
+}

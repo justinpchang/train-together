@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth0 } from "@auth0/auth0-react";
+import { useHistory } from 'react-router-dom';
 import {  Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -13,7 +13,13 @@ import {
 import { Link } from 'react-router-dom';
 
 const Navigation = () => {
-    const { logout } = useAuth0();
+    const history = useHistory();
+
+    const logout = (event) => {
+      localStorage.removeItem('email');
+      console.log('deleted ' + localStorage.getItem('email'))
+      history.push('/');
+    }
     
     return (
       <Navbar className='nav-bar' bg="light" expand="md" style={{position: 'fixed', width: '100%', zIndex: '10'}}>
@@ -29,7 +35,7 @@ const Navigation = () => {
               <Link className='navbar-link' to='/'><FontAwesomeIcon icon={faComments} /><br />Messaging</Link>
               <Link className="navbar-link" to="/profile"><FontAwesomeIcon icon={faUser} /><br />Profile</Link>
               <Link className="navbar-logout navbar-link" to='/'
-                onClick={() => logout({returnTo: window.location.origin})}
+                onClick={logout}
               ><FontAwesomeIcon icon={faSignOutAlt} /><br />Log Out</Link>
             </Nav>
           </Navbar.Collapse>
