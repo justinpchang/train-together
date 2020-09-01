@@ -37,6 +37,7 @@ provider:
   environment:
     USER_TABLE: zoomfit-user-${self:provider.stage}
     SESSION_TABLE: zoomfit-session-${self:provider.stage}
+    SESSION_TABLE_INDEX: sessionIndex
     # FILES_S3_BUCKET: tt-dev-${self:provider.stage}
 
 ## Functions goes here
@@ -153,7 +154,7 @@ functions:
     iamRoleStatements:
       - Effect: Allow
         Action:
-          - dynamodb:ScanItem
+          - dynamodb:Scan
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.SESSION_TABLE}
 
   AddUserFollowing:
@@ -228,10 +229,17 @@ resources:
         KeySchema:
           - AttributeName: sessionId
             KeyType: HASH
-          - AttributeName: eventDate
-            KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
         TableName: ${self:provider.environment.SESSION_TABLE}
+        GlobalSecondaryIndexes:
+          - IndexName: ${self:provider.environment.SESSION_TABLE_INDEX}
+            KeySchema:
+              - AttributeName: sessionId
+                KeyType: HASH
+              - AttributeName: eventDate
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
 
     # AttachmentsBucket:
     #   Type: AWS::S3::Bucket

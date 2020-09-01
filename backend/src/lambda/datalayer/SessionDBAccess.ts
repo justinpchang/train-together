@@ -265,6 +265,7 @@ export class SessionAccess {
     const result = await this.docClient
       .scan({
         TableName: this.sessionTable,
+        IndexName: process.env.SESSION_INDEX,
         Limit: 20,
       })
       .promise();
