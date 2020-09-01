@@ -27,10 +27,6 @@ const Home = () => {
     description: '',
     date: Date.now(),
   });
-  const [open, setOpen] = React.useState(false);
-  const onOpen = () => {
-    setOpen(false);
-  }
   const handleClassChange = (event) => {
     const {name, value} = event.target;
     const newState = Object.assign({}, newClass);
@@ -39,7 +35,6 @@ const Home = () => {
   }
   const handleSubmit = (event) => {
     event.preventDefault();
-    setOpen(false);
     alert(JSON.stringify(newClass));
   }
 
@@ -70,8 +65,6 @@ const Home = () => {
               date={newClass.date}
               handleChange={handleClassChange}
               handleSubmit={handleSubmit}
-              open={open}
-              onOpen={onOpen}
             />
             <Select
               className='scope-selector'

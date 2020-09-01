@@ -32,7 +32,6 @@ const NewClassForm = (props) => {
     setTriggerStyle({
       background: 'linear-gradient(to bottom, rgba(244, 215, 221, 0.3) 13%, white 0%)',
     });
-    props.onOpen();
   }
 
   const handleClose = () => {
@@ -47,7 +46,6 @@ const NewClassForm = (props) => {
         <Collapsible
           trigger='Schedule a new workout'
           transitionTime={200}
-          open={props.open}
           onOpen={handleOpen}
           onClose={handleClose}
         >
