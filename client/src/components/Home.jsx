@@ -9,6 +9,24 @@ import { ProfileGlance } from './user';
 import { Select, MenuItem } from '@material-ui/core';
 
 const Home = () => {
+  const sampleSession = {
+    name: 'Chloe Ting',
+    postTime: '20 minutes ago',
+    description: 'Abs Abs Abs! Everyone seems to be asking for a QUICK and short schedule, so I put together a 2 weeks schedule to help you get closer to those defined abs and to lose weight. A 2 weeks program is easier to commit to, and you can always do it again after you finish it! Starting from 7th Sep!',
+    title: 'Get Abs in 2 WEEKS',
+    tags: ['Abs', 'Core', 'Intermediate'],
+    date: '7 Sep 2020',
+    attending: '143',
+  }
+  const cards = [
+    Object.assign({}, sampleSession),
+    Object.assign({}, sampleSession),
+    Object.assign({}, sampleSession),
+    Object.assign({}, sampleSession),
+    Object.assign({}, sampleSession),
+    Object.assign({}, sampleSession),
+  ]
+
   const [scope, setScope] = React.useState('Following');
   const [profile, setProfile] = React.useState({
     name: 'Jessie J.',
@@ -76,7 +94,7 @@ const Home = () => {
               <MenuItem value={'My Posts'}>My Posts</MenuItem>
               <MenuItem value={'Global'}>Global</MenuItem>
             </Select>
-            <Feed />
+            <Feed cards={cards} />
           </Row>
         </div>
         <div className='col-md-1'>
