@@ -8,7 +8,7 @@ import { UserAccess } from '../datalayer/UserdDBAcceess';
 
 // import { parseUserId } from '../../auth/utils';
 
-const logger = createLogger('InsertUserDB');
+const logger = createLogger('Auth');
 
 export const handler = async (
   event: CustomAuthorizerEvent
@@ -17,9 +17,11 @@ export const handler = async (
 
   //   const userId = await parseUserId(token);
 
-  const userId: string = event.authorizationToken;
+  const userId: string = event.authorizationToken.split(' ')[1];
 
-  if ((await new UserAccess().getUser(userId)).status == 200) {
+  logger.info(`${userId}`);
+
+  if (!(await new UserAccess().userItemExists(userId))) {
     logger.info('User was authorized', userId);
     return {
       principalId: userId,

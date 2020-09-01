@@ -23,7 +23,7 @@ export const handler: APIGatewayProxyHandler = async (
 
   // const token: string = event.headers.Authorization.split(' ')[1];
 
-  const userId = event.headers.Authorization;
+  const userId = event.headers.Authorization.split(' ')[1];
 
   const sessiondetails: CreateSessionReq = JSON.parse(event.body);
 
