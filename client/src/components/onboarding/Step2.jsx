@@ -42,7 +42,7 @@ class Step2 extends React.Component {
   isHighlighted = (interest) => {
     if (this.state.interests.includes(interest)) {
       return {
-        border: 'solid 5px #D333A5',
+        border: 'solid 5px #7048E8',
         borderRadius: '10px',
       };
     }
