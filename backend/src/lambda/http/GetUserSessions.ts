@@ -34,12 +34,20 @@ export const handler: APIGatewayProxyHandler = async (
 
   const ItemResponse = await new UserAccess().getUser(userId);
 
-  var sessions: Array<string> = new Array();
+  const temp = JSON.parse(ItemResponse.results);
+
+  logger.info(`${temp.Item.history}`);
+
+  var sessions = new Array();
 
   const sessiondbObj = new SessionAccess();
 
-  for (let sessionId of JSON.parse(ItemResponse.results).history) {
-    sessions.push((await sessiondbObj.getSession(sessionId)).results);
+  for (let sessionId of temp.Item.history) {
+    var tempresp = await sessiondbObj.getSession(sessionId);
+    if (tempresp.status === 200) {
+      var tempSession = JSON.parse(tempresp.results).Item;
+      sessions.push(tempSession);
+    }
   }
 
   return {

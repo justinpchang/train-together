@@ -91,11 +91,9 @@ functions:
       - Effect: Allow
         Action:
           - dynamodb:GetItem
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
-      - Effect: Allow
-        Action:
-          - dynamodb:GetItem
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.SESSION_TABLE}
+        Resource:
+          - arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
+          - arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.SESSION_TABLE}
 
   InsertUser:
     handler: src/lambda/http/InsertUser.handler
