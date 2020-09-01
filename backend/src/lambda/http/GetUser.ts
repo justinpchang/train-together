@@ -29,6 +29,8 @@ export const handler: APIGatewayProxyHandler = async (
 
   const userId = event.headers.userId;
 
+  logger.info(`${userId}`);
+
   const ItemResponse = await new UserAccess().getUser(userId);
 
   return {

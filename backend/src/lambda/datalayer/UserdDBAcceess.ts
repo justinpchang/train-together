@@ -83,28 +83,20 @@ export class UserAccess {
   }
 
   async getUser(userId: string): Promise<DataLayerResponse> {
-    var resp;
-    if (await this.userItemExists(userId)) {
-      logger.error('userId Not Found');
-      resp = {
-        status: 404,
-        results: 'userId Not Found',
-      };
-    } else {
-      const result = await this.docClient
-        .get({
-          TableName: this.userTable,
-          Key: {
-            userId: userId,
-          },
-        })
-        .promise();
-      resp = {
-        status: 200,
-        result: JSON.stringify(result),
-      };
+    const result = await this.docClient
+      .get({
+        TableName: this.userTable,
+        Key: {
+          userId: userId,
+        },
+      })
+      .promise();
+
+    logger.info(`${JSON.stringify(result)}`);
+    if (JSON.stringify(result) === '{}') {
+      return { status: 400, results: 'Item not Found' };
     }
-    return resp as DataLayerResponse;
+    return { status: 200, results: JSON.stringify(result) };
   }
 
   async updateUser(

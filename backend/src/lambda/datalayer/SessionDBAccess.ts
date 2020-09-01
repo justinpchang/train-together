@@ -83,28 +83,20 @@ export class SessionAccess {
   }
 
   async getSession(sessionId: string): Promise<DataLayerResponse> {
-    var resp;
-    if (await this.sessionItemExists(sessionId)) {
-      logger.error('userId Not Found');
-      resp = {
-        status: 404,
-        results: 'userId Not Found',
-      };
-    } else {
-      const result = await this.docClient
-        .get({
-          TableName: this.sessionTable,
-          Key: {
-            userId: sessionId,
-          },
-        })
-        .promise();
-      resp = {
-        status: 200,
-        result: JSON.stringify(result),
-      };
+    const result = await this.docClient
+      .get({
+        TableName: this.sessionTable,
+        Key: {
+          userId: sessionId,
+        },
+      })
+      .promise();
+
+    logger.info(`${JSON.stringify(result)}`);
+    if (JSON.stringify(result) === '{}') {
+      return { status: 400, results: 'Item not Found' };
     }
-    return resp as DataLayerResponse;
+    return { status: 200, results: JSON.stringify(result) };
   }
 
   async updateSession(
