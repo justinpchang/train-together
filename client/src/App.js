@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { Main, Profile, PrivateRoute } from "./components";
+import Login from "./components/Login";
 
 import "./style/profile.css";
 import "./style/feed.css";
@@ -12,12 +13,15 @@ import "./style/home.css";
 import './style/user.css';
 import './style/class.css';
 import "./style/navbar.css";
+import "./style/login.css";
 
 const App = () => {
   return (
     <div id="app" className="d-flex flex-column h-100">
       <Switch>
         <Route path="/" exact component={Main} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/register" exact component={Login} />
         <PrivateRoute path="/profile" component={Profile} />
       </Switch>
     </div>

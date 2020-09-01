@@ -1,16 +1,20 @@
 import React from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "react-bootstrap";
-
+import { Link } from 'react-router-dom';
+ 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
   return (
     <Button
-      onClick={() => loginWithRedirect()}
-      variant="primary"
-      className="btn-margin auth-button login-button"
+    variant="primary"
+    className="btn-margin auth-button login-button"
     >
-      Log In
+      <Link
+        to="/login"
+      >
+        LOG IN
+      </Link>
     </Button>
   );
 };

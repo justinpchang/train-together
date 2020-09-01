@@ -10,6 +10,12 @@
   background: white;
   color: black;
 }
+.auth-button > a {
+  color: white;
+}
+.auth-button:hover > a {
+  color: black;
+}
 
 .login-button {
   background: black;
