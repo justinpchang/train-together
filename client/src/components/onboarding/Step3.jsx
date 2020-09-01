@@ -15,19 +15,19 @@ const dummyData = [
     userId: "someId1",
     name: "Jon Yates",
     profile_pic: yoga,
-    followers: "80"
+    following: "80"
   },
   {
     userId: "someId2",
     name: "Jane Doe",
     profile_pic: weight,
-    followers: "20"
+    following: "20"
   },
   {
     userId: "someId3",
     name: "Matthew Miller",
     profile_pic: dance,
-    followers: "180"
+    following: "180"
   }
 
 ]
@@ -36,44 +36,39 @@ class Step3 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      instructors: []
+      followers: []
     }
   }
 
-  getInstructors = (instructors) => {
-    this.setState({instructors: instructors});
-  }
  // Figure out how to apply onClick to the whole div rather than the img
   onClick = (event) => {
     console.log(event.target.className)
     // Update state array
-    let removeIndex = this.state.instructors.indexOf(event.target.name);
+    let removeIndex = this.state.followers.indexOf(event.target.name);
     if (removeIndex > -1) {
       this.setState({
-        instructors: this.state.instructors.filter((instructors) => {
-          return instructors !== event.target.name;
+        followers: this.state.followers.filter((followers) => {
+          return followers !== event.target.name;
         })
       }, () => {
-        // console.log(event.target.name + 'HERE')
-        this.getInstructors(this.state.instructors);
+        this.props.getFollowers(this.state.followers);
       })
     } else {
       this.setState({
         // this is spreading the instructor state to the array, and adding the update
-        instructors: [...this.state.instructors, event.target.name],
+        followers: [...this.state.followers, event.target.name],
       }, () => {
-        this.getInstructors(this.state.instructors);
+        this.props.getFollowers(this.state.followers);
       })
     }
-    // console.log(this.state.instructors)
   }
   
-  isHighlighted = (instructors) => {
-    console.log(this.state.instructors)
+  isHighlighted = (followers) => {
+    console.log(this.state.followers)
     // Param passed in checks to see if it is in instructor array
-    if (this.state.instructors.includes(instructors)) {
+    if (this.state.followers.includes(followers)) {
       return {
-        border: 'solid 3px #D333A5',
+        border: 'solid 5px #D333A5',
         borderRadius: '10px',
       };
     }
@@ -98,7 +93,7 @@ class Step3 extends React.Component {
             </div>
             <div className='instructor-card-poster-info col-md-10 col-lg-6'>
               <p className='instructor-card-poster-name'>{user.name}</p>
-              <p className='instructor-card-post-followers'>{user.followers} followers</p>
+              <p className='instructor-card-post-followers'>{user.following} followers</p>
             </div>
         </Row>
       )
