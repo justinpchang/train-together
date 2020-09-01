@@ -59,13 +59,13 @@
   color: white;
   font-weight: bold;
 }
-@media (min-width: 785px) and (max-width: 950px) {
-  .onboarding > Form {
-    width: 35%;
-    margin: auto;
-    position: relative;
-    top: 10%;
-  }
+
+
+
+
+
+/* Step2 */
+@media (max-width: 950px) {
   Form > div > .row {
     flex-wrap: nowrap;
   }
@@ -77,9 +77,6 @@
     position: relative;
     top: 10%;
   }
-  Form > div > .row {
-    flex-wrap: nowrap;
-  }
 }
 @media (min-width: 600px) and (max-width: 740px) {
   .onboarding > Form {
@@ -87,9 +84,6 @@
     margin: auto;
     position: relative;
     top: 10%;
-  }
-  Form > div > .row {
-    flex-wrap: nowrap;
   }
 }
 @media (min-width: 500px) and (max-width: 599px) {
@@ -99,9 +93,6 @@
     position: relative;
     top: 10%;
   }
-  Form > div > .row {
-    flex-wrap: nowrap;
-  }
 }
 @media (max-width: 499px) {
   .onboarding > Form {
@@ -110,7 +101,38 @@
     position: relative;
     top: 10%;
   }
-  Form > div > .row {
-    flex-wrap: nowrap;
-  }
+}
+
+
+/* Step3 */
+.instructor-card-post-time {
+  color: charcoal;
+  font-size: 12px;
+  margin-top: 0px;
+}
+.instructor {
+  /* border: 1px solid transparent */
+  /* border: 1px solid #000000; */
+  background-color: rgba(216, 216, 216, 0.4);
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-bottom: 7px;
+}
+.instructor-card-poster-picture-container {
+  padding-right: 0px;
+  margin: 10px 10px;
+}
+
+.instructor-card-poster-picture {
+  width: 80px;
+  height: 80px;
+  margin-right: 0px;
+}
+.instructor-card-poster-info {
+  padding-top: 13px;
+  padding-left: 0px;
+  margin-left: inherit;
+}
+Form > div > .instructor {
+  flex-wrap: nowrap;
 }
