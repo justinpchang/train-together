@@ -37,6 +37,7 @@ export const handler: APIGatewayProxyHandler = async (
     following: 0,
     sessionAttended: 0,
     sessionCreated: 0,
+    history: [],
   });
 
   return {
