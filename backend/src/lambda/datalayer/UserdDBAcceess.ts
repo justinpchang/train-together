@@ -152,6 +152,59 @@ export class UserAccess {
     return resp as DataLayerResponse;
   }
 
+  async registerToSession(
+    userId: string,
+    sessionId: string
+  ): Promise<DataLayerResponse> {
+    var resp;
+    if (await this.userItemExists(userId)) {
+      logger.error('userId Not Present');
+      resp = {
+        status: 404,
+        results: `userId Not Present`,
+      };
+    } else {
+      logger.info(`${JSON.stringify({ user: userId, session: sessionId })}`);
+      await this.docClient
+        .update({
+          TableName: this.userTable,
+          Key: {
+            userId: userId,
+          },
+          ExpressionAttributeNames: {
+            '#history': 'history',
+          },
+          UpdateExpression:
+            // 'set #history = list_append(if_not_exists (#history, :empty_list), :val)',
+            'ADD #history :val',
+          ExpressionAttributeValues: {
+            ':val': this.docClient.createSet([sessionId]),
+            // ':val': [sessionId],
+            // ':empty_list': [],
+          },
+          ReturnValues: 'NONE',
+        })
+        .promise()
+        .then((data) => {
+          logger.info(`Successfully updated to ${JSON.stringify(data)}`);
+          resp = {
+            status: 200,
+            results: JSON.stringify(data),
+          };
+        })
+        .catch((err) => {
+          logger.error(
+            `Failed to update user!! Check with DynamoDB connection. \n ${err}`
+          );
+          resp = {
+            status: 500,
+            results: `Failed to update user!! Check with DynamoDB connection. \n ${err}`,
+          };
+        });
+    }
+    return resp as DataLayerResponse;
+  }
+
   async addUserFollowing(userId: string): Promise<DataLayerResponse> {
     var resp;
     if (await this.userItemExists(userId)) {

@@ -61,6 +61,44 @@ functions:
           - dynamodb:PutItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
 
+  RegisterToSession:
+    handler: src/lambda/http/RegisterToSession.handler
+    events:
+      - http:
+          method: post
+          path: zoomfit/v1/user/register/
+          cors: true
+          documentation:
+            summary: Create User dynamoDB
+            description: Create User dynamoDB
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:UpdateItem
+          - dynamoDB:GetItem
+        Resource:
+          - arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
+          - arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.SESSION_TABLE}
+
+  UnregisterToSession:
+    handler: src/lambda/http/UnregisterToSession.handler
+    events:
+      - http:
+          method: post
+          path: zoomfit/v1/user/unregister/
+          cors: true
+          documentation:
+            summary: Create User dynamoDB
+            description: Create User dynamoDB
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:UpdateItem
+          - dynamoDB:GetItem
+        Resource:
+          - arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
+          - arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.SESSION_TABLE}
+
   GetUser:
     handler: src/lambda/http/GetUser.handler
     events:
