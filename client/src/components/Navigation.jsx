@@ -28,7 +28,7 @@ const Navigation = () => {
               <Link className='navbar-link' to='/'><FontAwesomeIcon icon={faHome} /><br />Home</Link>
               <Link className='navbar-link' to='/'><FontAwesomeIcon icon={faComments} /><br />Messaging</Link>
               <Link className="navbar-link" to="/profile"><FontAwesomeIcon icon={faUser} /><br />Profile</Link>
-              <Link className="navbar-logout navbar-link" 
+              <Link className="navbar-logout navbar-link" to='/'
                 onClick={() => logout({returnTo: window.location.origin})}
               ><FontAwesomeIcon icon={faSignOutAlt} /><br />Log Out</Link>
             </Nav>
