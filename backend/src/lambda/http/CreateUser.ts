@@ -8,11 +8,11 @@ import {
 
 import { createLogger } from '../../utils/logger';
 
-import { UserItem } from '../../models/UserItem';
+// import { UserItem } from '../../models/UserItem';
 import { UserAccess } from '../datalayer/UserdDBAcceess';
 
-// import { parseUserId } from '../../auth/utils';
-// import { CreateUserReq } from '../../models/CreateUserReq';
+import { parseUserId } from '../../auth/utils';
+import { CreateUserReq } from '../../models/CreateUserReq';
 
 const logger = createLogger('CreateUserDB');
 
@@ -21,14 +21,14 @@ export const handler: APIGatewayProxyHandler = async (
 ): Promise<APIGatewayProxyResult> => {
   logger.info(`create request for ${JSON.stringify(event.body)} received!!`);
 
-  //   const token: string = event.headers.Authorization.split(' ')[1];
+  const token: string = event.headers.Authorization.split(' ')[1];
 
-  //   const userId = await parseUserId(token);
+  const userId = await parseUserId(token);
 
-  //   const userdetails: CreateUserReq = JSON.parse(event.body);
+  const userdetails: CreateUserReq = JSON.parse(event.body);
   //userId: userId,
 
-  const userdetails: UserItem = JSON.parse(event.body);
+  // const userdetails: UserItem = JSON.parse(event.body);
 
   const ItemResponse = await new UserAccess().createUser({
     createdAt: new Date().toISOString(),
@@ -38,6 +38,7 @@ export const handler: APIGatewayProxyHandler = async (
     sessionAttended: 0,
     sessionCreated: 0,
     history: [],
+    userId,
   });
 
   return {

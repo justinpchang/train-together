@@ -20,11 +20,11 @@ export const handler: APIGatewayProxyHandler = async (
 ): Promise<APIGatewayProxyResult> => {
   logger.info(`create request for ${JSON.stringify(event.body)} received!!`);
 
-  //   const token: string = event.headers.Authorization.split(' ')[1];
+  // const token: string = event.headers.Authorization.split(' ')[1];
 
-  //   const userId = await parseUserId(token);
+  // const userId = await parseUserId(token);
 
-  //   const userdetails: CreateUserReq = JSON.parse(event.body);
+  // const userdetails: CreateUserReq = JSON.parse(event.body);
   //userId: userId,
 
   const response = await new SessionAccess().getAllSessions();

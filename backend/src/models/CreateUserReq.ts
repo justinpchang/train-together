@@ -1,6 +1,6 @@
 export interface CreateUserReq {
   name: string;
   email: string;
-  dob: Date;
+  age: string;
   interests: Array<string>;
 }

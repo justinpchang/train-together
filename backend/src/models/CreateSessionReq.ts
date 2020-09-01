@@ -1,4 +1,4 @@
-export interface CreateSessionItem {
+export interface CreateSessionReq {
   title: string;
   userId: string;
   createdAt: string;

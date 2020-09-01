@@ -42,8 +42,8 @@ provider:
 
 ## Functions goes here
 functions:
-  # Auth:
-  # handler: src/lambda/auth/auth0Authorizer.handler
+  Auth:
+  handler: src/lambda/auth/auth.handler
 
   CreateUser:
     handler: src/lambda/http/CreateUser.handler
@@ -52,6 +52,7 @@ functions:
           method: post
           path: zoomfit/v1/user/
           cors: true
+          authorizer: Auth
           documentation:
             summary: Create User dynamoDB
             description: Create User dynamoDB
@@ -68,9 +69,10 @@ functions:
           method: post
           path: zoomfit/v1/user/register/
           cors: true
+          authorizer: Auth
           documentation:
-            summary: Create User dynamoDB
-            description: Create User dynamoDB
+            summary: register to session
+            description: register to session
     iamRoleStatements:
       - Effect: Allow
         Action:
@@ -87,9 +89,10 @@ functions:
           method: post
           path: zoomfit/v1/user/unregister/
           cors: true
+          authorizer: Auth
           documentation:
-            summary: Create User dynamoDB
-            description: Create User dynamoDB
+            summary: unregister to session
+            description: unregister to session
     iamRoleStatements:
       - Effect: Allow
         Action:
@@ -106,6 +109,7 @@ functions:
           method: get
           path: zoomfit/v1/user/
           cors: true
+          authorizer: Auth
           documentation:
             summary: Get User dynamoDB
             description: Get User dynamoDB
@@ -122,6 +126,7 @@ functions:
           method: get
           path: zoomfit/v1/user/sessions/
           cors: true
+          authorizer: Auth
           documentation:
             summary: Get User sessions dynamoDB
             description: Get User sessions dynamoDB
@@ -156,6 +161,7 @@ functions:
           method: post
           path: zoomfit/v1/session/
           cors: true
+          authorizer: Auth
           documentation:
             summary: Create session dynamoDB
             description: Create session dynamoDB
@@ -188,6 +194,7 @@ functions:
           method: get
           path: zoomfit/v1/session/
           cors: true
+          authorizer: Auth
           documentation:
             summary: Get session dynamoDB
             description: Get session dynamoDB
@@ -204,6 +211,7 @@ functions:
           method: get
           path: zoomfit/v1/session/all
           cors: true
+          authorizer: Auth
           documentation:
             summary: Get all session dynamoDB
             description: Get all session dynamoDB

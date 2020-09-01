@@ -11,8 +11,7 @@ import { createLogger } from '../../utils/logger';
 import { UserAccess } from '../datalayer/UserdDBAcceess';
 import { SessionAccess } from '../datalayer/SessionDBAccess';
 
-// import { parseUserId } from '../../auth/utils';
-// import { CreateUserReq } from '../../models/CreateUserReq';
+import { parseUserId } from '../../auth/utils';
 
 const logger = createLogger('InsertUserDB');
 
@@ -21,14 +20,14 @@ export const handler: APIGatewayProxyHandler = async (
 ): Promise<APIGatewayProxyResult> => {
   logger.info(`create request for ${JSON.stringify(event.body)} received!!`);
 
-  //   const token: string = event.headers.Authorization.split(' ')[1];
+  const token: string = event.headers.Authorization.split(' ')[1];
 
-  //   const userId = await parseUserId(token);
+  const userId = await parseUserId(token);
 
   //   const userdetails: CreateUserReq = JSON.parse(event.body);
   //userId: userId,
 
-  const userId = event.headers.userId;
+  // const userId = event.headers.userId;
 
   logger.info(`${userId}`);
 

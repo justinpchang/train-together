@@ -9,11 +9,10 @@ import {
 
 import { createLogger } from '../../utils/logger';
 
-import { CreateSessionItem } from '../../models/CreateSessionReq';
 import { SessionAccess } from '../datalayer/SessionDBAccess';
 
-// import { parseUserId } from '../../auth/utils';
-// import { CreateUserReq } from '../../models/CreateUserReq';
+import { parseUserId } from '../../auth/utils';
+import { CreateSessionReq } from '../../models/CreateSessionReq';
 
 const logger = createLogger('CreateUserDB');
 
@@ -22,20 +21,18 @@ export const handler: APIGatewayProxyHandler = async (
 ): Promise<APIGatewayProxyResult> => {
   logger.info(`create request for ${JSON.stringify(event.body)} received!!`);
 
-  //   const token: string = event.headers.Authorization.split(' ')[1];
+  const token: string = event.headers.Authorization.split(' ')[1];
 
-  //   const userId = await parseUserId(token);
+  const userId = await parseUserId(token);
 
-  //   const userdetails: CreateUserReq = JSON.parse(event.body);
-  //userId: userId,
-
-  const sessiondetails: CreateSessionItem = JSON.parse(event.body);
+  const sessiondetails: CreateSessionReq = JSON.parse(event.body);
 
   const sessionId = uuid.v4();
 
   const ItemResponse = await new SessionAccess().createSession({
     createdAt: new Date().toISOString(),
     ...sessiondetails,
+    userId,
     sessionId,
   });
 
