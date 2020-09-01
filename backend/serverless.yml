@@ -140,7 +140,7 @@ functions:
       - Effect: Allow
         Action:
           - dynamodb:Query
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}/index/${self:provider.environment.USER_TABLE_INDEX}
 
   GetUserSessions:
     handler: src/lambda/http/GetUserSessions.handler
@@ -275,8 +275,6 @@ resources:
             KeySchema:
               - AttributeName: email
                 KeyType: HASH
-              - AttributeName: userId
-                KeyType: RANGE
             Projection:
               ProjectionType: ALL
 

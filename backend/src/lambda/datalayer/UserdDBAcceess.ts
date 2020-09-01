@@ -653,12 +653,11 @@ export class UserAccess {
       .promise();
 
     logger.info(`${JSON.stringify(result)}`);
-    if (JSON.stringify(result) !== '{}') {
+    if (JSON.stringify(result) === '{}') {
       return { status: 400, results: `email not found` };
     }
-    return { status: 200, results: JSON.stringify(result) };
+    return { status: 200, results: JSON.stringify(result.Items[0].userId) };
   }
-
   /* Attaching user picture
     *
     async attachUserFile(
