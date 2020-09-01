@@ -60,6 +60,102 @@ functions:
           - dynamodb:PutItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
 
+  GetUser:
+    handler: src/lambda/http/GetUser.handler
+    events:
+      - http:
+          method: get
+          path: zoomfit/v1/user/
+          cors: true
+          documentation:
+            summary: Get User dynamoDB
+            description: Get User dynamoDB
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:GetItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
+
+  InsertUser:
+    handler: src/lambda/http/InsertUser.handler
+    events:
+      - http:
+          method: post
+          path: zoomfit/v1/user/insert
+          cors: true
+          documentation:
+            summary: Create User dynamoDB
+            description: Create User dynamoDB
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:PutItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
+
+  CreateSession:
+    handler: src/lambda/http/CreateSession.handler
+    events:
+      - http:
+          method: post
+          path: zoomfit/v1/session/
+          cors: true
+          documentation:
+            summary: Create session dynamoDB
+            description: Create session dynamoDB
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:PutItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.SESSION_TABLE}
+
+  InsertSession:
+    handler: src/lambda/http/InsertSession.handler
+    events:
+      - http:
+          method: post
+          path: zoomfit/v1/session/insert
+          cors: true
+          documentation:
+            summary: Create User dynamoDB
+            description: Create User dynamoDB
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:PutItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.SESSION_TABLE}
+
+  GetSession:
+    handler: src/lambda/http/GetSession.handler
+    events:
+      - http:
+          method: get
+          path: zoomfit/v1/session/
+          cors: true
+          documentation:
+            summary: Get session dynamoDB
+            description: Get session dynamoDB
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:GetItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.SESSION_TABLE}
+
+  GetAllSession:
+    handler: src/lambda/http/GetAllSession.handler
+    events:
+      - http:
+          method: get
+          path: zoomfit/v1/session/all
+          cors: true
+          documentation:
+            summary: Get all session dynamoDB
+            description: Get all session dynamoDB
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:GetItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.SESSION_TABLE}
+
   AddUserFollowing:
     handler: src/lambda/http/AddUserFollowing.handler
     events:
