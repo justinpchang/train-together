@@ -86,3 +86,48 @@
 .bold {
   font-weight: bold;
 }
+
+.db {
+  margin: 0 auto;
+  padding: 15px;
+  height: 100%;
+}
+
+.db-card-top {
+  height: 160px;
+  min-height: 160px;
+  min-width: 160px;
+  padding: 15px;
+  background: #FFFFFF;
+  box-shadow: 0px 24px 32px rgba(50, 50, 71, 0.08), 0px 16px 16px rgba(50, 50, 71, 0.08);
+  border-radius: 10px;
+}
+
+.db-card-bottom {
+  height: 300px;
+  min-height: 300px;
+  min-width: 260px;
+  padding: 20px;
+  background: #FFFFFF;
+  box-shadow: 0px 24px 32px rgba(50, 50, 71, 0.08), 0px 16px 16px rgba(50, 50, 71, 0.08);
+  border-radius: 10px;
+}
+
+.db-card-title {
+  padding-top: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.db-big-num {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 150%;
+}
+
+.chart-innertext {
+  color: #7048E8;
+}

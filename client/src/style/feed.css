@@ -1,5 +1,5 @@
 .feed {
-  margin: 0 auto;
+  margin-left: 20px;
 }
 
 .feed-card {
@@ -12,6 +12,7 @@
   min-height: 200px;
   max-width: 560px;
   padding: 40px;
+  background: white;
 }
 
 .feed-card-poster-picture-container {

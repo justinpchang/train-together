@@ -30,7 +30,7 @@ const ProfileGlance = (props) => {
           <span>Aug 29, 2020</span>
         </div>
         <Row className='workout-log'>
-          <Link to='/profile'>
+          <Link to='/workouts'>
             <p>View Workout Log</p>
           </Link>
         </Row>
