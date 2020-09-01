@@ -252,20 +252,6 @@ export class UserAccess {
     return resp as DataLayerResponse;
   }
 
-  async userItemExists(userId: string) {
-    const result = await this.docClient
-      .get({
-        TableName: this.userTable,
-        Key: {
-          userId: userId,
-        },
-      })
-      .promise();
-
-    logger.info(`${JSON.stringify(result)}`);
-    return JSON.stringify(result) === '{}';
-  }
-
   async addUserSessionCreated(userId: string): Promise<DataLayerResponse> {
     var resp;
     if (await this.userItemExists(userId)) {
@@ -356,6 +342,204 @@ export class UserAccess {
         });
     }
     return resp as DataLayerResponse;
+  }
+
+  async decUserFollowing(userId: string): Promise<DataLayerResponse> {
+    var resp;
+    if (await this.userItemExists(userId)) {
+      logger.error('userId Not Present');
+      resp = {
+        status: 404,
+        results: `userId Not Present`,
+      };
+    } else {
+      logger.info(`${JSON.stringify({ user: userId })}`);
+      await this.docClient
+        .update({
+          TableName: this.userTable,
+          Key: {
+            userId: userId,
+          },
+          ExpressionAttributeNames: {
+            '#following': 'following',
+          },
+          UpdateExpression: 'add #following :num',
+          ExpressionAttributeValues: {
+            ':num': -1,
+          },
+          ReturnValues: 'NONE',
+        })
+        .promise()
+        .then((data) => {
+          logger.info(`Successfully updated to ${JSON.stringify(data)}`);
+          resp = {
+            status: 200,
+            results: JSON.stringify(data),
+          };
+        })
+        .catch((err) => {
+          logger.error(
+            `Failed to update user!! Check with DynamoDB connection. \n ${err}`
+          );
+          resp = {
+            status: 500,
+            results: `Failed to update user!! Check with DynamoDB connection. \n ${err}`,
+          };
+        });
+    }
+    return resp as DataLayerResponse;
+  }
+
+  async decUserFollowed(userId: string): Promise<DataLayerResponse> {
+    var resp;
+    if (await this.userItemExists(userId)) {
+      logger.error('userId Not Present');
+      resp = {
+        status: 404,
+        results: `userId Not Present`,
+      };
+    } else {
+      logger.info(`${JSON.stringify({ user: userId })}`);
+      await this.docClient
+        .update({
+          TableName: this.userTable,
+          Key: {
+            userId: userId,
+          },
+          ExpressionAttributeNames: {
+            '#followed': 'followed',
+          },
+          UpdateExpression: 'add #followed :num',
+          ExpressionAttributeValues: {
+            ':num': -1,
+          },
+          ReturnValues: 'NONE',
+        })
+        .promise()
+        .then((data) => {
+          logger.info(`Successfully updated to ${JSON.stringify(data)}`);
+          resp = {
+            status: 200,
+            results: JSON.stringify(data),
+          };
+        })
+        .catch((err) => {
+          logger.error(
+            `Failed to update user!! Check with DynamoDB connection. \n ${err}`
+          );
+          resp = {
+            status: 500,
+            results: `Failed to update user!! Check with DynamoDB connection. \n ${err}`,
+          };
+        });
+    }
+    return resp as DataLayerResponse;
+  }
+
+  async decUserSessionCreated(userId: string): Promise<DataLayerResponse> {
+    var resp;
+    if (await this.userItemExists(userId)) {
+      logger.error('userId Not Present');
+      resp = {
+        status: 404,
+        results: `userId Not Present`,
+      };
+    } else {
+      logger.info(`${JSON.stringify({ user: userId })}`);
+      await this.docClient
+        .update({
+          TableName: this.userTable,
+          Key: {
+            userId: userId,
+          },
+          ExpressionAttributeNames: {
+            '#sc': 'sessionCreated',
+          },
+          UpdateExpression: 'add #sc :num',
+          ExpressionAttributeValues: {
+            ':num': -1,
+          },
+          ReturnValues: 'NONE',
+        })
+        .promise()
+        .then((data) => {
+          logger.info(`Successfully updated to ${JSON.stringify(data)}`);
+          resp = {
+            status: 200,
+            results: JSON.stringify(data),
+          };
+        })
+        .catch((err) => {
+          logger.error(
+            `Failed to update user!! Check with DynamoDB connection. \n ${err}`
+          );
+          resp = {
+            status: 500,
+            results: `Failed to update user!! Check with DynamoDB connection. \n ${err}`,
+          };
+        });
+    }
+    return resp as DataLayerResponse;
+  }
+
+  async decUserSessionAttended(userId: string): Promise<DataLayerResponse> {
+    var resp;
+    if (await this.userItemExists(userId)) {
+      logger.error('userId Not Present');
+      resp = {
+        status: 404,
+        results: `userId Not Present`,
+      };
+    } else {
+      logger.info(`${JSON.stringify({ user: userId })}`);
+      await this.docClient
+        .update({
+          TableName: this.userTable,
+          Key: {
+            userId: userId,
+          },
+          ExpressionAttributeNames: {
+            '#sa': 'sessionAttended',
+          },
+          UpdateExpression: 'add #sa :num',
+          ExpressionAttributeValues: {
+            ':num': -1,
+          },
+          ReturnValues: 'NONE',
+        })
+        .promise()
+        .then((data) => {
+          logger.info(`Successfully updated to ${JSON.stringify(data)}`);
+          resp = {
+            status: 200,
+            results: JSON.stringify(data),
+          };
+        })
+        .catch((err) => {
+          logger.error(
+            `Failed to update user!! Check with DynamoDB connection. \n ${err}`
+          );
+          resp = {
+            status: 500,
+            results: `Failed to update user!! Check with DynamoDB connection. \n ${err}`,
+          };
+        });
+    }
+    return resp as DataLayerResponse;
+  }
+
+  async userItemExists(userId: string) {
+    const result = await this.docClient
+      .get({
+        TableName: this.userTable,
+        Key: {
+          userId: userId,
+        },
+      })
+      .promise();
+
+    logger.info(`${JSON.stringify(result)}`);
+    return JSON.stringify(result) === '{}';
   }
 
   /* Attaching user picture
