@@ -4,6 +4,11 @@ import Step1 from "./Step1";
 import Step2 from './Step2';
 import Step3 from './Step3';
 
+/*
+  Onboarding component. If the user has just registered, they must go through a couple setup steps.
+  This component makes an API call to create a new user after everything is done.
+*/
+
 class Onboarding extends React.Component {
   constructor(props) {
     super(props);
