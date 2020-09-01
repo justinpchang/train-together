@@ -18,7 +18,8 @@ class Onboarding extends React.Component {
       gender: '',
       age: '',
       goals: '',
-      interests: []
+      interests: [],
+      followers: []
     };
   }
 
@@ -96,6 +97,10 @@ class Onboarding extends React.Component {
   getInterests = (interests) => {
     this.setState({interests: interests});
   }
+  getFollowers = (followers) => {
+    this.setState({followers: followers});
+  }
+
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -125,6 +130,7 @@ class Onboarding extends React.Component {
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             goals={this.state.goals}
+            getFollowers={this.getFollowers}
           />
           <br />
           {this.previousButton}
