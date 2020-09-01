@@ -1,4 +1,5 @@
 import 'source-map-support/register';
+import * as uuid from 'uuid';
 
 import {
   APIGatewayProxyEvent,
@@ -6,15 +7,12 @@ import {
   APIGatewayProxyResult,
 } from 'aws-lambda';
 
-import * as uuid from 'uuid';
-
 import { createLogger } from '../../utils/logger';
 
-// import { UserItem } from '../../models/UserItem';
-import { UserAccess } from '../datalayer/UserdDBAcceess';
+import { SessionAccess } from '../datalayer/SessionDBAccess';
 
 // import { parseUserId } from '../../auth/utils';
-import { CreateUserReq } from '../../models/CreateUserReq';
+import { CreateSessionReq } from '../../models/CreateSessionReq';
 
 const logger = createLogger('CreateUserDB');
 
@@ -25,22 +23,17 @@ export const handler: APIGatewayProxyHandler = async (
 
   // const token: string = event.headers.Authorization.split(' ')[1];
 
-  const userId = uuid.v4();
+  const userId = event.headers.Authorization.split(' ')[1];
 
-  const userdetails: CreateUserReq = JSON.parse(event.body);
-  //userId: userId,
+  const sessiondetails: CreateSessionReq = JSON.parse(event.body);
 
-  // const userdetails: UserItem = JSON.parse(event.body);
+  const sessionId = uuid.v4();
 
-  const ItemResponse = await new UserAccess().createUser({
+  const ItemResponse = await new SessionAccess().createSession({
     createdAt: new Date().toISOString(),
-    ...userdetails,
-    followed: 0,
-    following: 0,
-    sessionAttended: 0,
-    sessionCreated: 0,
-    history: [],
+    ...sessiondetails,
     userId,
+    sessionId,
   });
 
   return {

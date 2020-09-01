@@ -3,11 +3,12 @@ export interface UserItem {
   createdAt: string;
   name: string;
   email: string;
-  dob: Date;
+  age: string;
   interests: Array<string>;
+  followed?: number;
+  following?: number;
   attachmentUrl?: string;
   sessionAttended?: number;
-  sessionAttendedList?: Array<string>;
   sessionCreated?: number;
-  sessionCreatedList?: Array<string>;
+  history?: Array<string>;
 }

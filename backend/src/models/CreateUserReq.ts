@@ -1,4 +1,4 @@
-export interface UserUpdateItem {
+export interface CreateUserReq {
   name: string;
   email: string;
   age: string;

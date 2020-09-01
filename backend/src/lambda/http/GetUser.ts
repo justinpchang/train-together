@@ -6,17 +6,13 @@ import {
   APIGatewayProxyResult,
 } from 'aws-lambda';
 
-import * as uuid from 'uuid';
-
 import { createLogger } from '../../utils/logger';
 
-// import { UserItem } from '../../models/UserItem';
 import { UserAccess } from '../datalayer/UserdDBAcceess';
 
 // import { parseUserId } from '../../auth/utils';
-import { CreateUserReq } from '../../models/CreateUserReq';
 
-const logger = createLogger('CreateUserDB');
+const logger = createLogger('InsertUserDB');
 
 export const handler: APIGatewayProxyHandler = async (
   event: APIGatewayProxyEvent
@@ -25,23 +21,16 @@ export const handler: APIGatewayProxyHandler = async (
 
   // const token: string = event.headers.Authorization.split(' ')[1];
 
-  const userId = uuid.v4();
+  const userId = event.headers.Authorization.split(' ')[1];
 
-  const userdetails: CreateUserReq = JSON.parse(event.body);
+  // const userdetails: CreateUserReq = JSON.parse(event.body);
   //userId: userId,
 
-  // const userdetails: UserItem = JSON.parse(event.body);
+  // const userId = event.headers.userId;
 
-  const ItemResponse = await new UserAccess().createUser({
-    createdAt: new Date().toISOString(),
-    ...userdetails,
-    followed: 0,
-    following: 0,
-    sessionAttended: 0,
-    sessionCreated: 0,
-    history: [],
-    userId,
-  });
+  logger.info(`${userId}`);
+
+  const ItemResponse = await new UserAccess().getUser(userId);
 
   return {
     statusCode: ItemResponse.status,
