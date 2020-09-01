@@ -77,6 +77,26 @@ functions:
           - dynamodb:GetItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
 
+  GetUserSessions:
+    handler: src/lambda/http/GetUserSession.handler
+    events:
+      - http:
+          method: get
+          path: zoomfit/v1/user/sessions/
+          cors: true
+          documentation:
+            summary: Get User sessions dynamoDB
+            description: Get User sessions dynamoDB
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:GetItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
+      - Effect: Allow
+        Action:
+          - dynamodb:GetItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.SESSION_TABLE}
+
   InsertUser:
     handler: src/lambda/http/InsertUser.handler
     events:
