@@ -12,14 +12,19 @@ import Collapsible from 'react-collapsible';
 /*
  * TODO: add preview form -> expanding
  */
-const NewClassForm = () => {
+const NewClassForm = (props) => {
   const [selectedDate, setSelectedDate] = React.useState(Date.now());
   const [triggerStyle, setTriggerStyle] = React.useState({
     background: 'rgba(244, 215, 221, 0.3)'
   });
   
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    let event = {};
+    event.target = {
+      name: 'date',
+      value: date,
+    };
+    props.handleChange(event);
     console.log(selectedDate);
   };
 
@@ -27,6 +32,7 @@ const NewClassForm = () => {
     setTriggerStyle({
       background: 'linear-gradient(to bottom, rgba(244, 215, 221, 0.3) 13%, white 0%)',
     });
+    props.onOpen();
   }
 
   const handleClose = () => {
@@ -41,18 +47,25 @@ const NewClassForm = () => {
         <Collapsible
           trigger='Schedule a new workout'
           transitionTime={200}
+          open={props.open}
           onOpen={handleOpen}
           onClose={handleClose}
         >
           <TextField
             label='Title'
             className='new-class-title'
+            name='title'
+            value={props.title}
+            onChange={props.handleChange}
           />
           <TextField
             label='Description'
             className='new-class-description'
             multiline
             rows={3}
+            name='description'
+            value={props.description}
+            onChange={props.handleChange}
           />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid container justify="space-around">
@@ -61,7 +74,7 @@ const NewClassForm = () => {
                 id="date-picker-dialog"
                 label="Date"
                 format="MM/dd/yyyy"
-                value={selectedDate}
+                value={props.date}
                 onChange={handleDateChange}
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
@@ -71,7 +84,7 @@ const NewClassForm = () => {
                 margin="normal"
                 id="time-picker"
                 label="Time"
-                value={selectedDate}
+                value={props.date}
                 onChange={handleDateChange}
                 KeyboardButtonProps={{
                   'aria-label': 'change time',
@@ -87,6 +100,7 @@ const NewClassForm = () => {
               <Button
                 className='new-class-submit-button'
                 type='submit'
+                onClick={props.handleSubmit}
               >Post</Button>
             </p>
           </Row>
