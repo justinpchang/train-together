@@ -26,7 +26,12 @@ const App = () => {
         <Route path="/register" exact render={(props) => (
           <Login type='register' />
         )} />
-        <Route path="/profile" exact component={Profile} />
+        <Route path="/profile" exact render={(props) => (
+          <Profile showDashboard={true} />
+        )} />
+        <Route path="/workouts" exact render={(props) => (
+          <Profile showDashboard={false} />
+        )} />
       </Switch>
     </div>
   );

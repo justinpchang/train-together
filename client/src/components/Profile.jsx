@@ -1,9 +1,9 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
 
-import defaultProfilePicture from '../assets/user-profile.png';
 import Feed from './feed';
 import Navigation from './Navigation';
+import { ProfileGlance, Dashboard } from './user';
 
 /*
   Profile component. This page shows user information at the top and a history feed at the bottom.
@@ -42,24 +42,25 @@ const Profile = (props) => {
   return (
     <div>
       <Navigation />
-      <Row className='profile-row'>
-        <div className='col-md-3'>
-          <img className='profile-picture' src={defaultProfilePicture} alt='profile' />
-        </div>
-        <div className='profile-info col-md-9'>
-          <Row>
-            <h2>{profile.name}</h2>
-          </Row>
-          <Row>
-            <p><span className='profile-number'>{profile.workouts}</span> workouts</p>
-            <p><span className='profile-number'>{profile.following}</span> following</p>
-            <p><span className='profile-number'>{profile.followers}</span> followers</p>
+      <Row style={{marginTop: '50px'}}>
+        <div className='sidebar-container col-md-4'>
+          <Row className='sidebar'>
+            <ProfileGlance
+              name={profile.name}
+              following={profile.following}
+              followers={profile.followers}
+              workouts={profile.workouts}
+            />
           </Row>
         </div>
-      </Row>
-      <hr />
-      <Row className='profile-feed-container'>
-        <Feed cards={cards} />
+        <div className='center-container col-md-7'>
+          <Row className='center'>
+            {(props.showDashboard) ? <Dashboard /> : <React.Fragment />}
+            <Feed cards={cards} />
+          </Row>
+        </div>
+        <div className='col-md-1'>
+        </div>
       </Row>
     </div>
   );
