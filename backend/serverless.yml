@@ -78,7 +78,7 @@ functions:
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}
 
   GetUserSessions:
-    handler: src/lambda/http/GetUserSession.handler
+    handler: src/lambda/http/GetUserSessions.handler
     events:
       - http:
           method: get
