@@ -87,7 +87,7 @@ export class SessionAccess {
       .get({
         TableName: this.sessionTable,
         Key: {
-          userId: sessionId,
+          sessionId: sessionId,
         },
       })
       .promise();
