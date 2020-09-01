@@ -5,4 +5,5 @@ export interface SessionUpdateItem {
   description: string;
   link: string;
   tags: Array<string>;
+  attachmentUrl?: string;
 }

@@ -7,5 +7,6 @@ export interface SessionItem {
   description: string;
   link: string;
   attendees: number;
+  attachmentUrl?: string;
   tags: Array<string>;
 }

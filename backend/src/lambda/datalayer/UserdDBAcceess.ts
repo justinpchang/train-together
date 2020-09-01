@@ -127,11 +127,11 @@ export class UserAccess {
             userId: userId,
           },
           UpdateExpression:
-            'set #user_name = :n, email = :em, dob = :dob, interests = :i',
+            'set #user_name = :n, email = :em, age = :a, interests = :i',
           ExpressionAttributeValues: {
             ':n': updatedUser.name,
             ':em': updatedUser.email,
-            ':a': updatedUser.dob,
+            ':a': updatedUser.age,
             ':i': updatedUser.interests,
           },
           ExpressionAttributeNames: {

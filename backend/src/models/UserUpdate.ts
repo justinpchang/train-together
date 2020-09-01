@@ -1,6 +1,6 @@
 export interface UserUpdateItem {
   name: string;
   email: string;
-  dob: Date;
+  age: string;
   interests: Array<string>;
 }

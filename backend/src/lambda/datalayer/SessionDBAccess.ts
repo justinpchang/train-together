@@ -127,7 +127,7 @@ export class SessionAccess {
             userId: sessionId,
           },
           UpdateExpression:
-            'set #session_title = :t, userId = :uid, eventDate = :ed, link = :l, description = :des, tags = :tag',
+            'set #session_title = :t, userId = :uid, eventDate = :ed, link = :l, description = :des, tags = :tag, attachmentUrl = :aurl',
           ExpressionAttributeValues: {
             ':t': updatedSession.title,
             ':uid': updatedSession.userId,
@@ -135,6 +135,7 @@ export class SessionAccess {
             ':des': updatedSession.description,
             ':l': updatedSession.link,
             ':tag': updatedSession.tags,
+            ':aurl': updatedSession.attachmentUrl,
           },
           ExpressionAttributeNames: {
             '#session_title': 'title',
