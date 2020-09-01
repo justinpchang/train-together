@@ -27,7 +27,7 @@ export const handler: APIGatewayProxyHandler = async (
   //   const userdetails: CreateUserReq = JSON.parse(event.body);
   //userId: userId,
 
-  const sessionId = JSON.parse(event.body);
+  const sessionId = event.headers.sessionId;
 
   const ItemResponse = await new SessionAccess().getSession(sessionId);
 
