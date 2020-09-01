@@ -143,7 +143,7 @@ functions:
     events:
       - http:
           method: post
-          path: zoomfit/v1/user/insert
+          path: zoomfit/v1/user/insert/
           cors: true
           documentation:
             summary: Create User dynamoDB
@@ -176,7 +176,7 @@ functions:
     events:
       - http:
           method: post
-          path: zoomfit/v1/session/insert
+          path: zoomfit/v1/session/insert/
           cors: true
           documentation:
             summary: Create User dynamoDB
@@ -194,7 +194,7 @@ functions:
           method: get
           path: zoomfit/v1/session/
           cors: true
-          authorizer: Auth
+          # authorizer: Auth
           documentation:
             summary: Get session dynamoDB
             description: Get session dynamoDB
@@ -211,7 +211,7 @@ functions:
           method: get
           path: zoomfit/v1/session/all/
           cors: true
-          authorizer: Auth
+          # authorizer: Auth
           documentation:
             summary: Get all session dynamoDB
             description: Get all session dynamoDB
