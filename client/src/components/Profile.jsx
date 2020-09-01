@@ -5,6 +5,11 @@ import defaultProfilePicture from '../assets/user-profile.png';
 import Feed from './feed';
 import Navigation from './Navigation';
 
+/*
+  Profile component. This page shows user information at the top and a history feed at the bottom.
+  This component makes API calls for user info and history.
+*/
+
 const Profile = (props) => {
   const sampleSession = {
     name: 'Chloe Ting',

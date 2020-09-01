@@ -8,6 +8,12 @@ import { NewClassForm } from './class';
 import { ProfileGlance } from './user';
 import { Select, MenuItem } from '@material-ui/core';
 
+/*
+  Home component:
+  Main display for a logged-in user. Shows a profile glance on the left and a feed on the right.
+  This component makes API calls to populate both profile and feed.
+*/
+
 const Home = () => {
   const sampleSession = {
     name: 'Chloe Ting',
