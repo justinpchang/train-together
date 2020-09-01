@@ -13,7 +13,7 @@ class Onboarding extends React.Component {
       gender: '',
       age: '',
       goals: '',
-      interests: [],
+      interests: []
     };
   }
 
@@ -90,9 +90,6 @@ class Onboarding extends React.Component {
 
   getInterests = (interests) => {
     this.setState({interests: interests});
-  }
-  getInstructors = (instructors) => {
-    this.setState({instructors: instructors});
   }
 
   handleSubmit = (event) => {

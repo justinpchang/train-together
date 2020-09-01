@@ -35,6 +35,11 @@ class Step3 extends React.Component {
       instructors: []
     }
   }
+
+  getInstructors = (instructors) => {
+    this.setState({instructors: instructors});
+  }
+
   onClick = (event) => {
     console.log(event.target.className)
     // Update state array
@@ -45,15 +50,16 @@ class Step3 extends React.Component {
           return instructors !== event.target.name;
         })
       }, () => {
-        this.props.getInstructors(this.state.instructors);
+        this.getInstructors(this.state.instructors);
       })
     } else {
       this.setState({
         instructors: [...this.state.instructors, event.target.name],
       }, () => {
-        this.props.getInstructors(this.state.instructors);
+        this.getInstructors(this.state.instructors);
       })
     }
+    console.log(this.state.instructors)
   }
   
   isHighlighted = (instructors) => {
@@ -64,7 +70,7 @@ class Step3 extends React.Component {
       };
     }
     return {
-      border: 'solid 5px transparent',
+      border: 'solid 1px black',
       borderRadius: '10px',
     };
   }
@@ -77,8 +83,8 @@ class Step3 extends React.Component {
     console.log(this.props)
     const usersProfiles = dummyData.map((user) => {
       return (
-        <Row className="instructor">
-            <div key={user.id} className='instructor-card-poster-picture-container col-md-2'>
+        <Row key={user.id} name={user.name} className="instructor" onClick={this.onClick} style={this.isHighlighted(this.state.instructors[-1])}>
+            <div className='instructor-card-poster-picture-container col-md-2'>
               <img className='profile-picture instructor-card-poster-picture' src={user.profile_pic} alt='profile' />
             </div>
             <div className='instructor-card-poster-info col-md-10'>
