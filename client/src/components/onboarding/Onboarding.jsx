@@ -8,7 +8,7 @@ class Onboarding extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStep: 3,
+      currentStep: 1,
       name: '',
       gender: '',
       age: '',
