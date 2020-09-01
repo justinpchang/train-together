@@ -133,7 +133,6 @@ functions:
           method: get
           path: zoomfit/v1/user/login/
           cors: true
-          authorizer: Auth
           documentation:
             summary: Get User dynamoDB
             description: Get User dynamoDB
