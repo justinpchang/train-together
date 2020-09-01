@@ -4,6 +4,7 @@ export interface SessionUpdateItem {
   eventDate: String;
   description: string;
   link: string;
+  slots: number;
   tags: Array<string>;
   attachmentUrl?: string;
 }

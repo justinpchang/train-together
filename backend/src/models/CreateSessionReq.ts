@@ -5,7 +5,7 @@ export interface CreateSessionItem {
   eventDate: String;
   description?: string;
   link: string;
-  attendees?: number;
+  slots: number;
   attachmentUrl?: string;
   tags?: Array<string>;
 }

@@ -155,7 +155,7 @@ export class SessionAccess {
     return resp as DataLayerResponse;
   }
 
-  async addUserAttendee(sessionId: string): Promise<DataLayerResponse> {
+  async addUserSlots(sessionId: string): Promise<DataLayerResponse> {
     var resp;
     if (await this.sessionItemExists(sessionId)) {
       logger.error('userId Not Present');
@@ -172,9 +172,9 @@ export class SessionAccess {
             sessionId: sessionId,
           },
           ExpressionAttributeNames: {
-            '#attendee': 'attendee',
+            '#slotss': 'slotss',
           },
-          UpdateExpression: 'add #attendee :num',
+          UpdateExpression: 'add #slotss :num',
           ExpressionAttributeValues: {
             ':num': 1,
           },
@@ -201,7 +201,7 @@ export class SessionAccess {
     return resp as DataLayerResponse;
   }
 
-  async decUserAttendee(sessionId: string): Promise<DataLayerResponse> {
+  async decUserSlots(sessionId: string): Promise<DataLayerResponse> {
     var resp;
     if (await this.sessionItemExists(sessionId)) {
       logger.error('userId Not Present');
@@ -210,6 +210,15 @@ export class SessionAccess {
         results: `userId Not Present`,
       };
     } else {
+      const sessionItem = (await this.getSession(sessionId)).results;
+      const slotsAvailable: number = JSON.parse(sessionItem).Item.slots;
+      if (!(slotsAvailable > 0)) {
+        resp = {
+          status: 400,
+          results: `No slots`,
+        };
+        return resp as DataLayerResponse;
+      }
       logger.info(`${JSON.stringify({ sessionId: sessionId })}`);
       await this.docClient
         .update({
@@ -218,9 +227,9 @@ export class SessionAccess {
             sessionId: sessionId,
           },
           ExpressionAttributeNames: {
-            '#attendee': 'attendee',
+            '#slotss': 'slotss',
           },
-          UpdateExpression: 'add #attendee :num',
+          UpdateExpression: 'add #slotss :num',
           ExpressionAttributeValues: {
             ':num': -1,
           },

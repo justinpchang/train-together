@@ -63,7 +63,7 @@ export const handler: APIGatewayProxyHandler = async (
 
   const resp = await userAccess.unregisterToSession(userId, pos);
 
-  await new SessionAccess().decUserAttendee(sessionId);
+  await new SessionAccess().addUserSlots(sessionId);
 
   return {
     statusCode: resp.status,

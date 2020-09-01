@@ -36,7 +36,6 @@ export const handler: APIGatewayProxyHandler = async (
   const ItemResponse = await new SessionAccess().createSession({
     createdAt: new Date().toISOString(),
     ...sessiondetails,
-    attendees: 0,
     sessionId,
   });
 
