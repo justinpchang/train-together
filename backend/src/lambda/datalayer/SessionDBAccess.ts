@@ -269,6 +269,18 @@ export class SessionAccess {
     return JSON.stringify(result) === '{}';
   }
 
+  async getAllSessions() {
+    const result = await this.docClient
+      .scan({
+        TableName: this.sessionTable,
+        Limit: 20,
+      })
+      .promise();
+
+    logger.info(`${JSON.stringify(result)}`);
+    return JSON.stringify(result);
+  }
+
   /* Attaching user picture
     *
     async attachUserFile(
