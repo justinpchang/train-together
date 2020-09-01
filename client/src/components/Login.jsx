@@ -1,52 +1,65 @@
-import React, { useState } from "react";
-import {RegisterButton, LoginButton } from './auth';
+import React from "react";
+import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
-export const Login = () => {
-    const [auth, setAuth] = React.useState('');
+export const Login = (props) => {
+  const history = useHistory();
+  const [info, setInfo] = React.useState({
+    email: '',
+    password: ''
+  });
 
-    React.useEffect(() => {
-        localStorage.setItem('', value);
-    }, [value]);
+  const handleChange = (event) => {
+    const newInfo = {
+      email: info.email,
+      password: info.password,
+    };
+    newInfo[event.target.name] = event.target.value;
+    setInfo(newInfo);
+  }
 
-    const onChange = event => setValue(event.target.value);
-    
-    return (
-        <div class='onboarding'>
-        <form>
-          <h1>Welcome!</h1>
-          <p class="login-p">Login to your account</p>
-          <p class="login-p">Register an account</p>
-        <div class="login-register-input-containers">
-          <label value={value} onChange={onChange} class="login-register-labels" htmlFor="email">Email</label>
+  const handleSubmit = (event) => {
+    localStorage.setItem('email', info.email);
+    history.push('/');
+  }
+
+  return (
+    <div class="onboarding">
+      <form>
+        <h1>Welcome!</h1>
+        <div>
+          <label htmlFor="email">
+            Email
+          </label>
           <input
-            class="login-register-inputs"
             size="lg"
             type="email"
             name="email"
-        //   value={this.props.name}
-        //   onChange={this.props.handleChange}
-        />
+            value={info.email}
+            onChange={handleChange}
+          />
         </div>
-        <div class="login-register-input-containers">
-            <label class="login-register-labels" htmlFor="password">Password</label>
-            <input
-                class="login-register-inputs"
-                size="lg"
-                type="password"
-                name="password"
-            //   value={this.props.name}
-            //   onChange={this.props.handleChange}
-            />
+        <div>
+          <label htmlFor="password">
+            Password
+          </label>
+          <input
+            size="lg"
+            type="password"
+            name="password"
+            value={info.password}
+            onChange={handleChange}
+          />
         </div>
-        <br/>
-            {/* {this.previousButton}
-            {this.nextButton}
-            {this.submitButton} */}
-            <LoginButton />
-            <RegisterButton />
-        </form>
-      </div>
-    )
+        <br />
+        <Button
+          variant='primary'
+          className='btn-margin auth-button login-button'
+          onClick={handleSubmit}
+        >{props.type == 'login' ? 'LOG IN' : 'JOIN NOW'}</Button>
+      </form>
+    </div>
+  );
 };
 
 export default Login;

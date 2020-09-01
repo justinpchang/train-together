@@ -20,9 +20,13 @@ const App = () => {
     <div id="app" className="d-flex flex-column h-100">
       <Switch>
         <Route path="/" exact component={Main} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/register" exact component={Login} />
-        <PrivateRoute path="/profile" component={Profile} />
+        <Route path="/login" exact render={(props) => (
+          <Login type='login' />
+        )} />
+        <Route path="/register" exact render={(props) => (
+          <Login type='register' />
+        )} />
+        <Route path="/profile" exact component={Profile} />
       </Switch>
     </div>
   );

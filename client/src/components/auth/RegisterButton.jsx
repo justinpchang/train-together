@@ -1,23 +1,22 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import React from 'react';
 import { Button } from "react-bootstrap";
-
+import { useHistory } from 'react-router-dom';
+ 
 const RegisterButton = () => {
-  const { loginWithRedirect } = useAuth0();
+  const history = useHistory();
+  const goToRegister = (event) => {
+    history.push('/register');
+  }
+
   return (
     <Button
-      onClick={() =>
-        loginWithRedirect({
-          screen_hint: "signup",
-        })
-      }
-      variant="primary"
-      className="btn-margin auth-button register-button"
+    variant="primary"
+    className="btn-margin auth-button register-button"
+    onClick={goToRegister}
     >
-      JOIN NOW
+       JOIN NOW
     </Button>
   );
 };
 
 export default RegisterButton;
-
