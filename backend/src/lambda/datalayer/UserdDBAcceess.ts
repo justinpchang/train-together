@@ -175,8 +175,8 @@ export class UserAccess {
             '#history': 'history',
           },
           UpdateExpression:
-            // 'set #history = list_append(if_not_exists (#history, :empty_list), :val)',
-            'ADD #history :val',
+            'set #history = list_append(if_not_exists (#history, :empty_list), :val)',
+          // 'ADD #history :val',
           ExpressionAttributeValues: {
             ':val': [sessionId],
             // ':empty_list': [],
