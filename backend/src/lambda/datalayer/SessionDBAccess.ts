@@ -227,9 +227,9 @@ export class SessionAccess {
             sessionId: sessionId,
           },
           ExpressionAttributeNames: {
-            '#slotss': 'slotss',
+            '#slots': 'slots',
           },
-          UpdateExpression: 'add #slotss :num',
+          UpdateExpression: 'add #slots :num',
           ExpressionAttributeValues: {
             ':num': -1,
           },
