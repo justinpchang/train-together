@@ -21,7 +21,7 @@ const FeedCard = (props) => {
             </div>
             <div className='feed-card-poster-info col-md-10'>
               <p className='feed-card-poster-name'>{props.name}</p>
-              <p className='feed-card-post-time'>{props.postTime}}</p>
+              <p className='feed-card-post-time'>{props.postTime}</p>
             </div>
           </Row>
           <Row>
