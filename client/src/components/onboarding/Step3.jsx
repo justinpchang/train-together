@@ -68,7 +68,7 @@ class Step3 extends React.Component {
     // Param passed in checks to see if it is in instructor array
     if (this.state.followers.includes(followers)) {
       return {
-        border: 'solid 5px #D333A5',
+        border: 'solid 5px #7048E8',
         borderRadius: '10px',
       };
     }
@@ -101,7 +101,7 @@ class Step3 extends React.Component {
 
     return (
       <div>
-        <h5>Here are some people you might like to follow!</h5>
+        <label>Here are some people you might like to follow: </label>
         {usersProfiles}
       </div>
     );

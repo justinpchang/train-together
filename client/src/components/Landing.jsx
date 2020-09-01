@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
 
-import HeroImage from '../assets/hero-image.jpg';
+import HeroImage from '../assets/hero-image-transparent-3.png';
 import {RegisterButton, LoginButton} from './auth';
 
 const Landing = () => {

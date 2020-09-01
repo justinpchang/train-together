@@ -61,7 +61,7 @@ class Onboarding extends React.Component {
       return (
         <button
           className='btn btn-primary float-right'
-          style={{background: '#D333A5'}}
+          style={{background: '#7048E8'}}
           type='button'
           onClick={this._next}>
           Next
@@ -77,7 +77,7 @@ class Onboarding extends React.Component {
       return (
         <button
           className='btn btn-primary float-right'
-          style={{background: '#D333A5'}}
+          style={{background: '#7048E8'}}
           type='submit'
           onClick={this.handleSubmit}>
           Finish
@@ -112,7 +112,7 @@ class Onboarding extends React.Component {
     return (
       <div class='onboarding'>
         <form onSubmit={this.handleSubmit}>
-          <h1>Welcome!</h1>
+          <h1>Complete Your Profile</h1>
           <p>Just a few more steps...</p>
           <br />
           <Step1
