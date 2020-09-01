@@ -112,9 +112,11 @@
 }
 .instructor {
   /* border: 1px solid transparent */
-  border: 1px solid #000000;
+  /* border: 1px solid #000000; */
+  background-color: rgba(216, 216, 216, 0.4);
   box-sizing: border-box;
   border-radius: 5px;
+  margin-bottom: 7px;
 }
 .instructor-card-poster-picture-container {
   padding-right: 0px;
