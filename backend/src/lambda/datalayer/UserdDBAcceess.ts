@@ -640,6 +640,25 @@ export class UserAccess {
     return JSON.stringify(result) === '{}';
   }
 
+  async getUserId(email: string) {
+    const result = await this.docClient
+      .query({
+        TableName: this.userTable,
+        IndexName: process.env.USER_TABLE_INDEX,
+        KeyConditionExpression: 'email = :email',
+        ExpressionAttributeValues: {
+          ':email': email,
+        },
+      })
+      .promise();
+
+    logger.info(`${JSON.stringify(result)}`);
+    if (JSON.stringify(result) !== '{}') {
+      return { status: 400, results: `email not found` };
+    }
+    return { status: 200, results: JSON.stringify(result) };
+  }
+
   /* Attaching user picture
     *
     async attachUserFile(
