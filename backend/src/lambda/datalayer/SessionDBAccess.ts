@@ -172,9 +172,9 @@ export class SessionAccess {
             sessionId: sessionId,
           },
           ExpressionAttributeNames: {
-            '#slotss': 'slotss',
+            '#slots': 'slots',
           },
-          UpdateExpression: 'add #slotss :num',
+          UpdateExpression: 'add #slots :num',
           ExpressionAttributeValues: {
             ':num': 1,
           },
@@ -213,6 +213,7 @@ export class SessionAccess {
       const sessionItem = (await this.getSession(sessionId)).results;
       const slotsAvailable: number = JSON.parse(sessionItem).Item.slots;
       if (!(slotsAvailable > 0)) {
+        logger.error('slots less than 0');
         resp = {
           status: 400,
           results: `No slots`,

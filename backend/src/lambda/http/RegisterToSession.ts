@@ -55,10 +55,14 @@ export const handler: APIGatewayProxyHandler = async (
 
   const resp1 = await new SessionAccess().decUserSlots(sessionId);
 
+  logger.info(`${resp1}`);
+
   var resp;
 
   if (resp1.status === 200) {
     resp = await userAccess.registerToSession(userId, sessionId);
+  } else {
+    resp = resp1;
   }
 
   return {
