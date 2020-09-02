@@ -4,10 +4,7 @@ import { Row } from "react-bootstrap";
 import {
   yoga,
   weight,
-  core,
-  boxing,
   dance,
-  other
 } from '../../assets/interests';
 
 const dummyData = [

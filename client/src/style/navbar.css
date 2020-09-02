@@ -11,10 +11,19 @@
   padding-bottom: 10px;
 }
 
+.navbar-brand > img {
+  width: 161px;
+  height: 26.48px;
+  left: 40px;
+  top: 44.89px;
+}
+.navbar-brand {
+  margin-right: 20px;
+}
+
 .transparent-background {
   background: transparent;
 }
-
 .navbar-link {
   margin-right: 50px;
   color: black;
