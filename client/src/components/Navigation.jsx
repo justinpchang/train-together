@@ -22,15 +22,15 @@ const Navigation = () => {
     }
     
     function addUnderline(e) {
-      if(e.target.querySelector('div').className !== null) {
-        e.target.querySelector('div').className = "nav-underline"
+      if(e.target.querySelector('div') !== null) {
+        e.target.querySelector('div').className = 'nav-underline'
       }
     }
 
     function deleteUnderline(e) {
-      if(e.target.querySelector('div').className !== null) {
-        e.target.querySelector('div').className = ""
-      }
+        if(e.target.querySelector('div') !== null) {
+          e.target.querySelector('div').className = ''
+        }
     }
 
     return (
@@ -43,12 +43,12 @@ const Navigation = () => {
               <Button variant="outline-dark"><FontAwesomeIcon icon={faSearch} /></Button>
             </Form>
             <Nav className="transparent-background ml-auto">
-              <Link onMouseOut={deleteUnderline} onMouseOver={addUnderline} className='navbar-link' to='/'><FontAwesomeIcon icon={faHome} /><br />Home <div class=""></div></Link>
-              <Link onMouseOut={deleteUnderline} onMouseOver={addUnderline} className='navbar-link' to='/'><FontAwesomeIcon icon={faComments} /><br />Messaging <div class=""></div></Link>
-              <Link onMouseOut={deleteUnderline} onMouseOver={addUnderline} className="navbar-link" to="/profile"><FontAwesomeIcon icon={faUser} /><br />Profile <div class=""></div></Link>
-              <Link className="navbar-logout navbar-link" to='/'
+              <Link onMouseOut={deleteUnderline} onMouseOver={addUnderline} className='navbar-link' to='/'><FontAwesomeIcon icon={faHome} /><br />Home <div></div></Link>
+              <Link onMouseOut={deleteUnderline} onMouseOver={addUnderline} className='navbar-link' to='/'><FontAwesomeIcon icon={faComments} /><br />Messaging <div></div></Link>
+              <Link onMouseOut={deleteUnderline} onMouseOver={addUnderline} className="navbar-link" to="/profile"><FontAwesomeIcon icon={faUser} /><br />Profile <div></div></Link>
+              <Link onMouseOut={deleteUnderline} onMouseOver={addUnderline} className="navbar-logout navbar-link" to='/'
                 onClick={logout}
-              ><FontAwesomeIcon icon={faSignOutAlt} /><br />Log Out</Link>
+              ><FontAwesomeIcon icon={faSignOutAlt} /><br />Log Out <div></div></Link>
             </Nav>
           </Navbar.Collapse>
       </Navbar>

@@ -16,25 +16,16 @@
 }
 
 .navbar-link {
-  margin-right: 50px;
+  width: 80px;
+  margin-right: 30px;
   color: black;
-  /* border-bottom: solid 5px #7048E8;
-  width: 77px; */
 }
 .nav-underline {
   margin-top: 5px;
-  margin-bottom: -20px;
+  margin-bottom: -10px;
   border-bottom: solid 5px #7048E8;
-  width: 70px;
-
+  width: 82px;
 }
-/* .nav-underline:hover {
-  margin-top: 5px;
-  margin-bottom: -20px;
-  border-bottom: solid 5px #7048E8;
-  width: 77px;
-  visibility: visible;
-} */
 
 .navbar-link:hover {
   color: white;
