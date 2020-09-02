@@ -97,6 +97,7 @@ const Home = (props) => {
     ).then((res) => {
       console.log('created a new session');
       console.log(res);
+      window.location.reload();
     });
   }
 
