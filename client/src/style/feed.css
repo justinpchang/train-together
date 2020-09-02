@@ -126,9 +126,14 @@
   color: white;
   border: 1px transparent;
 }
-
+.feed-card-mini-register:hover {
+  background: grey;
+}
 .feed-card-mini-details {
   background: white;
   color: black;
   border: 1px black solid;
+}
+.feed-card-mini-details:hover {
+  background: grey;
 }

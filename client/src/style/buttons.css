@@ -1,0 +1,12 @@
+.btn-primary:hover {
+    box-shadow: 0 0 0 0 #8f8f8f2f inset, 0 0 0 3px #8f8f8f2f; 
+}
+.btn-primary:active {
+    background: rgb(158, 158, 158)!important;
+    box-shadow: 0 0 0 0 #8f8f8f2f inset, 0 0 0 5px #8f8f8f2f!important;
+    transition: .1s;
+}
+.btn-primary:focus {
+    background: rgb(158, 158, 158)!important;
+    box-shadow: 0 0 0 0 #8f8f8f2f inset, 0 0 0 5px #8f8f8f2f!important;
+}

@@ -15,6 +15,13 @@
   margin-top: 50px;
   z-index: 0;
 }
+.landing-logo {
+  position: absolute;
+  width: 204px;
+  height: 45px;
+  left: 15px;
+  top: 70px;
+}
 
 .hero-image-container {
   position: absolute;

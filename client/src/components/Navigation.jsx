@@ -11,6 +11,8 @@ import {
   faComments
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import blackLogo from '../assets/logo1.png';
+
 
 const Navigation = () => {
     const history = useHistory();
@@ -21,9 +23,21 @@ const Navigation = () => {
       history.push('/');
     }
     
+    function addUnderline(e) {
+      if(e.target.querySelector('div') !== null) {
+        e.target.querySelector('div').className = 'nav-underline'
+      }
+    }
+
+    function deleteUnderline(e) {
+        if(e.target.querySelector('div') !== null) {
+          e.target.querySelector('div').className = ''
+        }
+    }
+
     return (
       <Navbar className='nav-bar' bg="light" expand="md" style={{position: 'fixed', width: '100%', zIndex: '10'}}>
-          <Link to="/" className='navbar-brand'>ZOOMFIT <FontAwesomeIcon icon={faDumbbell} /></Link>
+          <Link to="/" className='navbar-brand'><img src={blackLogo} alt=""/></Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Form inline>
@@ -31,12 +45,12 @@ const Navigation = () => {
               <Button variant="outline-dark"><FontAwesomeIcon icon={faSearch} /></Button>
             </Form>
             <Nav className="transparent-background ml-auto">
-              <Link className='navbar-link' to='/'><FontAwesomeIcon icon={faHome} /><br />Home</Link>
-              <Link className='navbar-link' to='/'><FontAwesomeIcon icon={faComments} /><br />Messaging</Link>
-              <Link className="navbar-link" to="/profile"><FontAwesomeIcon icon={faUser} /><br />Profile</Link>
-              <Link className="navbar-logout navbar-link" to='/'
+              <Link onMouseOut={deleteUnderline} onMouseOver={addUnderline} className='navbar-link' to='/'><FontAwesomeIcon icon={faHome} /><br />Home <div></div></Link>
+              <Link onMouseOut={deleteUnderline} onMouseOver={addUnderline} className='navbar-link' to='/'><FontAwesomeIcon icon={faComments} /><br />Messaging <div></div></Link>
+              <Link onMouseOut={deleteUnderline} onMouseOver={addUnderline} className="navbar-link" to="/profile"><FontAwesomeIcon icon={faUser} /><br />Profile <div></div></Link>
+              <Link onMouseOut={deleteUnderline} onMouseOver={addUnderline} className="navbar-logout navbar-link" to='/'
                 onClick={logout}
-              ><FontAwesomeIcon icon={faSignOutAlt} /><br />Log Out</Link>
+              ><FontAwesomeIcon icon={faSignOutAlt} /><br />Log Out <div></div></Link>
             </Nav>
           </Navbar.Collapse>
       </Navbar>
