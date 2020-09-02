@@ -104,8 +104,7 @@ class Onboarding extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    alert(JSON.stringify(this.state));
-    this.props.onSubmit();
+    this.props.onSubmit(this.state);
   }
 
   render() {

@@ -1,18 +1,35 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 
 import Home from './Home';
 import Landing from './Landing';
 import Onboarding from './onboarding';
-import { apiGET } from '../utils';
+import { checkUserEmail, createUser } from '../utils';
 
 const Main = () => {
+  const [userId, setUserId] = React.useState('');
+  React.useEffect(() => {
+    checkUserEmail(localStorage.getItem('email')).then((uId) => {
+      setUserId(uId);
+    });
+  }, []);
+
+  const handleSubmit = (user) => {
+    createUser(
+      user.name,
+      localStorage.getItem('email'),
+      user.age,
+      user.interests
+    ).then((res) => {
+      console.log(JSON.stringify(res));
+      setUserId(res.userId);;
+    })
+  }
+
   if (localStorage.getItem('email') !== null) {
-    /*
-    if (isNew) {
-      return <Onboarding onSubmit={onSubmit} token={token} />;
+    console.log(userId);
+    if (userId === 'NEW') {
+      return <Onboarding onSubmit={handleSubmit} />;
     }
-    */
     return <Home />;
   }
   return <Landing />;
