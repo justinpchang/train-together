@@ -20,6 +20,7 @@ const Feed = (props) => {
               comments={Math.floor(Math.random() * 15)}
               userId={props.userId}
               sessionId={card.sessionId}
+              showSubmit={props.showSubmit}
             />
           )
         })

@@ -138,7 +138,7 @@ const Home = (props) => {
               <MenuItem value={'My Posts'}>My Posts</MenuItem>
               <MenuItem value={'Global'}>Global</MenuItem>
             </Select>
-            <Feed cards={cards} userId={props.userId} />
+            <Feed cards={cards} userId={props.userId} showSubmit={true} />
           </Row>
         </div>
         <div className='col-md-1'>

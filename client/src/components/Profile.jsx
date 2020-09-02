@@ -55,34 +55,35 @@ const Profile = (props) => {
 
   // Get user feed from api
   React.useEffect(() => {
-    console.log(`trying to get history of ${userId}`);
-    if (userId !== '') {
-      getHistory(userId).then((res) => {
-        let _cards = [];
-        res.forEach((session) => {
-          // Get creator name
-          getUser(session.userId).then((res) => {
-            console.log(res);
-            const _name = res.Item.name;
-            // Set name
-            _cards.push({
-              name: _name,
-              postTime: session.createdAt,
-              description: session.description,
-              title: session.title,
-              tags: session.tags,
-              date: session.eventDate,
-              attending: 25-session.slots
-            });
-            console.log('SETTING CARDS');
-            setCards(_cards);
-          })
-        })
-      })
+    console.log('Getting user history userId:');
+    console.log(userId);
+    const populateCards = async () => {
+      const sessions = await getHistory(userId);
+      if (!sessions) return;
+      console.log('sessions:');
+      console.log(sessions);
+      let session;
+      let _cards = [];
+      for (session of sessions) {
+        const card = {
+          name: (await getUser(session.userId)).Item.name,
+          postTime: session.createdAt,
+          description: session.description,
+          title: session.title,
+          tags: session.tags,
+          date: session.eventDate,
+          attending: 25-session.slots,
+          sessionId: session.sessionId,
+        }
+        _cards.push(card)
+      }
+      setCards(_cards);
     }
+
+    populateCards();
   }, [userId]);
 
-  if (!profile.name) {
+  if (!profile.name || !cards.length) {
     return (<Loading />);
   }
 
@@ -103,7 +104,7 @@ const Profile = (props) => {
         <div className='center-container col-md-7'>
           <Row className='center'>
             {(props.showDashboard) ? <Dashboard /> : <React.Fragment />}
-            <Feed cards={cards} />
+            <Feed cards={cards} userId={userId} showSubmit={false} />
           </Row>
         </div>
         <div className='col-md-1'>

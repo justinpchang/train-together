@@ -63,6 +63,7 @@ const FeedCard = (props) => {
                   <Button
                     className='feed-card-mini-register'
                     onClick={handleRegister}
+                    style={{display: props.showSubmit?'inline':'none'}}
                   >
                     {(registered) ? 'Unregister' : 'Register'}
                   </Button>
