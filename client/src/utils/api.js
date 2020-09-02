@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 const API_URL = `https://w6r0m3k78j.execute-api.us-east-2.amazonaws.com/dev/zoomfit/v1`;
 
 const apiGET = async (token, url, req={}) => {
@@ -99,6 +100,46 @@ const getFeed = async (userId) => {
   }
 }
 
+function formatDate(d) {
+  let month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+
+  return [month, day, year].join('/');
+}
+
+const createSession = async (userId, title, date, description, tags) => {
+  const url = `${API_URL}/session`;
+  const data = {
+    title,
+    createdAt: formatDate(new Date()),
+    eventDate: '09/03/20',//formatDate(date),
+    description: description,
+    link: `zoom.us.com/${uuid().substring(6)}`,
+    slots: 25,
+    tags,
+  }
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${userId}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export {
   apiGET,
   apiPOST,
@@ -106,4 +147,5 @@ export {
   createUser,
   getUser,
   getFeed,
+  createSession,
 };

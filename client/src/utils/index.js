@@ -5,6 +5,7 @@ import {
   createUser,
   getUser,
   getFeed,
+  createSession,
 } from './api';
 
 export {
@@ -14,4 +15,5 @@ export {
   createUser,
   getUser,
   getFeed,
+  createSession,
 };

@@ -6,7 +6,7 @@ import Navigation from './Navigation';
 import { NewClassForm } from './class';
 import { ProfileGlance } from './user';
 import { Select, MenuItem } from '@material-ui/core';
-import { getUser, getFeed } from '../utils';
+import { getUser, getFeed, createSession } from '../utils';
 
 /*
   Home component:
@@ -71,6 +71,7 @@ const Home = (props) => {
     title: '',
     description: '',
     date: Date.now(),
+    tags: ['cardio', 'healthy', 'fit'],
   });
   const handleClassChange = (event) => {
     const {name, value} = event.target;
@@ -80,7 +81,18 @@ const Home = (props) => {
   }
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(JSON.stringify(newClass));
+
+    // Create session
+    createSession(
+      props.userId,
+      newClass.title,
+      newClass.date,
+      newClass.description,
+      newClass.tags
+    ).then((res) => {
+      console.log('created a new session');
+      console.log(res);
+    });
   }
 
   // Return loading screen if no name info
