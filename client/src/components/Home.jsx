@@ -6,6 +6,7 @@ import Navigation from './Navigation';
 import { NewClassForm } from './class';
 import { ProfileGlance } from './user';
 import { Select, MenuItem } from '@material-ui/core';
+import { getUser, getFeed } from '../utils';
 
 /*
   Home component:
@@ -23,14 +24,7 @@ const Home = (props) => {
     date: '7 Sep 2020',
     attending: '143',
   }
-  const cards = [
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-  ]
+  const [cards, setCards] = React.useState([]);
 
   const [scope, setScope] = React.useState('Following');
   const [profile, setProfile] = React.useState({});
@@ -42,6 +36,31 @@ const Home = (props) => {
     setProfile(props.user);
     userGotten(true);
   }
+
+  // Get global feed from api
+  React.useEffect(() => {
+    getFeed(props.userId).then((res) => {
+      let _cards = [];
+      res.Items.forEach((session) => {
+        // Get creator name
+        getUser(session.userId).then((res) => {
+          const _name = res.Item.name;
+          // Set name
+          _cards.push({
+            name: _name,
+            postTime: session.createdAt,
+            description: session.description,
+            title: session.title,
+            tags: session.tags,
+            date: session.eventDate,
+            attending: 25-session.slots
+          });
+          console.log('SETTING CARDS');
+          setCards(_cards);
+        })
+      })
+    })
+  }, [gotUser]);
 
   const handleChange = (event) => {
     setScope(event.target.value);

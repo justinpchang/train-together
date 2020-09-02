@@ -4,6 +4,7 @@ import {
   checkUserEmail,
   createUser,
   getUser,
+  getFeed,
 } from './api';
 
 export {
@@ -12,4 +13,5 @@ export {
   checkUserEmail,
   createUser,
   getUser,
+  getFeed,
 };

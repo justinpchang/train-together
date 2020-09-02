@@ -89,10 +89,21 @@ const getUser = async (userId) => {
   }
 }
 
+const getFeed = async (userId) => {
+  const url = `${API_URL}/session/all`;
+  try {
+    const response = await fetch(url);
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export {
   apiGET,
   apiPOST,
   checkUserEmail,
   createUser,
   getUser,
+  getFeed,
 };

@@ -68,7 +68,7 @@ const Main = () => {
         console.log(error);
       })
     }
-    return <Home user={user} />;
+    return <Home user={user} userId={userId} />;
   }
   return <Landing />;
 };
