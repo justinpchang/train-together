@@ -18,6 +18,8 @@ const Feed = (props) => {
               attending={card.attending}
               likes={Math.floor(Math.random() * 15)}
               comments={Math.floor(Math.random() * 15)}
+              userId={props.userId}
+              sessionId={card.sessionId}
             />
           )
         })

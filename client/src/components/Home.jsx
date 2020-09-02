@@ -41,27 +41,31 @@ const Home = (props) => {
   // Get global feed from api
   React.useEffect(() => {
     getFeed(props.userId).then((res) => {
-      let _cards = [];
+      console.log(res.Items);
       res.Items.forEach((session) => {
+        console.log('Creating a card in feed')
         // Get creator name
         getUser(session.userId).then((res) => {
           const _name = res.Item.name;
-          // Set name
-          _cards.push({
+          const newCard = {
             name: _name,
             postTime: session.createdAt,
             description: session.description,
             title: session.title,
             tags: session.tags,
             date: session.eventDate,
-            attending: 25-session.slots
-          });
-          console.log('SETTING CARDS');
-          setCards(_cards);
+            attending: 25-session.slots,
+            sessionId: session.sessionId,
+          };
+          setCards([newCard, ...cards]);
         })
       })
     })
   }, [gotUser]);
+
+  React.useEffect(() => {
+    console.log('gotUser has changed');
+  }, [gotUser])
 
   const handleChange = (event) => {
     setScope(event.target.value);
@@ -134,7 +138,7 @@ const Home = (props) => {
               <MenuItem value={'My Posts'}>My Posts</MenuItem>
               <MenuItem value={'Global'}>Global</MenuItem>
             </Select>
-            <Feed cards={cards} />
+            <Feed cards={cards} userId={props.userId} />
           </Row>
         </div>
         <div className='col-md-1'>

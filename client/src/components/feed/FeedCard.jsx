@@ -10,7 +10,17 @@ import {
 import defaultProfilePicture from '../../assets/default-profile-picture.png';
 import classModalThumbnail from '../../assets/class-modal-thumbnail.png';
 
+import { registerSession } from '../../utils';
+
 const FeedCard = (props) => {
+  const [registered, setRegistered] = React.useState(false);
+
+  const handleRegister = (event) => {
+    registerSession(props.userId, props.sessionId).then((res) => {
+      setRegistered(true);
+    })
+  }
+
   return (
     <React.Fragment>
       <div className='feed-card'>
@@ -52,7 +62,10 @@ const FeedCard = (props) => {
                 <Row className='feed-card-mini-buttons'>
                   <Button
                     className='feed-card-mini-register'
-                  >Register</Button>
+                    onClick={handleRegister}
+                  >
+                    {(registered) ? 'Unregister' : 'Register'}
+                  </Button>
                   <Button
                     className='feed-card-mini-details'
                   >Details</Button>
