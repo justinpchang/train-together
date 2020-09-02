@@ -3,6 +3,7 @@ import { Row } from 'react-bootstrap';
 
 import Feed from './feed';
 import Navigation from './Navigation';
+import Loading from './Loading';
 import { NewClassForm } from './class';
 import { ProfileGlance } from './user';
 import { Select, MenuItem } from '@material-ui/core';
@@ -97,7 +98,7 @@ const Home = (props) => {
 
   // Return loading screen if no name info
   if (!profile.name) {
-    return (<h1>Loading...</h1>);
+    return (<Loading />);
   }
 
   return (

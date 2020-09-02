@@ -3,6 +3,7 @@ import { Row } from 'react-bootstrap';
 
 import Feed from './feed';
 import Navigation from './Navigation';
+import Loading from './Loading';
 import { ProfileGlance, Dashboard } from './user';
 
 import {
@@ -82,7 +83,7 @@ const Profile = (props) => {
   }, [userId]);
 
   if (!profile.name) {
-    return (<h1>Loading...</h1>);
+    return (<Loading />);
   }
 
   return (
