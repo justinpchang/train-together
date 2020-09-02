@@ -14,6 +14,7 @@ import './style/user.css';
 import './style/class.css';
 import "./style/navbar.css";
 import "./style/login.css";
+import "./style/buttons.css";
 
 const App = () => {
   return (
