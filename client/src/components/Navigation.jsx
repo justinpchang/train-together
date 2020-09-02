@@ -11,6 +11,8 @@ import {
   faComments
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import blackLogo from '../assets/logo1.png';
+
 
 const Navigation = () => {
     const history = useHistory();
@@ -35,7 +37,7 @@ const Navigation = () => {
 
     return (
       <Navbar className='nav-bar' bg="light" expand="md" style={{position: 'fixed', width: '100%', zIndex: '10'}}>
-          <Link to="/" className='navbar-brand'>ZOOMFIT <FontAwesomeIcon icon={faDumbbell} /></Link>
+          <Link to="/" className='navbar-brand'><img src={blackLogo} alt=""/></Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Form inline>
