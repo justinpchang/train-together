@@ -13,7 +13,7 @@ import { Select, MenuItem } from '@material-ui/core';
   This component makes API calls to populate both profile and feed.
 */
 
-const Home = () => {
+const Home = (props) => {
   const sampleSession = {
     name: 'Chloe Ting',
     postTime: '20 minutes ago',
@@ -39,6 +39,13 @@ const Home = () => {
     followers: '38',
     workouts: '17',
   });
+  const [gotUser, userGotten] = React.useState(false);
+
+  if (props.user.name && !gotUser) {
+    console.log(`my user ${props.user}`)
+    setProfile(props.user);
+    userGotten(true);
+  };
 
   const handleChange = (event) => {
     setScope(event.target.value);

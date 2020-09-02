@@ -73,9 +73,26 @@ const createUser = async (name, email, age, interests) => {
   }
 }
 
+const getUser = async (userId) => {
+  const url = `${API_URL}/user/`;
+  console.log(`About to GET ${url} with userId ${userId}`)
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${userId}`,
+      }
+    })
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export {
   apiGET,
   apiPOST,
   checkUserEmail,
   createUser,
+  getUser,
 };

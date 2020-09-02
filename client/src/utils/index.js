@@ -3,6 +3,7 @@ import {
   apiPOST,
   checkUserEmail,
   createUser,
+  getUser,
 } from './api';
 
 export {
@@ -10,4 +11,5 @@ export {
   apiPOST,
   checkUserEmail,
   createUser,
+  getUser,
 };
