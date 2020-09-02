@@ -3,9 +3,11 @@ import { Row } from 'react-bootstrap';
 
 import Feed from './feed';
 import Navigation from './Navigation';
+import Loading from './Loading';
 import { NewClassForm } from './class';
 import { ProfileGlance } from './user';
 import { Select, MenuItem } from '@material-ui/core';
+import { getUser, getFeed, createSession } from '../utils';
 
 /*
   Home component:
@@ -13,7 +15,7 @@ import { Select, MenuItem } from '@material-ui/core';
   This component makes API calls to populate both profile and feed.
 */
 
-const Home = () => {
+const Home = (props) => {
   const sampleSession = {
     name: 'Chloe Ting',
     postTime: '20 minutes ago',
@@ -23,22 +25,43 @@ const Home = () => {
     date: '7 Sep 2020',
     attending: '143',
   }
-  const cards = [
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-  ]
+  const [cards, setCards] = React.useState([]);
 
   const [scope, setScope] = React.useState('Following');
-  const [profile, setProfile] = React.useState({
-    name: 'Jessie J.',
-    following: '38',
-    followers: '38',
-    workouts: '17',
-  });
+  const [profile, setProfile] = React.useState({});
+  const [gotUser, userGotten] = React.useState(false);
+
+  // Re-render when receive user data or render loading screen
+  if (props.user.name && !gotUser) {
+    console.log(`my user ${props.user}`)
+    setProfile(props.user);
+    userGotten(true);
+  }
+
+  // Get global feed from api
+  React.useEffect(() => {
+    getFeed(props.userId).then((res) => {
+      let _cards = [];
+      res.Items.forEach((session) => {
+        // Get creator name
+        getUser(session.userId).then((res) => {
+          const _name = res.Item.name;
+          // Set name
+          _cards.push({
+            name: _name,
+            postTime: session.createdAt,
+            description: session.description,
+            title: session.title,
+            tags: session.tags,
+            date: session.eventDate,
+            attending: 25-session.slots
+          });
+          console.log('SETTING CARDS');
+          setCards(_cards);
+        })
+      })
+    })
+  }, [gotUser]);
 
   const handleChange = (event) => {
     setScope(event.target.value);
@@ -49,6 +72,7 @@ const Home = () => {
     title: '',
     description: '',
     date: Date.now(),
+    tags: ['cardio', 'healthy', 'fit'],
   });
   const handleClassChange = (event) => {
     const {name, value} = event.target;
@@ -58,13 +82,24 @@ const Home = () => {
   }
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(JSON.stringify(newClass));
+
+    // Create session
+    createSession(
+      props.userId,
+      newClass.title,
+      newClass.date,
+      newClass.description,
+      newClass.tags
+    ).then((res) => {
+      console.log('created a new session');
+      console.log(res);
+    });
   }
 
-  /*
-    Call API for profile info, cards
-    Use setProfile()
-  */
+  // Return loading screen if no name info
+  if (!profile.name) {
+    return (<Loading />);
+  }
 
   return (
     <div>
