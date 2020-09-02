@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cf2978a6.chunk.css",
+    "main.js": "/static/js/main.f2a8f871.chunk.js",
+    "main.js.map": "/static/js/main.f2a8f871.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.91e21c86.js",
+    "runtime-main.js.map": "/static/js/runtime-main.91e21c86.js.map",
+    "static/js/2.e449d8d7.chunk.js": "/static/js/2.e449d8d7.chunk.js",
+    "static/js/2.e449d8d7.chunk.js.map": "/static/js/2.e449d8d7.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.bbf923dd5007ebc5a206885422b6ec57.js": "/precache-manifest.bbf923dd5007ebc5a206885422b6ec57.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.cf2978a6.chunk.css.map": "/static/css/main.cf2978a6.chunk.css.map",
+    "static/js/2.e449d8d7.chunk.js.LICENSE.txt": "/static/js/2.e449d8d7.chunk.js.LICENSE.txt",
+    "static/media/boxing.png": "/static/media/boxing.1b12ad81.png",
+    "static/media/class-modal-thumbnail.png": "/static/media/class-modal-thumbnail.c1c03c96.png",
+    "static/media/core.png": "/static/media/core.5df0a910.png",
+    "static/media/dance.png": "/static/media/dance.698a5191.png",
+    "static/media/default-profile-picture.png": "/static/media/default-profile-picture.a5369809.png",
+    "static/media/hero-image-transparent-3.png": "/static/media/hero-image-transparent-3.fcee55cc.png",
+    "static/media/logo1.png": "/static/media/logo1.b7d98efd.png",
+    "static/media/other.png": "/static/media/other.641d72a9.png",
+    "static/media/user-profile.png": "/static/media/user-profile.95aa4e27.png",
+    "static/media/weight.png": "/static/media/weight.c5e6b7ed.png",
+    "static/media/yoga.png": "/static/media/yoga.1a75ee66.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.91e21c86.js",
+    "static/js/2.e449d8d7.chunk.js",
+    "static/css/main.cf2978a6.chunk.css",
+    "static/js/main.f2a8f871.chunk.js"
+  ]
+}
