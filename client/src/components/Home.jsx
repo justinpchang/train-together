@@ -40,32 +40,32 @@ const Home = (props) => {
 
   // Get global feed from api
   React.useEffect(() => {
-    getFeed(props.userId).then((res) => {
-      console.log(res.Items);
-      res.Items.forEach((session) => {
-        console.log('Creating a card in feed')
-        // Get creator name
-        getUser(session.userId).then((res) => {
-          const _name = res.Item.name;
-          const newCard = {
-            name: _name,
-            postTime: session.createdAt,
-            description: session.description,
-            title: session.title,
-            tags: session.tags,
-            date: session.eventDate,
-            attending: 25-session.slots,
-            sessionId: session.sessionId,
-          };
-          setCards([newCard, ...cards]);
-        })
-      })
-    })
-  }, [gotUser]);
-
-  React.useEffect(() => {
     console.log('gotUser has changed');
-  }, [gotUser])
+    const populateCards = async () => {
+      // Get feed
+      const feed = (await getFeed(props.userId)).Items;
+      console.log(feed);
+      let session;
+      let _cards = [];
+      for (session of feed) {
+        const card = {
+          name: (await getUser(session.userId)).Item.name,
+          postTime: session.createdAt,
+          description: session.description,
+          title: session.title,
+          tags: session.tags,
+          date: session.eventDate,
+          attending: 25-session.slots,
+          sessionId: session.sessionId,
+        }
+        _cards.push(card);
+      }
+      console.log(_cards);
+      setCards(_cards);
+    }
+
+    populateCards();
+  }, [gotUser]);
 
   const handleChange = (event) => {
     setScope(event.target.value);
@@ -101,7 +101,7 @@ const Home = (props) => {
   }
 
   // Return loading screen if no name info
-  if (!profile.name) {
+  if (!profile.name || !cards.length) {
     return (<Loading />);
   }
 
