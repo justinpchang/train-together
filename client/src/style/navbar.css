@@ -18,7 +18,23 @@
 .navbar-link {
   margin-right: 50px;
   color: black;
+  /* border-bottom: solid 5px #7048E8;
+  width: 77px; */
 }
+.nav-underline {
+  margin-top: 5px;
+  margin-bottom: -20px;
+  border-bottom: solid 5px #7048E8;
+  width: 70px;
+
+}
+/* .nav-underline:hover {
+  margin-top: 5px;
+  margin-bottom: -20px;
+  border-bottom: solid 5px #7048E8;
+  width: 77px;
+  visibility: visible;
+} */
 
 .navbar-link:hover {
   color: white;
