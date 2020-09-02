@@ -13,6 +13,7 @@ import { SessionAccess } from '../datalayer/SessionDBAccess';
 
 // import { parseUserId } from '../../auth/utils';
 import { CreateSessionReq } from '../../models/CreateSessionReq';
+import { UserAccess } from '../datalayer/UserdDBAcceess';
 
 const logger = createLogger('CreateUserDB');
 
@@ -35,6 +36,14 @@ export const handler: APIGatewayProxyHandler = async (
     userId,
     sessionId,
   });
+
+  const userAccess = new UserAccess();
+
+  const resp = await userAccess.registerToSession(userId, sessionId);
+
+  if (resp.status === 200) {
+    logger.info(`Successfully Added the session to the created user`);
+  }
 
   return {
     statusCode: ItemResponse.status,

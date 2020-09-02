@@ -1,4 +1,5 @@
 import 'source-map-support/register';
+import * as uuid from 'uuid';
 
 import {
   APIGatewayProxyEvent,
@@ -30,9 +31,12 @@ export const handler: APIGatewayProxyHandler = async (
 
   const userdetails: UserItem = JSON.parse(event.body);
 
+  const userId = uuid.v4();
+
   const ItemResponse = await new UserAccess().createUser({
     createdAt: new Date().toISOString(),
     ...userdetails,
+    userId,
   });
 
   return {

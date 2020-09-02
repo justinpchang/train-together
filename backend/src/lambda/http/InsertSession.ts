@@ -1,4 +1,5 @@
 import 'source-map-support/register';
+import * as uuid from 'uuid';
 
 import {
   APIGatewayProxyEvent,
@@ -30,8 +31,11 @@ export const handler: APIGatewayProxyHandler = async (
 
   const sessiondetails: SessionItem = JSON.parse(event.body);
 
+  const sessionId = uuid.v4();
+
   const ItemResponse = await new SessionAccess().createSession({
     createdAt: new Date().toISOString(),
+    sessionId,
     ...sessiondetails,
   });
 
