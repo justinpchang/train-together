@@ -33,19 +33,15 @@ const Home = (props) => {
   ]
 
   const [scope, setScope] = React.useState('Following');
-  const [profile, setProfile] = React.useState({
-    name: 'Jessie J.',
-    following: '38',
-    followers: '38',
-    workouts: '17',
-  });
+  const [profile, setProfile] = React.useState({});
   const [gotUser, userGotten] = React.useState(false);
 
+  // Re-render when receive user data or render loading screen
   if (props.user.name && !gotUser) {
     console.log(`my user ${props.user}`)
     setProfile(props.user);
     userGotten(true);
-  };
+  }
 
   const handleChange = (event) => {
     setScope(event.target.value);
@@ -68,10 +64,10 @@ const Home = (props) => {
     alert(JSON.stringify(newClass));
   }
 
-  /*
-    Call API for profile info, cards
-    Use setProfile()
-  */
+  // Return loading screen if no name info
+  if (!profile.name) {
+    return (<h1>Loading...</h1>);
+  }
 
   return (
     <div>
