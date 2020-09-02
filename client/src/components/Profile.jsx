@@ -5,6 +5,12 @@ import Feed from './feed';
 import Navigation from './Navigation';
 import { ProfileGlance, Dashboard } from './user';
 
+import {
+  checkUserEmail,
+  getUser,
+  getHistory,
+} from '../utils';
+
 /*
   Profile component. This page shows user information at the top and a history feed at the bottom.
   This component makes API calls for user info and history.
@@ -20,24 +26,64 @@ const Profile = (props) => {
     date: '7 Sep 2020',
     attending: '143',
   }
-  const cards = [
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-    Object.assign({}, sampleSession),
-  ]
-  const [profile, setProfile] = React.useState({
-    name: 'Jessie J.',
-    following: '38',
-    followers: '38',
-    workouts: '17',
-  });
+  const [cards, setCards] = React.useState([]);
+  
+  // Get user info
+  const [userId, setUserId] = React.useState('')
+  const [profile, setProfile] = React.useState({});
+  const [gotUser, userGotten] = React.useState(false);
+  React.useEffect(() => {
+    if (!gotUser) {
+      checkUserEmail(localStorage.getItem('email')).then((uId) => {
+        const userId = uId.replace(/^"(.*)"$/, '$1');
+        getUser(userId).then((res) => {
+          setProfile({
+            name: res.Item.name,
+            following: res.Item.following,
+            followers: res.Item.followed,
+            workouts: res.Item.sessionAttended,
+          });
+          userGotten(true);
+        }).catch((error) => {
+          console.log(error);
+        })
+        setUserId(userId);
+      });
+    }
+  }, [gotUser]);
 
-  /*
-    Use API to get profile info and cards
-  */
+  // Get user feed from api
+  React.useEffect(() => {
+    console.log(`trying to get history of ${userId}`);
+    if (userId !== '') {
+      getHistory(userId).then((res) => {
+        let _cards = [];
+        res.forEach((session) => {
+          // Get creator name
+          getUser(session.userId).then((res) => {
+            console.log(res);
+            const _name = res.Item.name;
+            // Set name
+            _cards.push({
+              name: _name,
+              postTime: session.createdAt,
+              description: session.description,
+              title: session.title,
+              tags: session.tags,
+              date: session.eventDate,
+              attending: 25-session.slots
+            });
+            console.log('SETTING CARDS');
+            setCards(_cards);
+          })
+        })
+      })
+    }
+  }, [userId]);
+
+  if (!profile.name) {
+    return (<h1>Loading...</h1>);
+  }
 
   return (
     <div>

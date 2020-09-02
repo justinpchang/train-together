@@ -140,6 +140,21 @@ const createSession = async (userId, title, date, description, tags) => {
   }
 }
 
+const getHistory = async (userId) => {
+  const url = `${API_URL}/user/sessions`;
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${userId}`,
+      }
+    });
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export {
   apiGET,
   apiPOST,
@@ -148,4 +163,5 @@ export {
   getUser,
   getFeed,
   createSession,
+  getHistory,
 };

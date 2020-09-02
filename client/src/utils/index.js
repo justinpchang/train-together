@@ -6,6 +6,7 @@ import {
   getUser,
   getFeed,
   createSession,
+  getHistory,
 } from './api';
 
 export {
@@ -16,4 +17,5 @@ export {
   getUser,
   getFeed,
   createSession,
+  getHistory,
 };

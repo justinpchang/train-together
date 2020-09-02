@@ -18,6 +18,7 @@ const Main = () => {
   React.useEffect(() => {
     checkUserEmail(localStorage.getItem('email')).then((uId) => {
       setUserId(uId.replace(/^"(.*)"$/, '$1'));
+      localStorage.setItem('userId', uId.replace(/^"(.*)"$/, '$1'));
     });
   }, []);
 
