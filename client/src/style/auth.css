@@ -10,11 +10,17 @@
   background: white;
   color: black;
 }
+.auth-button > a {
+  color: white;
+}
+.auth-button:hover > a {
+  color: black;
+}
 
 .login-button {
   background: black;
 }
 
 .register-button {
-  background: #D333A5;
+  background: #7048E8;
 }

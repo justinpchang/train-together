@@ -4,6 +4,11 @@ import Step1 from "./Step1";
 import Step2 from './Step2';
 import Step3 from './Step3';
 
+/*
+  Onboarding component. If the user has just registered, they must go through a couple setup steps.
+  This component makes an API call to create a new user after everything is done.
+*/
+
 class Onboarding extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +19,7 @@ class Onboarding extends React.Component {
       age: '',
       goals: '',
       interests: [],
+      followers: []
     };
   }
 
@@ -55,7 +61,7 @@ class Onboarding extends React.Component {
       return (
         <button
           className='btn btn-primary float-right'
-          style={{background: '#D333A5'}}
+          style={{background: '#7048E8'}}
           type='button'
           onClick={this._next}>
           Next
@@ -71,7 +77,7 @@ class Onboarding extends React.Component {
       return (
         <button
           className='btn btn-primary float-right'
-          style={{background: '#D333A5'}}
+          style={{background: '#7048E8'}}
           type='submit'
           onClick={this.handleSubmit}>
           Finish
@@ -91,18 +97,21 @@ class Onboarding extends React.Component {
   getInterests = (interests) => {
     this.setState({interests: interests});
   }
+  getFollowers = (followers) => {
+    this.setState({followers: followers});
+  }
+
 
   handleSubmit = (event) => {
     event.preventDefault();
-    alert(JSON.stringify(this.state));
-    this.props.onSubmit();
+    this.props.onSubmit(this.state);
   }
 
   render() {
     return (
       <div class='onboarding'>
         <form onSubmit={this.handleSubmit}>
-          <h1>Welcome!</h1>
+          <h1>Complete Your Profile</h1>
           <p>Just a few more steps...</p>
           <br />
           <Step1
@@ -120,6 +129,7 @@ class Onboarding extends React.Component {
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
             goals={this.state.goals}
+            getFollowers={this.getFollowers}
           />
           <br />
           {this.previousButton}

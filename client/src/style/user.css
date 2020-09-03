@@ -1,0 +1,132 @@
+.profile-glance {
+  width: 90%;
+  column-count: 1;
+  text-align: center;
+  box-shadow: 0px 24px 32px rgba(50, 50, 71, 0.08), 0px 16px 16px rgba(50, 50, 71, 0.08);
+  border-radius: 10px;
+  background: linear-gradient(to bottom, transparent 25%, white 0%),
+  linear-gradient(90.41deg, rgba(3, 106, 255, 0.3) 0.31%, rgba(103, 61, 226, 0.3) 51.52%, rgba(105, 121, 248, 0.3) 99.1%);
+}
+
+.profile-glance-user-stats {
+  width: 100%;
+}
+
+.profile-glance-name {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 24px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.user-stats {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.user-stats div {
+  margin: 0 auto;
+}
+
+.user-stats p {
+  color: grey;
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+.user-stats span {
+  font-size: 20px;
+}
+
+.profile-glance-picture {
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.profile-glance-picture > img {
+  display: block;
+  margin: 0 auto;
+  width: 90px;
+  height: 90px;
+}
+
+.profile-glance-background {
+  position: absolute;
+  width: 300px;
+  height: 10%;
+  z-index: -10;
+}
+
+.last-workout-info, .workout-log {
+  text-align: left;
+  font-size: 13px;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.last-workout-info {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.last-workout-info > span {
+  margin-bottom: 15px;
+}
+
+.workout-log {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.workout-log p {
+  color: black;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.db {
+  margin: 0 auto;
+  padding: 15px;
+  height: 100%;
+}
+
+.db-card-top {
+  height: 160px;
+  min-height: 160px;
+  min-width: 160px;
+  padding: 15px;
+  background: #FFFFFF;
+  box-shadow: 0px 24px 32px rgba(50, 50, 71, 0.08), 0px 16px 16px rgba(50, 50, 71, 0.08);
+  border-radius: 10px;
+}
+
+.db-card-bottom {
+  min-height: 300px;
+  min-width: 260px;
+  padding: 20px;
+  background: #FFFFFF;
+  box-shadow: 0px 24px 32px rgba(50, 50, 71, 0.08), 0px 16px 16px rgba(50, 50, 71, 0.08);
+  border-radius: 10px;
+}
+
+.db-card-title {
+  padding-top: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.db-big-num {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 150%;
+}
+
+.chart-innertext {
+  color: #7048E8;
+}

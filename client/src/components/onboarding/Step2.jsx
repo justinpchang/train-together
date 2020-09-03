@@ -42,7 +42,7 @@ class Step2 extends React.Component {
   isHighlighted = (interest) => {
     if (this.state.interests.includes(interest)) {
       return {
-        border: 'solid 5px #D333A5',
+        border: 'solid 5px #7048E8',
         borderRadius: '10px',
       };
     }
@@ -64,31 +64,31 @@ class Step2 extends React.Component {
         {this.generateInterests}
         <Row>
           <div className='interest col-md-6'>
-            <img src={yoga} name='yoga' onClick={this.onClick} style={this.isHighlighted('yoga')} />
+            <img src={yoga} alt='yoga' name='yoga' onClick={this.onClick} style={this.isHighlighted('yoga')} />
             <p>Yoga</p>
           </div>
           <div className='interest col-md-6'>
-            <img src={weight} name='weight' onClick={this.onClick} style={this.isHighlighted('weight')} />
+            <img src={weight} alt='weight' name='weight' onClick={this.onClick} style={this.isHighlighted('weight')} />
             <p>Weight Training</p>
           </div>
         </Row>
         <Row>
           <div className='interest col-md-6'>
-            <img src={core} name='core' onClick={this.onClick} style={this.isHighlighted('core')} />
+            <img src={core} alt='core' name='core' onClick={this.onClick} style={this.isHighlighted('core')} />
             <p>Core Workout</p>
           </div>
           <div className='interest col-md-6'>
-            <img src={boxing} name='boxing' onClick={this.onClick} style={this.isHighlighted('boxing')} />
+            <img src={boxing} alt='boxing' name='boxing' onClick={this.onClick} style={this.isHighlighted('boxing')} />
             <p>Boxing</p>
           </div>
         </Row>
         <Row>
           <div className='interest col-md-6'>
-            <img src={dance} name='dance' onClick={this.onClick} style={this.isHighlighted('dance')} />
+            <img src={dance} alt='dance' name='dance' onClick={this.onClick} style={this.isHighlighted('dance')} />
             <p>Dance</p>
           </div>
           <div className='interest col-md-6'>
-            <img src={other} name='other' onClick={this.onClick} style={this.isHighlighted('other')} />
+            <img src={other} alt='other' name='other' onClick={this.onClick} style={this.isHighlighted('other')} />
             <p>Other</p>
           </div>
         </Row>
