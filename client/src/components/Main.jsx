@@ -63,6 +63,7 @@ const Main = () => {
           following: res.Item.following,
           followers: res.Item.followed,
           workouts: res.Item.sessionAttended,
+          profilePic: res.Item.attachmentUrl,
         });
         setNeedUser(false);
       }).catch((error) => {

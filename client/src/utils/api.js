@@ -155,6 +155,27 @@ const getHistory = async (userId) => {
   }
 }
 
+const registerSession = async (userId, sessionId) => {
+  const url = `${API_URL}/user/register/`;
+  const data = {
+    sessionId
+  };
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${userId}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    });
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export {
   apiGET,
   apiPOST,
@@ -164,4 +185,5 @@ export {
   getFeed,
   createSession,
   getHistory,
+  registerSession,
 };

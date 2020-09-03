@@ -7,6 +7,7 @@ import {
   getFeed,
   createSession,
   getHistory,
+  registerSession,
 } from './api';
 
 export {
@@ -18,4 +19,5 @@ export {
   getFeed,
   createSession,
   getHistory,
+  registerSession,
 };

@@ -43,6 +43,7 @@ const Profile = (props) => {
             following: res.Item.following,
             followers: res.Item.followed,
             workouts: res.Item.sessionAttended,
+            profilePic: res.Item.attachmentUrl,
           });
           userGotten(true);
         }).catch((error) => {
@@ -55,31 +56,35 @@ const Profile = (props) => {
 
   // Get user feed from api
   React.useEffect(() => {
-    console.log(`trying to get history of ${userId}`);
-    if (userId !== '') {
-      getHistory(userId).then((res) => {
-        let _cards = [];
-        res.forEach((session) => {
-          // Get creator name
-          getUser(session.userId).then((res) => {
-            console.log(res);
-            const _name = res.Item.name;
-            // Set name
-            _cards.push({
-              name: _name,
-              postTime: session.createdAt,
-              description: session.description,
-              title: session.title,
-              tags: session.tags,
-              date: session.eventDate,
-              attending: 25-session.slots
-            });
-            console.log('SETTING CARDS');
-            setCards(_cards);
-          })
-        })
-      })
+    console.log('Getting user history userId:');
+    console.log(userId);
+    const populateCards = async () => {
+      const sessions = await getHistory(userId);
+      if (!sessions) return;
+      console.log('sessions:');
+      console.log(sessions);
+      let session;
+      let _cards = [];
+      for (session of sessions) {
+        const host = (await getUser(session.userId)).Item;
+        const card = {
+          name: host.name,
+          postTime: session.createdAt,
+          description: session.description,
+          title: session.title,
+          tags: session.tags,
+          date: session.eventDate,
+          attending: session.slots,
+          sessionId: session.sessionId,
+          profilePic: host.attachmentUrl,
+          sessionPic: session.attachmentUrl,
+        }
+        _cards.push(card)
+      }
+      setCards(_cards);
     }
+
+    populateCards();
   }, [userId]);
 
   if (!profile.name) {
@@ -97,13 +102,14 @@ const Profile = (props) => {
               following={profile.following}
               followers={profile.followers}
               workouts={profile.workouts}
+              profilePic={profile.profilePic}
             />
           </Row>
         </div>
         <div className='center-container col-md-7'>
           <Row className='center'>
             {(props.showDashboard) ? <Dashboard /> : <React.Fragment />}
-            <Feed cards={cards} />
+            <Feed cards={cards} userId={userId} showSubmit={false} />
           </Row>
         </div>
         <div className='col-md-1'>

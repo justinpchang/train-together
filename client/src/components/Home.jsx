@@ -40,27 +40,33 @@ const Home = (props) => {
 
   // Get global feed from api
   React.useEffect(() => {
-    getFeed(props.userId).then((res) => {
+    console.log('gotUser has changed');
+    const populateCards = async () => {
+      // Get feed
+      const feed = (await getFeed(props.userId));
+      let session;
       let _cards = [];
-      res.Items.forEach((session) => {
-        // Get creator name
-        getUser(session.userId).then((res) => {
-          const _name = res.Item.name;
-          // Set name
-          _cards.push({
-            name: _name,
-            postTime: session.createdAt,
-            description: session.description,
-            title: session.title,
-            tags: session.tags,
-            date: session.eventDate,
-            attending: 25-session.slots
-          });
-          console.log('SETTING CARDS');
-          setCards(_cards);
-        })
-      })
-    })
+      for (session of feed) {
+        const host = (await getUser(session.userId)).Item;
+        const card = {
+          name: host.name,
+          profilePic: host.attachmentUrl,
+          postTime: session.createdAt,
+          description: session.description,
+          title: session.title,
+          tags: session.tags,
+          date: session.eventDate,
+          attending: session.slots,
+          sessionId: session.sessionId,
+          sessionPic: session.attachmentUrl,
+        }
+        _cards.push(card);
+      }
+      console.log(_cards);
+      setCards(_cards);
+    }
+
+    populateCards();
   }, [gotUser]);
 
   const handleChange = (event) => {
@@ -93,11 +99,12 @@ const Home = (props) => {
     ).then((res) => {
       console.log('created a new session');
       console.log(res);
+      window.location.reload();
     });
   }
 
   // Return loading screen if no name info
-  if (!profile.name) {
+  if (!profile.name || !cards.length) {
     return (<Loading />);
   }
 
@@ -112,6 +119,7 @@ const Home = (props) => {
               following={profile.following}
               followers={profile.followers}
               workouts={profile.workouts}
+              profilePic={profile.profilePic}
             />
           </Row>
         </div>
@@ -134,7 +142,7 @@ const Home = (props) => {
               <MenuItem value={'My Posts'}>My Posts</MenuItem>
               <MenuItem value={'Global'}>Global</MenuItem>
             </Select>
-            <Feed cards={cards} />
+            <Feed cards={cards} userId={props.userId} showSubmit={true} />
           </Row>
         </div>
         <div className='col-md-1'>

@@ -10,14 +10,24 @@ import {
 import defaultProfilePicture from '../../assets/default-profile-picture.png';
 import classModalThumbnail from '../../assets/class-modal-thumbnail.png';
 
+import { registerSession } from '../../utils';
+
 const FeedCard = (props) => {
+  const [registered, setRegistered] = React.useState(false);
+
+  const handleRegister = (event) => {
+    registerSession(props.userId, props.sessionId).then((res) => {
+      setRegistered(true);
+    })
+  }
+
   return (
     <React.Fragment>
       <div className='feed-card'>
         <div className='feed-card-poster'>
           <Row>
             <div className='feed-card-poster-picture-container col-md-2'>
-              <img className='profile-picture feed-card-poster-picture' src={defaultProfilePicture} alt='profile' />
+              <img className='profile-picture feed-card-poster-picture' src={props.profilePic} alt='profile' />
             </div>
             <div className='feed-card-poster-info col-md-10'>
               <p className='feed-card-poster-name'>{props.name}</p>
@@ -28,7 +38,7 @@ const FeedCard = (props) => {
             <p className='feed-card-post-text'>{props.description}</p>
           </Row>
           <Row className='feed-card-mini-container'>
-            <div className='feed-card-mini' style={{backgroundImage: `linear-gradient(to bottom, transparent 220px, white 0%), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(106, 33, 207, 0.23) 20%), url(${classModalThumbnail})`}}>
+            <div className='feed-card-mini' style={{backgroundImage: `linear-gradient(to bottom, transparent 220px, white 0%), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(106, 33, 207, 0.23) 20%), url(${props.sessionPic})`}}>
               <div className='feed-card-mini-text'>
                 <p>Join {props.name} in:</p>
                 <p>{props.title}</p>
@@ -47,12 +57,16 @@ const FeedCard = (props) => {
                   <span className='feed-card-mini-date'><FontAwesomeIcon icon={faClock} /> {props.date}</span>
                   <span className='feed-card-mini-date'><FontAwesomeIcon icon={faHeart} /> {props.likes}</span>
                   <span className='feed-card-mini-date'><FontAwesomeIcon icon={faComment} /> {props.comments}</span>
-                  <div className='feed-card-mini-attendees'>{props.attending} attending</div>
+                  <div className='feed-card-mini-attendees'>{props.attending} slots open</div>
                 </Row>
                 <Row className='feed-card-mini-buttons'>
                   <Button
                     className='feed-card-mini-register'
-                  >Register</Button>
+                    onClick={handleRegister}
+                    style={{display: props.showSubmit?'inline':'none'}}
+                  >
+                    {(registered) ? 'Unregister' : 'Register'}
+                  </Button>
                   <Button
                     className='feed-card-mini-details'
                   >Details</Button>
