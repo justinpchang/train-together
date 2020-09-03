@@ -281,7 +281,7 @@ export class SessionAccess {
       .promise();
 
     logger.info(`${JSON.stringify(result)}`);
-    return JSON.stringify(result);
+    return result;
   }
 
   /* Attaching user picture

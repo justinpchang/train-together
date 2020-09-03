@@ -44,7 +44,7 @@ provider:
 ## Functions goes here
 functions:
   Auth:
-    handler: src/lambda/auth/authUId.handler
+    handler: src/lambda/auth/authUid.handler
     iamRoleStatements:
       - Effect: Allow
         Action:

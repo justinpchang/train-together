@@ -10,10 +10,24 @@ import { createLogger } from '../../utils/logger';
 
 import { UserAccess } from '../datalayer/UserdDBAcceess';
 import { SessionAccess } from '../datalayer/SessionDBAccess';
+import { SessionItem } from '../../models/SessionItem';
 
 // import { parseUserId } from '../../auth/utils';
 
 const logger = createLogger('InsertUserDB');
+
+function compareSession(a: SessionItem, b: SessionItem) {
+  // a should come before b in the sorted order
+  if (a.eventDate < b.eventDate) {
+    return 1;
+    // a should come after b in the sorted order
+  } else if (a.eventDate > b.eventDate) {
+    return -1;
+    // a and b are the same
+  } else {
+    return 0;
+  }
+}
 
 export const handler: APIGatewayProxyHandler = async (
   event: APIGatewayProxyEvent
@@ -49,12 +63,14 @@ export const handler: APIGatewayProxyHandler = async (
     }
   }
 
+  var response = sessions.sort(compareSession);
+
   return {
     statusCode: ItemResponse.status,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': true,
     },
-    body: JSON.stringify(sessions),
+    body: JSON.stringify(response),
   };
 };

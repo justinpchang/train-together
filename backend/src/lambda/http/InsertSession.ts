@@ -34,9 +34,9 @@ export const handler: APIGatewayProxyHandler = async (
   const sessionId = uuid.v4();
 
   const ItemResponse = await new SessionAccess().createSession({
-    createdAt: new Date().toISOString(),
     sessionId,
     ...sessiondetails,
+    link: 'https://web.zoomfit.com/session/' + sessionId,
   });
 
   return {
