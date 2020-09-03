@@ -1,29 +1,226 @@
-### Train-Together Serverless Application Backend
+### ZOOMFIT Serverless Application Backend APIs
 
-The backend consists of following files and folders:
+**Tech Stack:** TypeScript, AWS Lambda Functions, API GateWays & DynamoDB
 
-backend
+#### API ENDPOINTS
 
-|-------src/
+**Login**
 
-|-------src/lambda/
+POST {apiId}/zoomfit/v1/user/login/ (return 403 on no user -> registration -> create user)
 
-|-------src/lambda/auth/ => Folder that handles authorization
+req: {
 
-|-------src/lambda/auth/auth0Authorizer.ts => Handles the authorization like verifying the token
+    email: <string>
 
-|-------src/lambda/http/ => Folder that has functions to handle
+}
+res: {
 
-|-------src/lambda/http/Createuser.ts => Function to create user and store it in the databases
+    userID: <string>
 
-|-------src/lambda/datalayer/ => Folder that handles the datalayer
+}
 
-|-------src/lambda/datalayer/S3Access.ts => Accessing the S3 layer
+**User API**
 
-|-------src/lambda/datalayer/RDSAccess.ts => Accessing the RDS layer
+GET {apiId}/zoomfit/v1/user/ (error if not onboarded)
 
-|-------src/lambda/datalayer/DynamoDBAccess.ts => Accessing the DynamoDB layer
+req: {
 
-|-------src/utils/
+    header: userId
 
-|-------src/utils/logger.ts => logger code
+}
+
+res: {
+
+    userId: int
+
+    name: string,
+
+    email: string,
+
+    age: string,
+
+    interests: array[string]
+
+    History?: array[string]->sessionid’s,
+
+    followers: int,
+
+    following: int,
+
+    sessionsAttended: int
+
+}
+
+Create user:
+
+POST {apiId}/zoomfit/v1/user/
+
+req: {
+
+    name: string,
+
+    email: string,
+
+    age: string,
+
+    interests: array[string]
+
+    picture: .jpg/png? string url
+
+}
+
+To get user sessions:
+
+GET {apiId}/zoomfit/v1/user/sessions/
+
+req: {
+
+    header: userId
+
+}
+
+Res : [List of session objects]
+
+To register a session:
+
+POST {apiId}/zoomfit/v1/user/register/
+
+req: {
+
+    header: userId
+
+    body: {
+
+            sessionId: string
+
+        }
+
+}
+
+Res:{
+}
+
+To unregister a session:
+
+POST {apiId}/zoomfit/v1/user/unregister/
+
+req: {
+
+    header: userId
+
+    body: {
+
+            sessionId: string
+
+        }
+
+}
+
+Session API
+
+Global feed
+GET {apiId}/zoomfit/v1/session/all LIMIT 20
+
+req: { }
+
+res: [Sessions]
+
+Get single session info
+
+GET {apiId}/zoomfit/v1/session/
+
+req: {
+
+    sessionId: string
+
+}
+
+res: {
+
+    class Object
+
+}
+
+Create a new session:
+
+POST {apiId}/zoomfit/v1/session/
+
+req: {
+
+    header: {userId},
+
+    body: {
+
+            title: string,
+
+            time: datetime,
+
+            description: string,
+
+            instructor: userId,
+
+            slots: int,
+
+            link: string,
+
+            tags: [string],
+
+}
+
+res: {
+
+        classId: string
+
+}
+
+Data Schema:
+
+NOTE: The ? after the name of the column denotes is not a mandate column.
+
+DynamoDB Users table:
+
+userId: string;
+
+createdAt: string;
+
+name: string;
+
+email: string;
+
+age: string;
+
+interests: Array<string>;
+
+followed?: number;
+
+following?: number;
+
+attachmentUrl?: string;
+
+sessionsAttended?: number;
+
+sessionsCreated?: number;
+
+history: Array<sessionId>
+
+DynamoDB Session table:
+
+sessionId: string;
+
+title: string;
+
+userId: string;
+
+createdAt: string;
+
+eventDate: String;
+
+description: string;
+
+attachmetUrl: string;
+
+link: string;
+
+slots: int; -> how many are remaining/open
+
+tags: Array<string>;

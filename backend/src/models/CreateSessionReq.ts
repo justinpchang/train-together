@@ -1,5 +1,4 @@
-export interface SessionItem {
-  sessionId: string;
+export interface CreateSessionReq {
   title: string;
   userId: string;
   createdAt: string;
