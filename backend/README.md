@@ -14,7 +14,8 @@ req: {
 
 }
 res: {
-userID: <string>
+
+    userID: <string>
 
 }
 
@@ -56,15 +57,15 @@ POST {apiId}/zoomfit/v1/user/
 
 req: {
 
-name: string,
+    name: string,
 
-email: string,
+    email: string,
 
-age: string,
+    age: string,
 
-interests: array[string]
+    interests: array[string]
 
-picture: .jpg/png? string url
+    picture: .jpg/png? string url
 
 }
 
@@ -128,10 +129,16 @@ Get single session info
 
 GET {apiId}/zoomfit/v1/session/
 
-req: {sessionId: string}
+req: {
+
+    sessionId: string
+
+}
 
 res: {
-class Object
+
+    class Object
+
 }
 
 Create a new session:
