@@ -43,6 +43,7 @@ const Profile = (props) => {
             following: res.Item.following,
             followers: res.Item.followed,
             workouts: res.Item.sessionAttended,
+            profilePic: res.Item.attachmentUrl,
           });
           userGotten(true);
         }).catch((error) => {
@@ -65,15 +66,18 @@ const Profile = (props) => {
       let session;
       let _cards = [];
       for (session of sessions) {
+        const host = (await getUser(session.userId)).Item;
         const card = {
-          name: (await getUser(session.userId)).Item.name,
+          name: host.name,
           postTime: session.createdAt,
           description: session.description,
           title: session.title,
           tags: session.tags,
           date: session.eventDate,
-          attending: 25-session.slots,
+          attending: session.slots,
           sessionId: session.sessionId,
+          profilePic: host.attachmentUrl,
+          sessionPic: session.attachmentUrl,
         }
         _cards.push(card)
       }
@@ -83,7 +87,7 @@ const Profile = (props) => {
     populateCards();
   }, [userId]);
 
-  if (!profile.name || !cards.length) {
+  if (!profile.name) {
     return (<Loading />);
   }
 
@@ -98,6 +102,7 @@ const Profile = (props) => {
               following={profile.following}
               followers={profile.followers}
               workouts={profile.workouts}
+              profilePic={profile.profilePic}
             />
           </Row>
         </div>

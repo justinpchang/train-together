@@ -21,6 +21,8 @@ const Feed = (props) => {
               userId={props.userId}
               sessionId={card.sessionId}
               showSubmit={props.showSubmit}
+              sessionPic={card.sessionPic}
+              profilePic={card.profilePic}
             />
           )
         })

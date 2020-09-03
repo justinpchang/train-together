@@ -43,20 +43,22 @@ const Home = (props) => {
     console.log('gotUser has changed');
     const populateCards = async () => {
       // Get feed
-      const feed = (await getFeed(props.userId)).Items;
-      console.log(feed);
+      const feed = (await getFeed(props.userId));
       let session;
       let _cards = [];
       for (session of feed) {
+        const host = (await getUser(session.userId)).Item;
         const card = {
-          name: (await getUser(session.userId)).Item.name,
+          name: host.name,
+          profilePic: host.attachmentUrl,
           postTime: session.createdAt,
           description: session.description,
           title: session.title,
           tags: session.tags,
           date: session.eventDate,
-          attending: 25-session.slots,
+          attending: session.slots,
           sessionId: session.sessionId,
+          sessionPic: session.attachmentUrl,
         }
         _cards.push(card);
       }
@@ -117,6 +119,7 @@ const Home = (props) => {
               following={profile.following}
               followers={profile.followers}
               workouts={profile.workouts}
+              profilePic={profile.profilePic}
             />
           </Row>
         </div>

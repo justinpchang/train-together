@@ -11,7 +11,7 @@ const ProfileGlance = (props) => {
       <div className='profile-glance'>
         <div className='profile-glance-background'></div>
         <div className='profile-glance-picture'>
-          <img className='profile-picture' src={defaultProfilePicture} alt='profile' />
+          <img className='profile-picture' src={props.profilePic} alt='profile' />
         </div>
         <h3 className='profile-glance-name'>{props.name}</h3>
         <div className='profile-glance-user-stats'>
